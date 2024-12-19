@@ -19,43 +19,19 @@
   },
   "structures": [
     {
-      "structure": "loot_n_explore:outposts/archers_outpost_1",
+      "structure": "loot_n_explore:ranger_oak_outpost",
+      "weight": 4
+    },
+    {
+      "structure": "loot_n_explore:ranger_generic_treasure",
       "weight": 5
     },
     {
-      "structure": "loot_n_explore:outposts/archers_outpost_2",
+      "structure": "loot_n_explore:ranger_oak_treasure",
       "weight": 5
     },
     {
-      "structure": "loot_n_explore:outposts/archers_outpost_3",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:outposts/archers_outpost_4",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:treasures/archers_treasure_1",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:treasures/archers_treasure_2",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:treasures/archers_treasure_3",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:treasures/archers_treasure_4",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:treasures/archers_treasure_5",
-      "weight": 5
-    },
-    {
-      "structure": "loot_n_explore:archers_small_camp",
+      "structure": "loot_n_explore:ranger_small_camp",
       "weight": 3
     }
   ]

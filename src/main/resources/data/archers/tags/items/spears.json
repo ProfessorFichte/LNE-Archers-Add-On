@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#lne_archers:spears",
+      "required": false
+    }
+  ]
+}
