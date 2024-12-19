@@ -1,6 +1,6 @@
 {
   "parent": "lne_archers:item/elder_guardian_heavy_crossbow",
   "textures": {
-    "layer0": "lne_archers:elder_guardian_heavy_crossbow_arrow"
+    "layer0": "lne_archers:item/elder_guardian_heavy_crossbow_arrow"
   }
 }

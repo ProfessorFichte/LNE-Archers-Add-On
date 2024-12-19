@@ -1,6 +1,6 @@
 {
   "parent": "lne_archers:item/wither_heavy_crossbow",
   "textures": {
-    "layer0": "lne_archers:wither_heavy_crossbow_firework"
+    "layer0": "lne_archers:item/wither_heavy_crossbow_firework"
   }
 }

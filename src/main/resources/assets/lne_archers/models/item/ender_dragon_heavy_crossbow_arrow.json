@@ -1,6 +1,6 @@
 {
   "parent": "lne_archers:item/ender_dragon_heavy_crossbow",
   "textures": {
-    "layer0": "lne_archers:ender_dragon_heavy_crossbow_arrow"
+    "layer0": "lne_archers:item/ender_dragon_heavy_crossbow_arrow"
   }
 }
