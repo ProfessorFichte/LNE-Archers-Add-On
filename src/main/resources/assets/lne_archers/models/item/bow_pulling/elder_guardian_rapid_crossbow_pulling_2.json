@@ -1,0 +1,6 @@
+{
+  "parent": "lne_archers:item/elder_guardian_rapid_crossbow",
+  "textures": {
+    "layer0": "lne_archers:item/bow_pulling/elder_guardian_rapid_crossbow_pulling_2"
+  }
+}

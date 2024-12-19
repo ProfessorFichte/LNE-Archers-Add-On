@@ -1,0 +1,6 @@
+{
+  "parent": "lne_archers:item/glacial_rapid_crossbow",
+  "textures": {
+    "layer0": "lne_archers:glacial_rapid_crossbow_arrow"
+  }
+}

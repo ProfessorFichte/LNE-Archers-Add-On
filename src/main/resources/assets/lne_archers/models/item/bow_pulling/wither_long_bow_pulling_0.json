@@ -1,0 +1,6 @@
+{
+    "parent": "lne_archers:item/wither_long_bow",
+    "textures": {
+        "layer0": "lne_archers:item/bow_pulling/wither_long_bow_pulling_0"
+    }
+}

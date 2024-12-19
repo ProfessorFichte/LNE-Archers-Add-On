@@ -1,0 +1,6 @@
+{
+  "parent": "lne_archers:item/ender_dragon_heavy_crossbow",
+  "textures": {
+    "layer0": "lne_archers:item/bow_pulling/ender_dragon_heavy_crossbow_pulling_0"
+  }
+}

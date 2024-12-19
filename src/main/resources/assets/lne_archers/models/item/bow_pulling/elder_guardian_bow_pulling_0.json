@@ -1,0 +1,6 @@
+{
+  "parent": "lne_archers:item/elder_guardian_bow",
+  "textures": {
+    "layer0": "lne_archers:item/bow_pulling/elder_guardian_bow_pulling_0"
+  }
+}

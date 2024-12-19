@@ -1,0 +1,6 @@
+{
+  "parent": "lne_archers:item/wither_rapid_crossbow",
+  "textures": {
+    "layer0": "lne_archers:wither_rapid_crossbow_firework"
+  }
+}

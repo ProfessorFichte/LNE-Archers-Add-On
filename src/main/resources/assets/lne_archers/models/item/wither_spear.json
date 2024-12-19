@@ -1,0 +1,6 @@
+{
+  "parent": "archers:item/base/spear_28",
+  "textures": {
+    "layer0": "lne_archers:item/wither_spear"
+  }
+}
