@@ -1,15 +1,8 @@
 package com.lne_archers.item;
 
 import com.lne_archers.LNE_ArchersMod;
-import com.lne_archers.item.weapons.DragonSpear;
-import com.lne_archers.item.weapons.ElderGuardianSpear;
-import com.lne_archers.item.weapons.GlacialSpear;
-import com.lne_archers.item.weapons.WitherSpear;
+import com.lne_archers.item.weapons.*;
 import more_rpg_loot.item.Group;
-import more_rpg_loot.item.weapons.DragonMeeleeWeapon;
-import more_rpg_loot.item.weapons.ElderGuardianMeleeWeapon;
-import more_rpg_loot.item.weapons.WitherMeleeWeapon;
-import net.archers.item.weapon.CustomWeaponItem;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
 import net.fabric_extras.ranged_weapon.api.CustomRangedWeapon;
@@ -66,6 +59,37 @@ public class WeaponRegister {
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
+    private static RangedEntry dragonBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new DragonBow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
+    private static RangedEntry guardianBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new ElderGuardianBow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
+    private static RangedEntry guardianCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new ElderGuardianCrossbow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
+    private static RangedEntry glacialBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new GlacialBow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
+    private static RangedEntry glacialCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new GlacialCrossbow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
+
     private static RangedEntry crossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
         var item = new CustomCrossbow(settings, repairIngredientSupplier);
@@ -148,47 +172,47 @@ public class WeaponRegister {
             spearElderGuardian("elder_guardian_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, elderGuardianRepair))
                     .attribute(ItemConfig.Attribute.bonus(MoreSpellSchools.WATER.id, weaponSpellPower));
-            spearDragon("wither_spear",
+            spearWither("wither_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, witherRepair))
                     .attribute(ItemConfig.Attribute.bonus(SpellSchools.SOUL.id, weaponSpellPower));
-            spearElderGuardian("glacial_spear",
+            spearGlacial("glacial_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, frostMonarchRepair))
                     .attribute(ItemConfig.Attribute.bonus(SpellSchools.FROST.id, weaponSpellPower));
             //SHORT BOWS
-            bow("ender_dragon_bow", durabilityBows, dragonRepair,
+            dragonBow("ender_dragon_bow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_shortBow, short_bow_damage, bow_velocity));
-            bow("elder_guardian_bow", durabilityBows, elderGuardianRepair,
+            guardianBow("elder_guardian_bow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_shortBow, short_bow_damage, bow_velocity));
             bow("wither_bow", durabilityBows, witherRepair,
                     new RangedConfig(archers_pullTime_shortBow, short_bow_damage, bow_velocity));
-            bow("glacial_bow", durabilityBows, frostMonarchRepair,
+            glacialBow("glacial_bow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_shortBow, short_bow_damage, bow_velocity));
             //LONG BOWS
-            bow("ender_dragon_long_bow", durabilityBows, dragonRepair,
+            dragonBow("ender_dragon_long_bow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_longBow, long_bow_damage, bow_velocity));
-            bow("elder_guardian_long_bow", durabilityBows, elderGuardianRepair,
+            guardianBow("elder_guardian_long_bow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_longBow, long_bow_damage, bow_velocity));
             bow("wither_long_bow", durabilityBows, witherRepair,
                     new RangedConfig(archers_pullTime_longBow, long_bow_damage, bow_velocity));
-            bow("glacial_long_bow", durabilityBows, frostMonarchRepair,
+            glacialBow("glacial_long_bow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_longBow, long_bow_damage, bow_velocity));
             //RAPID CROSSBOWS
             crossbow("ender_dragon_rapid_crossbow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
-            crossbow("elder_guardian_rapid_crossbow", durabilityBows, elderGuardianRepair,
+            guardianCrossbow("elder_guardian_rapid_crossbow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
             crossbow("wither_rapid_crossbow", durabilityBows, witherRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
-            crossbow("glacial_rapid_crossbow", durabilityBows, frostMonarchRepair,
+            glacialCrossbow("glacial_rapid_crossbow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
             //HEAVY CROSSBOWS
             crossbow("ender_dragon_heavy_crossbow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));
-            crossbow("elder_guardian_heavy_crossbow", durabilityBows, elderGuardianRepair,
+            guardianCrossbow("elder_guardian_heavy_crossbow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));
             crossbow("wither_heavy_crossbow", durabilityBows, witherRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));
-            crossbow("glacial_heavy_crossbow", durabilityBows, frostMonarchRepair,
+            glacialCrossbow("glacial_heavy_crossbow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));
         }
 

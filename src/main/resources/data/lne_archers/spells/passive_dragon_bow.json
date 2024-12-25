@@ -1,0 +1,99 @@
+{
+  "school": "PHYSICAL_RANGED",
+  "range": 99,
+  "learn": {
+    "tier": 4
+  },
+  "cast": {
+    "duration": 0
+  },
+  "release": {
+    "target": {
+      "type": "PROJECTILE",
+      "projectile": {
+        "launch_properties": {
+          "velocity": 1.0
+        },
+        "projectile": {
+          "homing_angle": 2.0,
+          "client_data": {
+            "travel_particles": [
+              {
+                "particle_id": "dragon_breath",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 2,
+                "min_speed": 0,
+                "max_speed": 0.05
+              },
+              {
+                "particle_id": "spell_engine:arcane_spell",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 10,
+                "min_speed": 0,
+                "max_speed": 0.05
+              }
+            ],
+            "model": {
+              "model_id": "lne_archers:projectile/dragon_bolt",
+              "light_emission": "RADIATE",
+              "scale": 2.5,
+              "light_level": 16
+            }
+          }
+        }
+      }
+    },
+    "sound": {
+      "id": "entity.ender_dragon.shoot"
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:arcane_spell",
+        "shape": "CIRCLE",
+        "rotation": "LOOK",
+        "origin": "CENTER",
+        "count": 1.0,
+        "min_speed": 0.05,
+        "max_speed": 0.1
+      }
+    ]
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 1.2
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:arcane_hit",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 50,
+          "min_speed": 0.5,
+          "max_speed": 1.2
+        },
+        {
+          "particle_id": "dragon_breath",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 30,
+          "min_speed": 0.2,
+          "max_speed": 0.7
+        }
+      ],
+      "sound": {
+        "id": "entity.dragon_fireball.explode"
+      }
+    }
+  ],
+  "cost": {
+    "item_id": "arrow"
+  }
+}

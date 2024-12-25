@@ -1,0 +1,49 @@
+{
+  "school": "PHYSICAL_RANGED",
+  "range": 99,
+  "learn": {
+    "tier": 2
+  },
+  "cast": {
+    "duration": 0
+  },
+  "release": {
+    "target": {
+      "type": "CURSOR",
+      "cursor": { }
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.9
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:big_splash",
+          "shape": "PILLAR",
+          "origin": "FEET",
+          "count": 20,
+          "min_speed": 0.05,
+          "max_speed": 0.2
+        },
+        {
+          "particle_id": "more_rpg_classes:splash",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 25.0,
+          "min_speed": 1.0,
+          "max_speed": 1.2
+        }
+      ],
+      "sound": {
+        "id": "more_rpg_classes:water_magic_impact1"
+      }
+    }
+  ],
+  "cost": {
+  }
+}

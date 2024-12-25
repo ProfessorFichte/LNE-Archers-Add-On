@@ -1,0 +1,14 @@
+{
+  "school": "PHYSICAL_RANGED",
+  "group": "primary",
+  "range": 0,
+  "learn": {
+    "tier": 2
+  },
+  "mode": "ITEM_USE",
+  "item_use": { },
+  "arrow_perks": {
+    "bypass_iframes": true,
+    "pierce": 2
+  }
+}

@@ -15,6 +15,9 @@
 	"icon": "assets/lne_archers/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"client": [
+			"com.lne_archers.client.LNE_ArchersClient"
+		],
 		"main": [
           "com.lne_archers.LNE_ArchersMod"
 		],
