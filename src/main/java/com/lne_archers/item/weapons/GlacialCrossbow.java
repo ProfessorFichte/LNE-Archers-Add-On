@@ -373,12 +373,10 @@ public class GlacialCrossbow extends CustomCrossbow {
             }
 
         }
-        tooltip.add(Text.translatable("lore.loot_n_explore.elder_guardian_weapon").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_1").formatted(Formatting.AQUA));
-        if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
-            tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_2").formatted(Formatting.AQUA));
-        }
+        tooltip.add(Text.translatable("lore.loot_n_explore.glacial_weapon").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.glacial_ranged").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.glacial_ranged_1").formatted(Formatting.WHITE));
+        tooltip.add(Text.translatable("passive.lne_archers.glacial_ranged_2").formatted(Formatting.WHITE));
     }
 
     public boolean isUsedOnRelease(ItemStack stack) {

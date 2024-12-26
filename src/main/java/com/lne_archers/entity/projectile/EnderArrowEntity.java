@@ -10,6 +10,8 @@ import net.spell_engine.particle.ParticleHelper;
 
 import java.util.Objects;
 
+import static com.lne_archers.LNE_ArchersMod.tweaksConfig;
+
 public class EnderArrowEntity extends ArrowEntity {
     public EnderArrowEntity(World world, LivingEntity owner) {
         super(world, owner);
@@ -29,11 +31,11 @@ public class EnderArrowEntity extends ArrowEntity {
         super.onHit(target);
         PlayerEntity playerEntity = (PlayerEntity) this.getOwner();
         float ranged_damage = (float) Objects.requireNonNull(playerEntity).getAttributeValue(EntityAttributes_RangedWeapon.DAMAGE.attribute);
-        float multiplicator = 0.2F;
+        float multiplication = tweaksConfig.value.ender_arrow_bow_magic_damage_multiplicator;
         if(this.isShotFromCrossbow()){
-            multiplicator = 0.40F;
+            multiplication = tweaksConfig.value.ender_arrow_crossbow_magic_damage_multiplicator;
         }
-        float magicDamage = ranged_damage * multiplicator;
+        float magicDamage = ranged_damage * multiplication;
         target.damage(target.getDamageSources().magic(), magicDamage);
         ParticleHelper.sendBatches(target, new ParticleBatch[]{particles});
 

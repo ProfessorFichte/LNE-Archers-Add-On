@@ -12,13 +12,7 @@
           "functions": [
             {
               "function": "set_nbt",
-              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\"],spell_container:\"ARCHERY\"}}",
-              "conditions": [
-                {
-                  "condition": "random_chance",
-                  "chance": 0.4
-                }
-              ]
+              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\"],spell_container:\"ARCHERY\"}}"
             }
           ]
         },

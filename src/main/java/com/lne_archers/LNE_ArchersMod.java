@@ -4,7 +4,7 @@ import com.lne_archers.config.Default;
 import com.lne_archers.config.ItemConfig;
 import com.lne_archers.item.WeaponRegister;
 import net.fabricmc.api.ModInitializer;
-
+import com.lne_archers.config.TweaksConfig;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -22,9 +22,16 @@ public class LNE_ArchersMod implements ModInitializer {
 			.setDirectory(MOD_ID)
 			.sanitize(true)
 			.build();
+	public static ConfigManager<TweaksConfig> tweaksConfig = new ConfigManager<TweaksConfig>
+			("tweaks", new TweaksConfig())
+			.builder()
+			.setDirectory(MOD_ID)
+			.sanitize(true)
+			.build();
 
 	@Override
 	public void onInitialize() {
+		tweaksConfig.refresh();
 		if(FabricLoader.getInstance().isModLoaded("loot_n_explore")) {
 			itemConfig.refresh();
 			WeaponRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);

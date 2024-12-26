@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "loot_n_explore:outposts/archers_outpost_1",
-    "loot_n_explore:outposts/archers_outpost_2",
-    "loot_n_explore:outposts/archers_outpost_3",
-    "loot_n_explore:outposts/archers_outpost_4"
+    "loot_n_explore:ranger_oak_outpost"
   ]
 }

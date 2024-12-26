@@ -2,16 +2,15 @@
 	"schemaVersion": 1,
 	"id": "lne_archers",
 	"version": "${version}",
-	"name": "lne_archers",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "L&E Archers-Add On",
+	"description": "Loot & Explore Add-On with Archers RPG-Series Content.",
 	"authors": [
-		"Me!"
+		"Fichte"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/lne_archers/icon.png",
 	"environment": "*",
 	"entrypoints": {

@@ -118,8 +118,9 @@ public class DragonBow extends CustomBow {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(Text.translatable("lore.loot_n_explore.ender_dragon_weapon").formatted(Formatting.GOLD));
         tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.AQUA));
-        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_2").formatted(Formatting.AQUA));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.DARK_PURPLE));
+        tooltip.add(Text.translatable("spell.lne_archers.passive_dragon_bow.name").formatted(Formatting.DARK_PURPLE));
+        tooltip.add(Text.translatable("spell.lne_archers.passive_dragon_bow.description").formatted(Formatting.DARK_PURPLE));
 
     }
 }

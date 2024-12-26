@@ -376,8 +376,7 @@ public class DragonCrossbow extends CustomCrossbow {
         }
         tooltip.add(Text.translatable("lore.loot_n_explore.ender_dragon_weapon").formatted(Formatting.GOLD));
         tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.WHITE));
-        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_2").formatted(Formatting.WHITE));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_2").formatted(Formatting.DARK_PURPLE));
     }
 
     public boolean isUsedOnRelease(ItemStack stack) {

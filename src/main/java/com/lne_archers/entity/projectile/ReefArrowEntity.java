@@ -37,7 +37,7 @@ public class ReefArrowEntity extends ArrowEntity {
         if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
             PlayerEntity playerEntity = (PlayerEntity) this.getOwner();
             float ranged_damage = (float) Objects.requireNonNull(playerEntity).getAttributeValue(EntityAttributes_RangedWeapon.DAMAGE.attribute);
-            float amplifier_multiplier = 0.1F;
+            float amplifier_multiplier = 0.15F;
             int effect_duration = 120;
             int amplifier = (int) (ranged_damage * amplifier_multiplier);
             target.addStatusEffect(new StatusEffectInstance(MRPGCEffects.BLEEDING, effect_duration, amplifier, false, false, true));
