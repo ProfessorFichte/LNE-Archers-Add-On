@@ -65,6 +65,12 @@ public class WeaponRegister {
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
+    private static RangedEntry dragonCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var settings = new FabricItemSettings().maxDamage(durability);
+        var item = new DragonCrossbow(settings, repairIngredientSupplier);
+        ((CustomRangedWeapon)item).configure(defaults);
+        return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
+    }
     private static RangedEntry guardianBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
         var item = new ElderGuardianBow(settings, repairIngredientSupplier);
@@ -197,7 +203,7 @@ public class WeaponRegister {
             glacialBow("glacial_long_bow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_longBow, long_bow_damage, bow_velocity));
             //RAPID CROSSBOWS
-            crossbow("ender_dragon_rapid_crossbow", durabilityBows, dragonRepair,
+            dragonCrossbow("ender_dragon_rapid_crossbow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
             guardianCrossbow("elder_guardian_rapid_crossbow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
@@ -206,7 +212,7 @@ public class WeaponRegister {
             glacialCrossbow("glacial_rapid_crossbow", durabilityBows, frostMonarchRepair,
                     new RangedConfig(archers_pullTime_rapidCrossbow, rapid_crossbow_damage, bow_velocity));
             //HEAVY CROSSBOWS
-            crossbow("ender_dragon_heavy_crossbow", durabilityBows, dragonRepair,
+            dragonCrossbow("ender_dragon_heavy_crossbow", durabilityBows, dragonRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));
             guardianCrossbow("elder_guardian_heavy_crossbow", durabilityBows, elderGuardianRepair,
                     new RangedConfig(archers_pullTime_heavyCrossbow, heavy_crossbow_damage, bow_velocity));

@@ -8,6 +8,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.world.World;
 import net.more_rpg_classes.effect.MRPGCEffects;
+import net.spell_engine.api.spell.ParticleBatch;
+import net.spell_engine.particle.ParticleHelper;
 
 import java.util.Objects;
 
@@ -20,6 +22,16 @@ public class ReefArrowEntity extends ArrowEntity {
         return 0.99F;
     }
 
+    private static final ParticleBatch particles = new ParticleBatch(
+            "more_rpg_classes:big_splash",
+            ParticleBatch.Shape.SPHERE,
+            ParticleBatch.Origin.CENTER,
+            null,
+            10,
+            0.3F,
+            0.5F,
+            0);
+
     protected void onHit(LivingEntity target) {
         super.onHit(target);
         if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
@@ -29,6 +41,7 @@ public class ReefArrowEntity extends ArrowEntity {
             int effect_duration = 120;
             int amplifier = (int) (ranged_damage * amplifier_multiplier);
             target.addStatusEffect(new StatusEffectInstance(MRPGCEffects.BLEEDING, effect_duration, amplifier, false, false, true));
+            ParticleHelper.sendBatches(target, new ParticleBatch[]{particles});
         }
 
     }

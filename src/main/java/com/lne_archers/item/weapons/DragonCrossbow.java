@@ -1,9 +1,8 @@
 package com.lne_archers.item.weapons;
 
 import com.google.common.collect.Lists;
-import com.lne_archers.entity.projectile.ReefArrowEntity;
+import com.lne_archers.entity.projectile.EnderArrowEntity;
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -44,8 +43,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class ElderGuardianCrossbow extends CustomCrossbow {
-    public ElderGuardianCrossbow(Settings settings, Supplier<Ingredient> repairIngredientSupplier) {
+public class DragonCrossbow extends CustomCrossbow {
+    public DragonCrossbow(Settings settings, Supplier<Ingredient> repairIngredientSupplier) {
         super(settings, repairIngredientSupplier);
     }
     private static final String CHARGED_KEY = "Charged";
@@ -236,7 +235,7 @@ public class ElderGuardianCrossbow extends CustomCrossbow {
     }
 
     private static PersistentProjectileEntity createArrow(World world, LivingEntity entity, ItemStack crossbow, ItemStack arrow) {
-        PersistentProjectileEntity persistentProjectileEntity = new ReefArrowEntity(world, entity);
+        PersistentProjectileEntity persistentProjectileEntity = new EnderArrowEntity(world, entity);
         if (entity instanceof PlayerEntity) {
             persistentProjectileEntity.setCritical(true);
         }
@@ -375,12 +374,10 @@ public class ElderGuardianCrossbow extends CustomCrossbow {
             }
 
         }
-        tooltip.add(Text.translatable("lore.loot_n_explore.elder_guardian_weapon").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_1").formatted(Formatting.WHITE));
-        if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
-            tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_2").formatted(Formatting.WHITE));
-        }
+        tooltip.add(Text.translatable("lore.loot_n_explore.ender_dragon_weapon").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.WHITE));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_2").formatted(Formatting.WHITE));
     }
 
     public boolean isUsedOnRelease(ItemStack stack) {

@@ -3,7 +3,6 @@ package com.lne_archers.item.weapons;
 import com.lne_archers.entity.projectile.EnderArrowEntity;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -91,7 +90,6 @@ public class DragonBow extends CustomBow {
                     }
 
 
-
                     world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     if (!bl2 && !playerEntity.getAbilities().creativeMode) {
                         itemStack.decrement(1);
@@ -109,10 +107,8 @@ public class DragonBow extends CustomBow {
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         super.usageTick(world, user, stack, remainingUseTicks);
-
         if (world.isClient) return;
         var ticks = stack.getMaxUseTime() - remainingUseTicks;
-
         if (ticks == 79) {
             world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.PLAYERS, 1.5f, 1.2f);
         }
@@ -120,11 +116,10 @@ public class DragonBow extends CustomBow {
 
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.translatable("lore.loot_n_explore.elder_guardian_weapon").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged").formatted(Formatting.GOLD));
-        tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_1").formatted(Formatting.AQUA));
-        if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
-            tooltip.add(Text.translatable("passive.lne_archers.elder_guardian_ranged_2").formatted(Formatting.AQUA));
-        }
+        tooltip.add(Text.translatable("lore.loot_n_explore.ender_dragon_weapon").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged").formatted(Formatting.GOLD));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.AQUA));
+        tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_2").formatted(Formatting.AQUA));
+
     }
 }
