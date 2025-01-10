@@ -3,19 +3,17 @@
     "exclusion_zone": {
       "other_set": [
         "minecraft:villages",
-        "loot_n_explore:berserker_structures",
-        "loot_n_explore:elemental_wizards_structures",
-        "loot_n_explore:forcemaster_structures",
-        "loot_n_explore:witcher_structures",
+        "loot_n_explore:dungeons",
+        "loot_n_explore:overworld_inns",
         "loot_n_explore:wizards_structures",
         "loot_n_explore:paladins_structures"
       ],
-      "chunk_count": 20
+      "chunk_count": 10
     },
     "type": "minecraft:random_spread",
     "salt": 34323671,
-    "separation": 15,
-    "spacing": 40
+    "separation": 10,
+    "spacing": 30
   },
   "structures": [
     {
