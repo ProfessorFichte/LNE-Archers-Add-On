@@ -1,39 +1,26 @@
 package com.lne_archers.item.weapons;
 
-import com.lne_archers.entity.projectile.EnderArrowEntity;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.spell_engine.api.spell.SpellInfo;
-import net.spell_engine.internals.SpellHelper;
-import net.spell_engine.internals.casting.SpellCasterEntity;
 
 import java.util.List;
 import java.util.function.Supplier;
-
-import static net.spell_engine.internals.SpellRegistry.getSpell;
 
 public class DragonBow extends CustomBow {
     public DragonBow(Settings settings, Supplier<Ingredient> repairIngredientSupplier) {
         super(settings, repairIngredientSupplier);
     }
-
+/*
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof PlayerEntity playerEntity) {
             boolean bl = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
@@ -85,7 +72,11 @@ public class DragonBow extends CustomBow {
                         var isCoolingDown = caster.getCooldownManager().isCoolingDown(spellIdentifier);
                         var spell = getSpell((spellIdentifier));
                         SpellInfo spellInfo = new SpellInfo(spell,spellIdentifier);
-                        SpellHelper.ImpactContext context = null;
+                        SpellHelper.ImpactContext context =  new SpellHelper.ImpactContext(1,
+                                1F,
+                                null,
+                                SpellPower.getSpellPower(spell.school, user),
+                                impactTargetingMode(spell));
                         SpellHelper.shootProjectile(world,user,null,spellInfo,context);
                     }
 
@@ -104,6 +95,8 @@ public class DragonBow extends CustomBow {
         }
     }
 
+
+
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         super.usageTick(world, user, stack, remainingUseTicks);
@@ -113,14 +106,16 @@ public class DragonBow extends CustomBow {
             world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.PLAYERS, 1.5f, 1.2f);
         }
     }
+ */
 
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(Text.translatable("lore.loot_n_explore.ender_dragon_weapon").formatted(Formatting.GOLD));
+        if(Screen.hasShiftDown()) {
         tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged").formatted(Formatting.GOLD));
         tooltip.add(Text.translatable("passive.lne_archers.ender_dragon_ranged_1").formatted(Formatting.DARK_PURPLE));
-        tooltip.add(Text.translatable("spell.lne_archers.passive_dragon_bow.name").formatted(Formatting.DARK_PURPLE));
-        tooltip.add(Text.translatable("spell.lne_archers.passive_dragon_bow.description").formatted(Formatting.DARK_PURPLE));
-
+        }else{
+            tooltip.add(Text.translatable("tooltip.loot_n_explore.shift_down"));
+        }
     }
 }

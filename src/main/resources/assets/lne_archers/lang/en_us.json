@@ -4,11 +4,8 @@
   "item.lne_archers.ender_dragon_rapid_crossbow": "Enderbolt Charger",
   "item.lne_archers.ender_dragon_heavy_crossbow": "Dragon's Maw",
   "item.lne_archers.ender_dragon_spear": "Dragonspike",
-  "passive.lne_archers.ender_dragon_ranged": "Passive: End Arrows",
-  "passive.lne_archers.ender_dragon_ranged_1": "Deals 10% magic damage according to the shooters Ranged Damage.",
-  "passive.lne_archers.ender_dragon_ranged_2": "Deals 25% magic damage according to the shooters Ranged Damage.",
-  "spell.lne_archers.passive_dragon_bow.name": "Passive Spell: Ender Dragon Bolt",
-  "spell.lne_archers.passive_dragon_bow.description": "When the Ender Dragon roars, you have a small time frame to release a Dragon Bolt.",
+  "passive.lne_archers.ender_dragon_ranged": "Passive: Dragon Breath",
+  "passive.lne_archers.ender_dragon_ranged_1": "Spawns a dragon breath Spell Cloud on Hit.",
 
   "item.lne_archers.elder_guardian_bow": "Nemo´s Fury",
   "item.lne_archers.elder_guardian_long_bow": "Kraken's Wrath",
@@ -16,7 +13,7 @@
   "item.lne_archers.elder_guardian_heavy_crossbow": "Maelstrom Ballista",
   "item.lne_archers.elder_guardian_spear": "Leviathan's Pike",
   "passive.lne_archers.elder_guardian_ranged": "Passive: Reef Arrows",
-  "passive.lne_archers.elder_guardian_ranged_1": "Arrows underwater have normal velocity.",
+  "passive.lne_archers.elder_guardian_ranged_1": "The sharp corals cause weakness on hit.",
   "passive.lne_archers.elder_guardian_ranged_2": "The sharp corals cause bleeding on hit.",
 
   "item.lne_archers.wither_bow": "Withered Bow",
@@ -26,7 +23,7 @@
   "item.lne_archers.wither_spear": "Witherspine",
   "passive.lne_archers.wither_ranged": "Passive: Withered Bolts",
   "passive.lne_archers.wither_ranged_1": "Inflicts the Wither Effect on the hit target.",
-  "passive.lne_archers.wither_ranged_2": "With each harmful status effect on the target, the arrow deals more damage according to the shooters Ranged Damage.",
+  "passive.lne_archers.wither_ranged_2": "With each harmful status effect on the target, the Wither Effect Amplifier increases.",
 
   "item.lne_archers.glacial_bow": "Frostbite Bow",
   "item.lne_archers.glacial_long_bow": "Glacial Shardbow",

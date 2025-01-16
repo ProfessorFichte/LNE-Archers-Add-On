@@ -1,7 +1,6 @@
 package com.lne_archers.item;
 
 import com.lne_archers.LNE_ArchersMod;
-import com.lne_archers.config.TweaksConfig;
 import com.lne_archers.item.weapons.*;
 import more_rpg_loot.item.Group;
 import net.fabric_extras.ranged_weapon.api.CustomRangedWeapon;
@@ -16,6 +15,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.item.ItemConfig;
 import net.spell_engine.api.item.weapon.Weapon;
@@ -56,48 +56,56 @@ public class WeaponRegister {
     //BOWS
     private static RangedEntry dragonBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new DragonBow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry dragonCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new DragonCrossbow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry guardianBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new ElderGuardianBow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry guardianCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new ElderGuardianCrossbow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry glacialBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new GlacialBow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry glacialCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new GlacialCrossbow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry witherBow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new WitherBow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
     }
     private static RangedEntry witherCrossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
         var settings = new FabricItemSettings().maxDamage(durability);
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new WitherCrossbow(settings, repairIngredientSupplier);
         ((CustomRangedWeapon)item).configure(defaults);
         return addRanged(new Identifier(LNE_ArchersMod.MOD_ID, name), item, defaults);
@@ -132,6 +140,7 @@ public class WeaponRegister {
     }
     private static Weapon.Entry spearDragon(String requiredMod, String name, Weapon.CustomMaterial material) {
         var settings = new Item.Settings();
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new DragonSpear(material, settings);
         return entryMelee(requiredMod, name, material, item, new ItemConfig.Weapon(spearAttackDamage, archers_spearAttackSpeed));
     }
@@ -140,6 +149,7 @@ public class WeaponRegister {
     }
     private static Weapon.Entry spearElderGuardian(String requiredMod, String name, Weapon.CustomMaterial material) {
         var settings = new Item.Settings();
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new ElderGuardianSpear(material, settings);
         return entryMelee(requiredMod, name, material, item, new ItemConfig.Weapon(spearAttackDamage, archers_spearAttackSpeed));
     }
@@ -148,6 +158,7 @@ public class WeaponRegister {
     }
     private static Weapon.Entry spearWither(String requiredMod, String name, Weapon.CustomMaterial material) {
         var settings = new Item.Settings();
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new WitherSpear(material, settings);
         return entryMelee(requiredMod, name, material, item, new ItemConfig.Weapon(spearAttackDamage, archers_spearAttackSpeed));
     }
@@ -156,6 +167,7 @@ public class WeaponRegister {
     }
     private static Weapon.Entry spearGlacial(String requiredMod, String name, Weapon.CustomMaterial material) {
         var settings = new Item.Settings();
+        settings = settings.rarity(Rarity.EPIC).fireproof();
         var item = new GlacialSpear(material, settings);
         return entryMelee(requiredMod, name, material, item, new ItemConfig.Weapon(spearAttackDamage, archers_spearAttackSpeed));
     }
