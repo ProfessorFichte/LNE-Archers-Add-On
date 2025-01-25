@@ -1,3 +1,8 @@
+# 0.1.1 - 1.20.1
+- update for LNE API Changes
+- fix crash with Loot & Explore 0.1.6
+- buffed the weapon attributes
+
 # 0.1.0 - 1.20.1 BETA
 ## First Beta of the LNE x Archers (RPG Series Add On)
 ### **Structures**

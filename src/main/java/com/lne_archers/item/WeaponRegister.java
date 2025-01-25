@@ -117,10 +117,10 @@ public class WeaponRegister {
     public static int vanilla_bow_pull_time = 20;
 
     public static float bow_velocity = 0F;
-    public static float short_bow_damage = 9.0F;
-    public static float long_bow_damage = 12.0F;
-    public static float rapid_crossbow_damage = 9.5F;
-    public static float heavy_crossbow_damage = 15.0F;
+    public static float short_bow_damage = 9.5F;
+    public static float long_bow_damage = 12.75F;
+    public static float rapid_crossbow_damage = 10.0F;
+    public static float heavy_crossbow_damage = 16.0F;
     private static final int durabilityBows = ToolMaterials.NETHERITE.getDurability();
 
     //MELEE
@@ -133,7 +133,7 @@ public class WeaponRegister {
     }
     //SPEARS
     private static final float archers_spearAttackSpeed = -2.6F;
-    private static final float spearAttackDamage = 7.0F;
+    private static final float spearAttackDamage = 7.5F;
     private static final float weaponSpellPower = 3.0F;
     private static Weapon.Entry spearDragon(String name, Weapon.CustomMaterial material) {
         return spearDragon(null, name, material);

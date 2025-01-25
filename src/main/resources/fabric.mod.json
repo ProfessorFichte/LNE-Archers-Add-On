@@ -35,6 +35,6 @@
 		"archers": "*"
 	},
 	"suggests": {
-		"loot_n_explore": "*"
+		"loot_n_explore": ">=0.1.6-1.20.1"
 	}
 }

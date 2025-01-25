@@ -4,11 +4,8 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.N
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
