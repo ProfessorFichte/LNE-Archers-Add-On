@@ -32,5 +32,10 @@
   "item.lne_archers.glacial_spear": "Glacial Peak",
   "passive.lne_archers.glacial_ranged": "Passive: Glacial Arrows",
   "passive.lne_archers.glacial_ranged_1": "Adds the Freezing Status effect every hit.",
-  "passive.lne_archers.glacial_ranged_2": "Stacks Freezing Ticks on the hit entity."
+  "passive.lne_archers.glacial_ranged_2": "Stacks Freezing Ticks on the hit entity.",
+
+  "spell.lne_archers.rangers_focus.name": "§5Ranger´s Focus",
+  "spell.lne_archers.rangers_focus.description": "Focuses for your next shot to deal 50% more damage, your movement speed gets reduced drastically.",
+  "effect.lne_archers.rangers_focus": "Ranger´s Focus",
+  "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage for 50%, reduces movement speed for 50%."
 }

@@ -1,3 +1,11 @@
+# 0.1.3 - 1.20.1
+- added 1 new simple spell for the Archer: Rangers Focus
+- this additional spell can be found in archer related loot chests
+- they will be bound to the spell books as an additional spell
+
+# 0.1.2 - 1.20.1
+- PersistentProjectileEntityMixin: fix LNE HelperMethod if LNE is not installed
+
 # 0.1.1 - 1.20.1
 - update for LNE API Changes
 - fix crash with Loot & Explore 0.1.6

@@ -12,7 +12,7 @@
           "functions": [
             {
               "function": "set_nbt",
-              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\",\"archers:entangling_roots\"],spell_container:\"ARCHERY\"}}"
+              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\",\"archers:entangling_roots\",\"archers:barrage\"],spell_container:\"ARCHERY\"}}"
             }
           ]
         },
@@ -23,7 +23,7 @@
           "functions": [
             {
               "function": "set_nbt",
-              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\",\"archers:entangling_roots\",\"archers:barrage\"],spell_container:\"ARCHERY\"}}"
+              "tag": "{spell_container:{pool:\"archers:archer\",spell_ids:[\"archers:power_shot\",\"archers:entangling_roots\",\"archers:barrage\",\"lne_archers:rangers_focus\"],spell_container:\"ARCHERY\"}}"
             }
           ]
         }

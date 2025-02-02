@@ -1,25 +1,19 @@
 package com.lne_archers.mixin;
 
+import com.lne_archers.api.LneArcherPassives;
 import com.lne_archers.item.weapons.*;
-import more_rpg_loot.effects.Effects;
-import more_rpg_loot.util.HelperMethods;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
-import net.more_rpg_classes.effect.MRPGCEffects;
 import net.spell_engine.api.spell.ParticleBatch;
 import net.spell_engine.particle.ParticleHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,10 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
 import java.util.Objects;
-
-import static more_rpg_loot.util.HelperMethods.applyStatusEffect;
 
 @Mixin(PersistentProjectileEntity.class)
 public abstract class PersistentProjectileEntityMixin {
@@ -91,61 +82,40 @@ public abstract class PersistentProjectileEntityMixin {
             float ranged_damage = (float) Objects.requireNonNull(player).getAttributeValue(EntityAttributes_RangedWeapon.DAMAGE.attribute);
             float projectileDamage = (float) this.damage + ranged_damage;
 
-            if(item instanceof DragonBow || item instanceof DragonCrossbow){
-                com.lne_archers.util.HelperMethods.spawnCloudEntity(ParticleTypes.DRAGON_BREATH,player,livingEntity,5,
-                        1.0F,3,2.0F,StatusEffects.INSTANT_DAMAGE,1,1);
+            if(FabricLoader.getInstance().isModLoaded("loot_n_explore")) {
 
-                if(!world.isClient()){
-                    ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesDragon});
-                }
-            }
-
-            if(item instanceof GlacialBow || item instanceof GlacialCrossbow){
-                applyStatusEffect(livingEntity,0,6, Effects.FREEZING,1,
-                        true,true,false,0);
-                HelperMethods.stackFreezeStacks(livingEntity,20);
-                if(!world.isClient()) {
-                    ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesGlacial});
-                }
-            }
-
-            if( item instanceof ElderGuardianBow || item instanceof ElderGuardianCrossbow){
-                if(FabricLoader.getInstance().isModLoaded("more_rpg_classes")){
-                    if(!world.isClient()) {
-                        ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesElderG});
+                if (item instanceof DragonBow || item instanceof DragonCrossbow) {
+                    LneArcherPassives.dragonBow(player,livingEntity);
+                    if (!world.isClient()) {
+                        ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesDragon});
                     }
-                    float amplifier_multiplier = 0.15F;
-                    int effect_duration = 120;
-                    int amplifier = (int) (ranged_damage * amplifier_multiplier);
-                    livingEntity.addStatusEffect(new StatusEffectInstance(MRPGCEffects.BLEEDING, effect_duration, amplifier,
-                            false, false, true));
-                }else{
-                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 6, 0,
-                            false, false, true));
                 }
-            }
 
-            if(item instanceof WitherBow || item instanceof WitherCrossbow){
-                List<StatusEffectInstance> list = livingEntity.getStatusEffects().stream().toList();
-                int negativeEffectsAmount = 0;
-                if (!list.isEmpty()) {
-                    for (StatusEffectInstance statusEffectInstance : list) {
-                        StatusEffect statusEffect = statusEffectInstance.getEffectType();
-                        if (!statusEffect.isBeneficial()) {
-                            negativeEffectsAmount++;
+                if (item instanceof GlacialBow || item instanceof GlacialCrossbow) {
+                    LneArcherPassives.glacialBow(livingEntity);
+                    if (!world.isClient()) {
+                        ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesGlacial});
+                    }
+                }
+
+                if (item instanceof ElderGuardianBow || item instanceof ElderGuardianCrossbow) {
+                    LneArcherPassives.elderGuardianBow(world,livingEntity,ranged_damage);
+                    if (FabricLoader.getInstance().isModLoaded("more_rpg_classes")) {
+                        if (!world.isClient()) {
+                            ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesElderG});
                         }
                     }
                 }
-                applyStatusEffect(livingEntity,negativeEffectsAmount,5, StatusEffects.WITHER,0,
-                        false,true,false,0);
 
+                if (item instanceof WitherBow || item instanceof WitherCrossbow) {
+                    LneArcherPassives.witherBow(livingEntity);
+                    if (!world.isClient()) {
+                        ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesWither});
+                    }
 
-                if(!world.isClient()) {
-                    ParticleHelper.sendBatches(livingEntity, new ParticleBatch[]{particlesWither});
                 }
 
             }
-
 
         }
     }
