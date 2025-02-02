@@ -1,7 +1,10 @@
 package com.lne_archers.client;
 
+import com.lne_archers.client.effect.RangersFocusParticles;
+import com.lne_archers.effects.Effects;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.util.Identifier;
+import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.CustomModels;
 
 import java.util.List;
@@ -14,5 +17,7 @@ public class LNE_ArchersClient implements ClientModInitializer {
         CustomModels.registerModelIds(List.of(
                 new Identifier(MOD_ID, "projectile/dragon_bolt")
         ));
+
+        CustomParticleStatusEffect.register(Effects.RANGERS_FOCUS, new RangersFocusParticles(15));
     }
 }
