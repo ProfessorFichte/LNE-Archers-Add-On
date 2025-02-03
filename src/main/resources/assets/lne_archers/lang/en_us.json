@@ -35,7 +35,7 @@
   "passive.lne_archers.glacial_ranged_2": "Stacks Freezing Ticks on the hit entity.",
 
   "spell.lne_archers.rangers_focus.name": "§5Ranger´s Focus",
-  "spell.lne_archers.rangers_focus.description": "Focuses for your next shot to deal 50% more damage, your movement speed gets reduced drastically.",
+  "spell.lne_archers.rangers_focus.description": "Focuses natures energy for {effect_duration} seconds, your ranged damage is increased, but your movement speed and ranged haste are reduced.",
   "effect.lne_archers.rangers_focus": "Ranger´s Focus",
   "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage for 50%, reduces movement speed for 50%."
 }

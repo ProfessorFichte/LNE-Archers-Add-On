@@ -1,3 +1,8 @@
+# 0.1.4 - 1.20.1
+- changed how Rangers Focus functions
+- The effect will not get removed after you hit an error, its now present for the full duration
+- Your Ranged Weapon Damage is increased by 50%, Movement Speed is reduced by -50%, Ranged Haste is reduced by 30%
+
 # 0.1.3 - 1.20.1
 - added 1 new simple spell for the Archer: Rangers Focus
 - this additional spell can be found in archer related loot chests
