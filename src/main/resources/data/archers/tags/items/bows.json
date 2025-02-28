@@ -4,10 +4,6 @@
     {
       "id": "#lne_archers:bows",
       "required": false
-    },
-    {
-      "id": "#lne_archers:crossbows",
-      "required": false
     }
   ]
 }
