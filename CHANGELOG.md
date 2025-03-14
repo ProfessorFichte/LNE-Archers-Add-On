@@ -1,3 +1,7 @@
+# 0.1.5 - 1.20.1
+- fix auto fire hook tag
+- Add More RPG Library as dependency for animations, particles & sounds
+
 # 0.1.4 - 1.20.1
 - changed how Rangers Focus functions
 - The effect will not get removed after you hit an error, its now present for the full duration
