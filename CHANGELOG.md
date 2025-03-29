@@ -1,3 +1,8 @@
+# 0.1.6 - 1.20.1
+- Add Archers Expansion Compatibility
+- Add Archers Expansion Structure Variants
+- Buff Archery Outpost Loot Chests
+
 # 0.1.5 - 1.20.1
 - fix auto fire hook tag
 - Add More RPG Library as dependency for animations, particles & sounds

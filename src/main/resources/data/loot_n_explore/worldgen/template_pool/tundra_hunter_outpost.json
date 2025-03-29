@@ -1,0 +1,15 @@
+{
+  "name": "loot_n_explore:tundra_hunter_outpost",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "loot_n_explore:outposts/tundra_hunter_outpost",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

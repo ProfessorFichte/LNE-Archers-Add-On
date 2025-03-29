@@ -29,7 +29,31 @@
       "weight": 5
     },
     {
+      "structure": "loot_n_explore:deadeye_treasure",
+      "weight": 4
+    },
+    {
+      "structure": "loot_n_explore:war_archer_outpost",
+      "weight": 4
+    },
+    {
+      "structure": "loot_n_explore:tundra_hunter_outpost",
+      "weight": 4
+    },
+    {
       "structure": "loot_n_explore:ranger_small_camp",
+      "weight": 3
+    },
+    {
+      "structure": "loot_n_explore:war_archer_tower",
+      "weight": 3
+    },
+    {
+      "structure": "loot_n_explore:tundra_hunter_hut",
+      "weight": 3
+    },
+    {
+      "structure": "loot_n_explore:deadeye_hideout",
       "weight": 3
     }
   ]
