@@ -1,5 +1,5 @@
 {
-  "parent": "archers:item/base/crossbow_18",
+  "parent": "lne_archers:item/base/crossbow_22",
   "textures": {
     "layer0": "lne_archers:item/glacial_heavy_crossbow"
   },

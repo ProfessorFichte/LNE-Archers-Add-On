@@ -1,5 +1,5 @@
 {
-    "parent": "archers:item/base/bow_20",
+    "parent": "lne_archers:item/base/bow_24",
     "textures": {
         "layer0": "lne_archers:item/wither_long_bow"
     },

@@ -1,3 +1,6 @@
+# 0.1.7 - 1.20.1
+- Update Textures
+
 # 0.1.6 - 1.20.1
 - Add Archers Expansion Compatibility
 - Add Archers Expansion Structure Variants
