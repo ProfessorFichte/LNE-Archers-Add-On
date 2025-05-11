@@ -34,8 +34,10 @@
   "passive.lne_archers.glacial_ranged_1": "Adds the Freezing Status effect every hit.",
   "passive.lne_archers.glacial_ranged_2": "Stacks Freezing Ticks on the hit entity.",
 
-  "spell.lne_archers.rangers_focus.name": "§5Ranger´s Focus",
-  "spell.lne_archers.rangers_focus.description": "Focuses natures energy for {effect_duration} seconds, your ranged damage is increased, but your movement speed and ranged haste are reduced.",
+  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus",
+  "spell.lne_archers.rangers_focus.description": "Focuses natures energy and slowing you drastically for {effect_duration} seconds, increasing your ranged damage & velocity & decreasing pull time.",
   "effect.lne_archers.rangers_focus": "Ranger´s Focus",
-  "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage for 50%, reduces movement speed for 50%."
+  "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage, Haste, reduces movement speed and pull time.",
+
+  "item.archers.archer.treasure_spell_scroll": "Treasure Archery Scroll"
 }

@@ -1,5 +1,9 @@
 {
   "values": [
-    "#c:forest"
+    "minecraft:forest",
+    {
+      "id": "#c:forest",
+      "required": false
+    }
   ]
 }

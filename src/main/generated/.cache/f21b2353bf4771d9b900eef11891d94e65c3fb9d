@@ -1,0 +1,6 @@
+// 1.21.1	2025-05-11T11:40:55.2675537	L&E Archers-Add On/Tags for minecraft:item
+ba24f382d6f1ae4c82d698d300949c55688b0049 data\rpg_series\tags\item\weapon_type\rapid_crossbow.json
+1887d4391c3de80e98883b908295b27ad25f9107 data\rpg_series\tags\item\weapon_type\short_bow.json
+69b83344d99dbde23e220b91177c9ef0913111d5 data\rpg_series\tags\item\weapon_type\long_bow.json
+b14b38c300f7b4013bbc35869d3c64d4d0ed09fa data\rpg_series\tags\item\weapon_type\heavy_crossbow.json
+2aaa2288fced941d2dffe56ac7616b7d14b4d339 data\rpg_series\tags\item\weapon_type\spear.json

@@ -10,7 +10,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "loot_n_explore:maps/archers_outposts_maps"
+          "value": "loot_n_explore:maps/archers_outposts_maps"
         }
       ]
     },

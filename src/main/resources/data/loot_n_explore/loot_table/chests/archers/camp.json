@@ -2,13 +2,21 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 1.0
+      },
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "loot_n_explore:spell_books/archers/expert",
-          "weight": 2
-        },
+          "value": "loot_n_explore:spell_scrolls/archers/expert"
+        }
+      ]
+    },
+    {
+      "rolls": 2,
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "archers:mechanic_shortbow",
@@ -244,7 +252,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:scute",
+          "name": "minecraft:turtle_scute",
           "functions": [
             {
               "function": "minecraft:set_count",

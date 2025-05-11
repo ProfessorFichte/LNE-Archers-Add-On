@@ -10,7 +10,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "loot_n_explore:maps/archers_camps"
+          "value": "loot_n_explore:maps/archers_camps"
         }
       ]
     },
@@ -23,7 +23,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "loot_n_explore:spell_books/archers/beginner"
+          "value": "loot_n_explore:spell_scrolls/archers/beginner"
         }
       ]
     },
@@ -36,7 +36,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "archers:chests/archery_range"
+          "value": "archers:chests/archery_range"
         }
       ]
     }

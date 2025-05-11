@@ -1,13 +1,7 @@
 {
   "placement": {
     "exclusion_zone": {
-      "other_set": [
-        "minecraft:villages",
-        "loot_n_explore:dungeons",
-        "loot_n_explore:overworld_inns",
-        "loot_n_explore:wizards_structures",
-        "loot_n_explore:paladins_structures"
-      ],
+      "other_set": "minecraft:villages",
       "chunk_count": 10
     },
     "type": "minecraft:random_spread",

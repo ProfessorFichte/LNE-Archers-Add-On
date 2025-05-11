@@ -3,7 +3,7 @@ package com.lne_archers;
 import com.lne_archers.config.Default;
 import com.lne_archers.config.ItemConfig;
 import com.lne_archers.effects.Effects;
-import com.lne_archers.item.WeaponRegister;
+import com.lne_archers.item.WeaponsRegister;
 import net.fabricmc.api.ModInitializer;
 import com.lne_archers.config.TweaksConfig;
 import net.fabricmc.loader.api.FabricLoader;
@@ -33,7 +33,7 @@ public class LNE_ArchersMod implements ModInitializer {
 		Effects.register();
 		if(FabricLoader.getInstance().isModLoaded("loot_n_explore")) {
 			itemConfig.refresh();
-			WeaponRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
+			WeaponsRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
 			itemConfig.save();
 		}
 	}
