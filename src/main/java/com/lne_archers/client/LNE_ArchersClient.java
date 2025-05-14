@@ -15,7 +15,8 @@ public class LNE_ArchersClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         CustomModels.registerModelIds(List.of(
-                Identifier.of(MOD_ID, "projectile/dragon_bolt")
+                Identifier.of(MOD_ID, "projectile/dragon_bolt"),
+                Identifier.of(MOD_ID, "projectile/glacial_arrow")
         ));
 
         CustomParticleStatusEffect.register(Effects.RANGERS_FOCUS.effect, new RangersFocusParticles(15));

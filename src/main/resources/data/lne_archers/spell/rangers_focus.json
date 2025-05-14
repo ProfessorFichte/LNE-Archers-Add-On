@@ -1,7 +1,7 @@
 {
   "school": "PHYSICAL_RANGED",
   "range": 0.0,
-  "tier": 4,
+  "tier": 5,
   "active": {
     "scroll": {},
     "cast": {
