@@ -9,13 +9,13 @@
   ],
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:nether_star"
+    "item": "loot_n_explore:wither_spine"
   },
   "base": {
     "item": "archers:netherite_heavy_crossbow"
   },
   "result": {
-    "item": "lne_archers:wither_heavy_crossbow"
+    "id": "lne_archers:wither_heavy_crossbow"
   },
   "template": {
     "item": "loot_n_explore:wither_upgrade_smithing_template"

@@ -15,7 +15,7 @@
     "item": "archers:netherite_heavy_crossbow"
   },
   "result": {
-    "item": "lne_archers:ender_dragon_heavy_crossbow"
+    "id": "lne_archers:ender_dragon_heavy_crossbow"
   },
   "template": {
     "item": "loot_n_explore:dragon_upgrade_smithing_template"

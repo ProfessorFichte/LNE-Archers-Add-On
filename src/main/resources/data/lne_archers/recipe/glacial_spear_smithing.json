@@ -15,7 +15,7 @@
     "item": "archers:netherite_spear"
   },
   "result": {
-    "item": "lne_archers:glacial_spear"
+    "id": "lne_archers:glacial_spear"
   },
   "template": {
     "item": "loot_n_explore:frostmonarch_upgrade_smithing_template"

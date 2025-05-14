@@ -9,13 +9,13 @@
   ],
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:nether_star"
+    "item": "loot_n_explore:wither_spine"
   },
   "base": {
     "item": "archers:netherite_spear"
   },
   "result": {
-    "item": "lne_archers:wither_spear"
+    "id": "lne_archers:wither_spear"
   },
   "template": {
     "item": "loot_n_explore:wither_upgrade_smithing_template"

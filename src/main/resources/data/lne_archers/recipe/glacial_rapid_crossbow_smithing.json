@@ -15,7 +15,7 @@
     "item": "archers:netherite_rapid_crossbow"
   },
   "result": {
-    "item": "lne_archers:glacial_rapid_crossbow"
+    "id": "lne_archers:glacial_rapid_crossbow"
   },
   "template": {
     "item": "loot_n_explore:frostmonarch_upgrade_smithing_template"

@@ -15,7 +15,7 @@
     "item": "archers:netherite_spear"
   },
   "result": {
-    "item": "lne_archers:ender_dragon_spear"
+    "id": "lne_archers:ender_dragon_spear"
   },
   "template": {
     "item": "loot_n_explore:dragon_upgrade_smithing_template"

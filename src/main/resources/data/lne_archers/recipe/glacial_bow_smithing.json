@@ -15,7 +15,7 @@
     "item": "archers:netherite_shortbow"
   },
   "result": {
-    "item": "lne_archers:glacial_bow"
+    "id": "lne_archers:glacial_bow"
   },
   "template": {
     "item": "loot_n_explore:frostmonarch_upgrade_smithing_template"
