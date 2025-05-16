@@ -1,3 +1,6 @@
+### 1.0.1 - 1.21.1
+- fix some target modifiers in Passive Spell Impact
+
 ### 1.0.0 - 1.21.1
 # Official 1.21.1 Release!
 # CHANGES
