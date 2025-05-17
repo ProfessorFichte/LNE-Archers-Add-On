@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "lne_archers:elder_guardian_bow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:elder_guardian_heavy_crossbow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:elder_guardian_long_bow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:elder_guardian_rapid_crossbow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:elder_guardian_spear",
+      "required": false
+    }
+  ]
+}

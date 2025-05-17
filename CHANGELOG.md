@@ -1,3 +1,6 @@
+### 1.0.2 - 1.21.1
+- add Loot & Explore Weapon Theme Tags
+
 ### 1.0.1 - 1.21.1
 - fix some target modifiers in Passive Spell Impact
 

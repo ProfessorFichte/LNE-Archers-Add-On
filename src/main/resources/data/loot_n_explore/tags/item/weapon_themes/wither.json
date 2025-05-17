@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "lne_archers:wither_bow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:wither_heavy_crossbow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:wither_long_bow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:wither_rapid_crossbow",
+      "required": false
+    },
+    {
+      "id": "lne_archers:wither_spear",
+      "required": false
+    }
+  ]
+}
