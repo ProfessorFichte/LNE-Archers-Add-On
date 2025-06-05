@@ -1,3 +1,8 @@
+### 1.0.3 - 1.21.1
+- renamed the Ender Dragon Heavy Crossbow
+- Update Mod Icon
+- Update License
+
 ### 1.0.2 - 1.21.1
 - add Loot & Explore Weapon Theme Tags
 

@@ -10,7 +10,7 @@
 	"contact": {
 		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On"
 	},
-	"license": "MIT",
+	"license": "ARR",
 	"icon": "assets/lne_archers/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -29,7 +29,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21",
+		"minecraft": ">=1.21, <=1.21.1",
 		"java": ">=17",
 		"fabric-api": "*",
 		"archers": "*",
