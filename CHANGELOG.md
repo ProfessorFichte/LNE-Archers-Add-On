@@ -1,3 +1,8 @@
+# 0.1.8 - 1.20.1
+- Update Mod Icon
+- Update License
+- Add zh_cn lang file (Thx Ansurfen)
+
 # 0.1.7 - 1.20.1
 - Update Textures
 

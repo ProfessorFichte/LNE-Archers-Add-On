@@ -10,7 +10,7 @@
 	"contact": {
 		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On"
 	},
-	"license": "MIT",
+	"license": "ARR",
 	"icon": "assets/lne_archers/icon.png",
 	"environment": "*",
 	"entrypoints": {
