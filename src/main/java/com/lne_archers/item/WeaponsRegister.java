@@ -41,6 +41,7 @@ public class WeaponsRegister {
         Item create(Item.Settings settings, RangedConfig config, Supplier<Ingredient> repairIngredientSupplier);
     }
 
+
     public static final class RangedEntry {
         private final Identifier id;
         private final RangedFactory factory;
@@ -66,10 +67,10 @@ public class WeaponsRegister {
             return id;
         }
 
-        public Item create(Item.Settings settings) {
+        public Item create(Item.Settings settings, RangedConfig config) {
             this.item = factory.create(
                     settings.maxDamage(durability),
-                    defaults,
+                    config,
                     repairIngredientSupplier
             );
             return this.item;
@@ -283,7 +284,7 @@ public class WeaponsRegister {
                     settings.component(SpellDataComponents.SPELL_CONTAINER, SpellContainerHelper.createForRangedWeapon(entry.spells));
                 }
             }
-            var item = entry.create(settings);
+            var item = entry.create(settings, config);
             Registry.register(Registries.ITEM, entry.id, item);
         }
         ItemGroupEvents.modifyEntriesEvent(Group.RPG_LOOT_KEY).register((content) -> {

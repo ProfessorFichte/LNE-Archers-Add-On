@@ -46,7 +46,8 @@
               "shape": "PILLAR",
               "count": 10.0,
               "min_speed": 0.1,
-              "max_speed": 0.5
+              "max_speed": 0.5,
+              "color_rgba": 4284940287
             }
           ]
         },

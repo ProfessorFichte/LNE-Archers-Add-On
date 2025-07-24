@@ -1,3 +1,10 @@
+### 1.0.5- 1.21.1
+- Spell Engine 1.7 Update
+
+### 1.0.4 - 1.21.1
+- fix ranged weapon config
+- fix issue with fabric-mod.json
+
 ### 1.0.3 - 1.21.1
 - renamed the Ender Dragon Heavy Crossbow
 - Update Mod Icon

@@ -44,9 +44,9 @@ public class Effects {
         RANGERS_FOCUS.effect.addAttributeModifier(EntityAttributes_RangedWeapon.DAMAGE.entry, RANGERS_FOCUS.modifierId(),
                 0.4F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)
                 .addAttributeModifier(EntityAttributes_RangedWeapon.PULL_TIME.entry, RANGERS_FOCUS.modifierId(),
-                        -0.3F, EntityAttributeModifier.Operation.ADD_VALUE)
+                        -0.2F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)
                 .addAttributeModifier(EntityAttributes_RangedWeapon.VELOCITY.entry, RANGERS_FOCUS.modifierId(),
-                        0.3F, EntityAttributeModifier.Operation.ADD_VALUE)
+                        0.5F, EntityAttributeModifier.Operation.ADD_VALUE)
                 .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, RANGERS_FOCUS.modifierId(),
                         -0.75F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 

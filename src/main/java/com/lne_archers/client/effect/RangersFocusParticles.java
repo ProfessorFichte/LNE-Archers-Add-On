@@ -11,14 +11,14 @@ public class RangersFocusParticles implements CustomParticleStatusEffect.Spawner
     public RangersFocusParticles(int particleCount) {
         this.particles = new ParticleBatch(
                 "spell_engine:magic_nature_spark_float",
-                ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
-                null, particleCount,0.01F, 0.03F, 0,0.5F);
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                null, particleCount,0.01F, 0.03F, 0,1.0F).invert().color(1728014079);
     }
 
     @Override
     public void spawnParticles(LivingEntity livingEntity, int amplifier) {
         var scaledParticles = new ParticleBatch(particles);
-        scaledParticles.count = (1);
+        scaledParticles.count = (5);
         ParticleHelper.play(livingEntity.getWorld(), livingEntity, scaledParticles);
     }
 }
