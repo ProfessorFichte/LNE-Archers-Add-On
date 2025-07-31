@@ -2,12 +2,12 @@ package com.lne_archers.api;
 
 import more_rpg_loot.effects.Effects;
 import more_rpg_loot.util.HelperMethods;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 import net.more_rpg_classes.effect.MRPGCEffects;
 
@@ -19,8 +19,9 @@ import static more_rpg_loot.util.HelperMethods.applyStatusEffect;
 public class LneArcherPassives {
 
     public static void dragonBow(LivingEntity attacker, LivingEntity target){
-        HelperMethods.spawnCloudEntity(ParticleTypes.DRAGON_BREATH, attacker, target, 5,
-                1.0F, 3, 2.0F, StatusEffects.INSTANT_DAMAGE, 1, 1);
+        float damage = (float) attacker.getAttributeValue(EntityAttributes_RangedWeapon.DAMAGE.attribute) * 0.15F;
+        target.timeUntilRegen = 0;
+        target.damage(target.getDamageSources().dragonBreath(), damage);
     }
     public static void glacialBow(LivingEntity target){
         applyStatusEffect(target, 0, 6, Effects.FREEZING, 1,

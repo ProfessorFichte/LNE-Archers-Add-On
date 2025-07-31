@@ -1,3 +1,6 @@
+# 0.1.9 - 1.20.1
+- change Ranged Ender Dragon to additional Magic Damage
+
 # 0.1.8 - 1.20.1
 - Update Mod Icon
 - Update License
