@@ -1,7 +1,7 @@
 {
   "school": "PHYSICAL_RANGED",
   "range": 0.0,
-  "tier": 5,
+  "tier": 4,
   "active": {
     "scroll": {},
     "cast": {
@@ -43,23 +43,72 @@
       }
     ]
   },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "lne_archers:rangers_focus",
+      "duration": 12.0,
+      "consume": 0,
+      "triggers": [
+        {
+          "type": "ARROW_IMPACT"
+        }
+      ]
+    }
+  },
   "impacts": [
     {
       "action": {
-        "type": "STATUS_EFFECT",
-        "status_effect": {
-          "effect_id": "lne_archers:rangers_focus",
-          "duration": 12,
-          "apply_mode": "SET",
-          "show_particles": false
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3
         }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_spark_ascend",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 10,
+          "min_speed": 0.02,
+          "max_speed": 0.1,
+          "color_rgba": 1728014079
+        },
+        {
+          "particle_id": "spell_engine:magic_spark_ascend",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 25.0,
+          "min_speed": 0.1,
+          "max_speed": 0.3,
+          "pre_spawn_travel": 2,
+          "color_rgba": 1728014079,
+          "extent": 1.5
+        },
+        {
+          "particle_id": "spell_engine:magic_spark_ascend",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 25.0,
+          "min_speed": 0.2,
+          "max_speed": 0.5,
+          "pre_spawn_travel": 4,
+          "color_rgba": 1728014079,
+          "extent": 3.0
+        }
+      ],
+      "sound": {
+        "id": "archers:magic_arrow_impact"
       }
     }
   ],
+  "area_impact": {
+    "radius": 3.0
+  },
   "cost": {
     "exhaust": 0.5,
     "cooldown": {
-      "duration": 45.0
+      "duration": 35.0
     }
   }
 }

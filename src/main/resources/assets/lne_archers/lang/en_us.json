@@ -32,7 +32,7 @@
   "spell.lne_archers.glacial_splitter.description": "Defeating Enemies spawns glacial projectiles that deal {damage} damage and freeze enemies for {effect_duration} seconds.",
 
   "spell.lne_archers.rangers_focus.name": "Ranger´s Focus",
-  "spell.lne_archers.rangers_focus.description": "Focuses natures energy and slowing you drastically for {effect_duration} seconds, increasing your ranged damage & velocity & decreasing pull time.",
+  "spell.lne_archers.rangers_focus.description": "Slows you drastically for {stash_duration} seconds, increases your ranged damage & velocity & decreasing pull time, but creates a area impact on arrow impact.",
   "effect.lne_archers.rangers_focus": "Ranger´s Focus",
   "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage, Haste, reduces movement speed and pull time.",
 

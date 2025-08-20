@@ -1,3 +1,8 @@
+### 1.0.6- 1.21.1
+- Rangers Focus is now a T4 spell
+- it can now also be looted outside the class structure
+- Also Buffed Rangers Focus, it now also creates a small damage area impact on arrow impact
+
 ### 1.0.5- 1.21.1
 - Spell Engine 1.7 Update
 
