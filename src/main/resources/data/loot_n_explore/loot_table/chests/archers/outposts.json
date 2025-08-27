@@ -22,8 +22,17 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "value": "loot_n_explore:spell_scrolls/archers/beginner"
+          "type": "minecraft:item",
+          "name": "spell_engine:scroll",
+          "functions": [
+            {
+              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "spell_pools": ["#archers:archer"],
+              "spell_tier_min": 1,
+              "spell_tier_max": 3,
+              "count": 1
+            }
+          ]
         }
       ]
     },
