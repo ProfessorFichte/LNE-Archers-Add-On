@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "archers_expansion:spell_projectile/glacial_arrow",
-		"particle": "archers_expansion:spell_projectile/glacial_arrow"
+		"0": "lne_archers:spell_projectile/glacial_arrow",
+		"particle": "lne_archers:spell_projectile/glacial_arrow"
 	},
 	"elements": [
 		{

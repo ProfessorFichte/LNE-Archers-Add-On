@@ -58,7 +58,7 @@
         },
         "client_data": {
           "model": {
-            "model_id": "archers_expansion:projectile/glacial_arrow",
+            "model_id": "lne_archers:projectile/glacial_arrow",
             "scale": 2.0,
             "rotate_degrees_per_tick": 0.0
           }
