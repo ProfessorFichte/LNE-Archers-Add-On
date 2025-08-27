@@ -1,3 +1,8 @@
+### 1.0.7- 1.21.1
+- add missing filled map lang translation
+- fix crash with Glacial Splitter Passive without Archers Expansion installed
+- use new loot function for loot chests: "more_rpg_classes:specific_spell_scroll_pool"
+
 ### 1.0.6- 1.21.1
 - Rangers Focus is now a T4 spell
 - it can now also be looted outside the class structure
