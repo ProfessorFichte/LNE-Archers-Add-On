@@ -39,5 +39,8 @@
   "item.archers.archer.treasure_spell_scroll": "Treasure Archery Scroll",
   "item.archers_expansion.deadeye.treasure_spell_scroll": "Treasure Deadeye Scroll",
   "item.archers_expansion.tundra_hunter.treasure_spell_scroll": "Treasure Tundra Hunter Scroll",
-  "item.archers_expansion.war_archer.treasure_spell_scroll": "Treasure War Archer Scroll"
+  "item.archers_expansion.war_archer.treasure_spell_scroll": "Treasure War Archer Scroll",
+
+  "filled_map.loot_n_explore.archers_outposts": "Hidden Ranger Outpost Map",
+  "filled_map.loot_n_explore.archers_camps": "Hidden Ranger Camp Map"
 }
