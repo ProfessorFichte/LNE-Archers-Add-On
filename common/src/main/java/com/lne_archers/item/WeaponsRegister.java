@@ -158,7 +158,7 @@ public class WeaponsRegister {
     }
     private static final float archers_spearAttackSpeed = -2.6F;
     private static final float spearAttackDamage = 8.0F;
-    private static final float weaponSpellPower = 2.0F;
+    private static final float weaponSpellPower = 4.0F;
     ///MELEE PASSIVES
     public static Identifier dragonclaw = Identifier.of(RPGLoot.MOD_ID, "dragonclaw");
     public static Identifier avalanche = Identifier.of(RPGLoot.MOD_ID, "avalanche");

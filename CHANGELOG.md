@@ -2,6 +2,7 @@
 - Move to Architectury Enviroment for Multiloader
 - NeoForge Beta!
 - Bows and Crossbows now also come with Spell Power for their Weapon Theme!
+- Buff Spell Power for Weapons
 
 ### 1.0.7- 1.21.1
 - add missing filled map lang translation
