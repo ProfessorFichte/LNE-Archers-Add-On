@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "ARR"
+
+[[mods]]
+modId = "lne_archers"
+version = "${version}"
+displayName = "LNE Archers"
+authors = "Fichte"
+description = '''
+Loot & Explore Add-On with Archers RPG-Series Content.
+'''
+logoFile = "icon.png"
+
+[[dependencies.lne_archers]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "archers"
+type = "required"
+versionRange = "[${archers_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "more_rpg_classes"
+type = "required"
+versionRange = "[${more_rpg_library_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "lne_archers.mixins.json"

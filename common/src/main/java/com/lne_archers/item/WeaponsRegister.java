@@ -7,6 +7,8 @@ import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterials;
@@ -198,70 +200,86 @@ public class WeaponsRegister {
                     .spell(avalanche);
             //SHORT BOWS
             bow("ender_dragon_bow", durabilityBows, dragonRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                    .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .spell(dragon_breath);
             bow("elder_guardian_bow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .spell(reef_arrows);
             bow("wither_bow", durabilityBows, witherRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .spell(cursed_wither_bolt);
             bow("glacial_bow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .spell(glacial_splitter);
             //LONG BOWS
             bow("ender_dragon_long_bow", durabilityBows, dragonRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .spell(dragon_breath);
             bow("elder_guardian_long_bow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .spell(reef_arrows);
             bow("wither_long_bow", durabilityBows, witherRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .spell(cursed_wither_bolt);
             bow("glacial_long_bow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .spell(glacial_splitter);
             //RAPID CROSSBOWS
             crossbow("ender_dragon_rapid_crossbow", durabilityBows, dragonRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .spell(dragon_breath);
             crossbow("elder_guardian_rapid_crossbow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig( rapid_crossbow_damage, pullTime_rapidCrossbow,velocity_rapidCrossbow))
+                    new RangedConfig( rapid_crossbow_damage, pullTime_rapidCrossbow,velocity_rapidCrossbow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .spell(reef_arrows);
             crossbow("wither_rapid_crossbow", durabilityBows, witherRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .spell(cursed_wither_bolt);
             crossbow("glacial_rapid_crossbow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .spell(glacial_splitter);
             //HEAVY CROSSBOWS
             crossbow("ender_dragon_heavy_crossbow", durabilityBows, dragonRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .spell(dragon_breath);
             crossbow("elder_guardian_heavy_crossbow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .spell(reef_arrows);
             crossbow("wither_heavy_crossbow", durabilityBows, witherRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .spell(cursed_wither_bolt);
             crossbow("glacial_heavy_crossbow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .spell(glacial_splitter);
         }

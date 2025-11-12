@@ -4,18 +4,17 @@ import com.lne_archers.config.Default;
 import com.lne_archers.config.ItemConfig;
 import com.lne_archers.effects.Effects;
 import com.lne_archers.item.WeaponsRegister;
-import net.fabricmc.api.ModInitializer;
 import com.lne_archers.config.TweaksConfig;
 import net.fabricmc.loader.api.FabricLoader;
-import net.tinyconfig.ConfigManager;
+import net.tiny_config.ConfigManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LNE_ArchersMod implements ModInitializer {
+public class LNE_ArchersMod{
 	public static final String MOD_ID = "lne_archers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ConfigManager<ItemConfig> itemConfig = new ConfigManager<ItemConfig>
-			("items_v1", Default.itemConfig)
+			("items_v2", Default.itemConfig)
 			.builder()
 			.setDirectory(MOD_ID)
 			.sanitize(true)
@@ -27,14 +26,17 @@ public class LNE_ArchersMod implements ModInitializer {
 			.sanitize(true)
 			.build();
 
-	@Override
-	public void onInitialize() {
+	public static void init() {
 		tweaksConfig.refresh();
-		Effects.register();
+	}
+	public static void registerItems(){
 		if(FabricLoader.getInstance().isModLoaded("loot_n_explore")) {
 			itemConfig.refresh();
 			WeaponsRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
 			itemConfig.save();
 		}
+	}
+	public static void registerEffects(){
+		Effects.register();
 	}
 }

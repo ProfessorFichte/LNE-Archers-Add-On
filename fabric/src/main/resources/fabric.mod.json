@@ -11,14 +11,14 @@
 		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On"
 	},
 	"license": "ARR",
-	"icon": "assets/lne_archers/icon.png",
+	"icon": "icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"com.lne_archers.client.LNE_ArchersClient"
+			"com.lne_archers.fabric.client.FabricClient"
 		],
 		"main": [
-          "com.lne_archers.LNE_ArchersMod"
+          "com.lne_archers.fabric.FabricMod"
 		],
 		"fabric-datagen": [
 			"com.lne_archers.Lne_archersDataGenerator"

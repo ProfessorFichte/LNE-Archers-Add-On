@@ -1,3 +1,8 @@
+### 1.0.8 - 1.21.1
+- Move to Architectury Enviroment for Multiloader
+- NeoForge Beta!
+- Bows and Crossbows now also come with Spell Power for their Weapon Theme!
+
 ### 1.0.7- 1.21.1
 - add missing filled map lang translation
 - fix crash with Glacial Splitter Passive without Archers Expansion installed
@@ -19,6 +24,7 @@
 - renamed the Ender Dragon Heavy Crossbow
 - Update Mod Icon
 - Update License
+- 
 
 ### 1.0.2 - 1.21.1
 - add Loot & Explore Weapon Theme Tags
