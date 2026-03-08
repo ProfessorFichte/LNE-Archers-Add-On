@@ -23,6 +23,7 @@ import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.config.WeaponConfig;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainers;
+import net.spell_engine.rpg_series.datagen.WeaponSkills;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.item.Weapon;
 import net.spell_engine.api.spell.SpellDataComponents;
@@ -165,16 +166,17 @@ public class WeaponsRegister {
     }
 
     private static Weapon.Entry spear(String name, Weapon.CustomMaterial material, float damage) {
-        return addMelee(name, material, SpellWeaponItem::new, new WeaponConfig(damage, archers_spearAttackSpeed), Equipment.WeaponType.SPEAR);
+        return addMelee(name, material, SpellWeaponItem::new, new WeaponConfig(damage, archers_spearAttackSpeed), Equipment.WeaponType.SPEAR)
+                .spellContainer(SpellContainers.forMeleeWeapon().withSpellId(WeaponSkills.IMPALE.id()));
     }
     private static final float archers_spearAttackSpeed = -2.6F;
     private static final float spearAttackDamage = 8.0F;
     private static final float weaponSpellPower = 4.0F;
     ///MELEE PASSIVES
-    public static Identifier dragonclaw = Identifier.of(RPGLoot.MOD_ID, "dragonclaw");
-    public static Identifier avalanche = Identifier.of(RPGLoot.MOD_ID, "avalanche");
-    public static Identifier waterbomb = Identifier.of(RPGLoot.MOD_ID, "waterbomb");
-    public static Identifier wither_pulse = Identifier.of(RPGLoot.MOD_ID, "wither_pulse");
+    public static String dragonclaw = "loot_n_explore:dragonclaw";
+    public static String avalanche = "loot_n_explore:avalanche";
+    public static String waterbomb = "loot_n_explore:waterbomb";
+    public static String wither_pulse = "loot_n_explore:wither_pulse";
     ///RANGED PASSIVES
     public static Identifier dragon_breath = Identifier.of(MOD_ID, "dragon_breath");
     public static Identifier reef_arrows = Identifier.of(MOD_ID, "reef_arrows");
@@ -197,22 +199,22 @@ public class WeaponsRegister {
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, dragonRepair),spearAttackDamage)
                     .translatedName("Dragonspike")
                     .attribute(AttributeModifier.bonus(SpellSchools.ARCANE.id, weaponSpellPower))
-                    .spellContainer(SpellContainers.forMagicWeapon().withSpellId(dragonclaw));
+                    .withAdditionalSpell(dragonclaw);
             spear("elder_guardian_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, elderGuardianRepair),spearAttackDamage)
                     .translatedName("Leviathan's Pike")
                     .attribute(AttributeModifier.bonus(MoreSpellSchools.WATER.id, weaponSpellPower))
-                    .spellContainer(SpellContainers.forMagicWeapon().withSpellId(waterbomb));
+                    .withAdditionalSpell(waterbomb);
             spear("wither_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, witherRepair),spearAttackDamage)
                     .translatedName("Witherspine")
                     .attribute(AttributeModifier.bonus(SpellSchools.SOUL.id, weaponSpellPower))
-                    .spellContainer(SpellContainers.forMagicWeapon().withSpellId(wither_pulse));
+                    .withAdditionalSpell(wither_pulse);
             spear("glacial_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, frostMonarchRepair),spearAttackDamage)
                     .translatedName("Glacial Peak")
                     .attribute(AttributeModifier.bonus(SpellSchools.FROST.id, weaponSpellPower))
-                    .spellContainer(SpellContainers.forMagicWeapon().withSpellId(avalanche));
+                    .withAdditionalSpell(avalanche);
             //SHORT BOWS
             bow("ender_dragon_bow", durabilityBows, dragonRepair,
                     new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
