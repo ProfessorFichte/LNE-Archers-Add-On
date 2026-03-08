@@ -1,9 +1,11 @@
 package com.lne_archers;
 
+import com.lne_archers.datagen.*;
 import com.lne_archers.item.WeaponsRegister;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.registry.RegistryWrapper;
 import net.spell_engine.rpg_series.datagen.RPGSeriesDataGen;
 
@@ -13,7 +15,18 @@ public class Lne_archersDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+
+		// Register all datagen providers
 		pack.addProvider(ItemTagGenerator::new);
+		pack.addProvider(ModLanguageProvider::new);
+		pack.addProvider(ModModelProvider::new);
+		pack.addProvider(ModRecipeProvider::new);
+		pack.addProvider(WeaponAttributesGenerator::new);
+
+		// Register spell datagen only when spell_engine is loaded
+		if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
+			pack.addProvider(ArchersAbilityDatagen::new);
+		}
 	}
 
 	public static class ItemTagGenerator extends RPGSeriesDataGen.ItemTagGenerator {

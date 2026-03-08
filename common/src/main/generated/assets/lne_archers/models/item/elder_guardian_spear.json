@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "lne_archers:item/elder_guardian_spear"
+  }
+}

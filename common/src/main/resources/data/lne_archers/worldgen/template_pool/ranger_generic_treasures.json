@@ -1,0 +1,15 @@
+{
+  "name": "lne_archers:ranger_generic_treasures",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "lne_archers:treasures/archers_treasure_5",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

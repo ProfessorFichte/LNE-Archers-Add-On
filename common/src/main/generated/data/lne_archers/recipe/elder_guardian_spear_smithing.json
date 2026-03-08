@@ -1,0 +1,30 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "loot_n_explore"
+      ]
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "loot_n_explore:elder_guardian_eye"
+  },
+  "base": {
+    "item": "archers:netherite_spear"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "loot_n_explore"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "lne_archers:elder_guardian_spear"
+  },
+  "template": {
+    "item": "loot_n_explore:guardian_upgrade_smithing_template"
+  }
+}

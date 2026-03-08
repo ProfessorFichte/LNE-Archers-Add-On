@@ -171,12 +171,12 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "spell_engine:scroll",
+          "name": "spell_engine:spell_scroll",
           "functions": [
             {
               "function": "more_rpg_classes:specific_spell_scroll_pool",
-              "spell_pools": ["#archers:archer"],
-              "spell_tier_min": 1,
+              "spell_pools": ["#archers:spell_scroll/archer"],
+              "spell_tier_min": 2,
               "spell_tier_max": 2,
               "count": 1
             }

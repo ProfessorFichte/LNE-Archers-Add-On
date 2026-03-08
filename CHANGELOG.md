@@ -1,3 +1,16 @@
+### 1.1.0 - 1.21.1
+**Update to use Spell Engine 1.9.0**
+- DISCLAIMER: All spell books and spell scrolls will be reset, due to major API changes.
+- All Additional Spells are now Tier 5 Spell's
+- The Spells can now also be learned in the Spell Binding Table
+- Small tweaks in the Loot Tables
+- Moved all the structures from loot_n_explore to lne_archers, so it's clearer that these structures come from this add-on
+- Arrows show with Rangers Focus now creates a Nature Spell-Damage Area Impact, that scales with Ranged Damage
+- Rangers Focus is now instantly casted
+
+### 1.0.9 - 1.21.1
+- fix the log spam from wrong particle spawner for Ranger's focus
+
 ### 1.0.8 - 1.21.1
 - Move to Architectury Enviroment for Multiloader
 - NeoForge Beta!

@@ -1,0 +1,15 @@
+{
+  "name": "lne_archers:deadeye_treasure",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "lne_archers:treasures/deadeye_treasure",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

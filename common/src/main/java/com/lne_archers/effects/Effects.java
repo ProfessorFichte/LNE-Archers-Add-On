@@ -3,58 +3,62 @@ package com.lne_archers.effects;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.spell_engine.api.effect.Synchronized;
+import net.spell_engine.api.config.AttributeModifier;
+import net.spell_engine.api.config.ConfigFile;
+import net.spell_engine.api.config.EffectConfig;
+import net.spell_engine.api.effect.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
 
 public class Effects {
-    private static final ArrayList<Entry> entries = new ArrayList<Entry>();
-    public static class Entry {
-        public final Identifier id;
-        public final StatusEffect effect;
-        public RegistryEntry<StatusEffect> registryEntry;
+    public static final List<net.spell_engine.api.effect.Effects.Entry> entries = new ArrayList<>();
 
-        public Entry(String name, StatusEffect effect) {
-            this.id = Identifier.of(MOD_ID, name);
-            this.effect = effect;
-            entries.add(this);
-        }
-
-        public void register() {
-            registryEntry = Registry.registerReference(Registries.STATUS_EFFECT, id, effect);
-        }
-
-        public Identifier modifierId() {
-            return Identifier.of(MOD_ID, "effect." + id.getPath());
-        }
+    private static net.spell_engine.api.effect.Effects.Entry add(net.spell_engine.api.effect.Effects.Entry entry) {
+        entries.add(entry);
+        return entry;
     }
 
-    public static final Entry RANGERS_FOCUS =  new Effects.Entry("rangers_focus",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x993333));
+    public static net.spell_engine.api.effect.Effects.Entry RANGERS_FOCUS = add(new net.spell_engine.api.effect.Effects.Entry(
+            Identifier.of(MOD_ID, "rangers_focus"),
+            "Ranger´s Focus",
+            "Increases Ranged Damage & Velocity, reduces movement speed and pull time.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x993333),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.PULL_TIME.id.toString(),
+                                    -0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.VELOCITY.id.toString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -0.5F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
-    public static void register() {
-        RANGERS_FOCUS.effect.addAttributeModifier(EntityAttributes_RangedWeapon.DAMAGE.entry, RANGERS_FOCUS.modifierId(),
-                0.4F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)
-                .addAttributeModifier(EntityAttributes_RangedWeapon.PULL_TIME.entry, RANGERS_FOCUS.modifierId(),
-                        -0.2F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE)
-                .addAttributeModifier(EntityAttributes_RangedWeapon.VELOCITY.entry, RANGERS_FOCUS.modifierId(),
-                        0.5F, EntityAttributeModifier.Operation.ADD_VALUE)
-                .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, RANGERS_FOCUS.modifierId(),
-                        -0.75F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-
-        Synchronized.configure(RANGERS_FOCUS.effect, true);
-
-
-        for (Entry entry: entries) {
-            entry.register();
+    public static void register(ConfigFile.Effects config) {
+        for (var entry : entries) {
+            Synchronized.configure(entry.effect, true);
         }
+
+        net.spell_engine.api.effect.Effects.register(entries, config.effects);
     }
 }

@@ -6,6 +6,7 @@ import com.lne_archers.effects.Effects;
 import com.lne_archers.item.WeaponsRegister;
 import com.lne_archers.config.TweaksConfig;
 import net.fabricmc.loader.api.FabricLoader;
+import net.spell_engine.api.config.ConfigFile;
 import net.tiny_config.ConfigManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,12 @@ public class LNE_ArchersMod{
 			.setDirectory(MOD_ID)
 			.sanitize(true)
 			.build();
+	public static ConfigManager<ConfigFile.Effects> effectConfig = new ConfigManager<>
+			("effects_v0", new ConfigFile.Effects())
+			.builder()
+			.setDirectory(MOD_ID)
+			.sanitize(true)
+			.build();
 
 	public static void init() {
 		tweaksConfig.refresh();
@@ -37,6 +44,8 @@ public class LNE_ArchersMod{
 		}
 	}
 	public static void registerEffects(){
-		Effects.register();
+		effectConfig.refresh();
+		Effects.register(effectConfig.value);
+		effectConfig.save();
 	}
 }
