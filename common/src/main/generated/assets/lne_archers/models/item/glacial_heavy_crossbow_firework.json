@@ -1,5 +1,5 @@
 {
-  "parent": "item/generated",
+  "parent": "lne_archers:item/glacial_heavy_crossbow",
   "textures": {
     "layer0": "lne_archers:item/glacial_heavy_crossbow_firework"
   }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-08T22:20:31.9612922	L&E Archers-Add On/Smithing Recipes (lne_archers)
+// 1.21.1	2026-03-08T23:37:54.1037463	L&E Archers-Add On/Smithing Recipes (lne_archers)
 cb844983b60929ecb30bad522fa568fbfd7f60e5 data\lne_archers\recipe\glacial_long_bow_smithing.json
 d3ecdaffc77115455e9007edff2c1709c7be16c1 data\lne_archers\recipe\ender_dragon_spear_smithing.json
 47dc5362b761ad45291dfadf223641bebff378b4 data\lne_archers\recipe\ender_dragon_bow_smithing.json
@@ -17,5 +17,5 @@ b2a881d58213c0793381900a9ba078d9a87047c1 data\lne_archers\recipe\elder_guardian_
 ac1c1eeb689e4a5ff9b136e2719016b9891cf593 data\lne_archers\recipe\elder_guardian_bow_smithing.json
 a2f2178ee30145a8f58cb6a00a4bed52fa4a221c data\lne_archers\recipe\glacial_spear_smithing.json
 eb38be130c4e87cd5b8edf3b818b5048e9ff42c0 data\lne_archers\recipe\wither_rapid_crossbow_smithing.json
-f0ef060e533dd7a3af005eaf0322bcc014854c77 data\lne_archers\recipe\glacial_bow_smithing.json
 f7f55a4a0aff931296d367297de055a7d5b383f3 data\lne_archers\recipe\glacial_rapid_crossbow_smithing.json
+f0ef060e533dd7a3af005eaf0322bcc014854c77 data\lne_archers\recipe\glacial_bow_smithing.json

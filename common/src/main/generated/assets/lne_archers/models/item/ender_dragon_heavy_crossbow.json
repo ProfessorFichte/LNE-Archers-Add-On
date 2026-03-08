@@ -1,5 +1,24 @@
 {
-  "parent": "item/generated",
+  "parent": "archers:item/base/crossbow_18",
+  "display": {
+    "gui": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.6,
+        1.6,
+        1
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
   "overrides": [
     {
       "model": "lne_archers:item/ender_dragon_heavy_crossbow_pulling_0",

@@ -1,5 +1,5 @@
 {
-  "parent": "item/generated",
+  "parent": "archers:item/base/crossbow_16",
   "overrides": [
     {
       "model": "lne_archers:item/wither_rapid_crossbow_pulling_0",

@@ -1,38 +1,21 @@
 {
-  "parent": "item/generated",
+  "parent": "archers:item/base/bow_20",
   "display": {
-    "firstperson_righthand": {
+    "gui": {
       "rotation": [
         0,
-        -90,
-        25
+        0,
+        0
       ],
       "scale": [
-        0.68,
-        0.68,
-        0.68
+        1.2,
+        1.2,
+        1
       ],
       "translation": [
-        1.13,
-        3.2,
-        1.13
-      ]
-    },
-    "thirdperson_righthand": {
-      "rotation": [
-        -80,
-        260,
-        -40
-      ],
-      "scale": [
-        0.9,
-        0.9,
-        0.9
-      ],
-      "translation": [
-        -1,
-        -2,
-        2.5
+        0,
+        0,
+        0
       ]
     }
   },

@@ -1,5 +1,5 @@
 {
-  "parent": "item/handheld",
+  "parent": "archers:item/base/spear_28",
   "textures": {
     "layer0": "lne_archers:item/elder_guardian_spear"
   }

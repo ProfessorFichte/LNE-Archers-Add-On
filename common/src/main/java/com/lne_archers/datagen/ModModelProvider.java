@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.lne_archers.item.WeaponsRegister;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.item.Item;
@@ -21,7 +20,6 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        // No blocks in this mod
     }
 
     @Override
@@ -55,7 +53,7 @@ public class ModModelProvider extends FabricModelProvider {
             Identifier modelId = Identifier.of(itemId.getNamespace(), "item/" + name);
 
             JsonObject json = new JsonObject();
-            json.addProperty("parent", "item/handheld");
+            json.addProperty("parent", "archers:item/base/spear_28");
             JsonObject textures = new JsonObject();
             textures.addProperty("layer0", MOD_ID + ":item/" + name);
             json.add("textures", textures);
@@ -71,57 +69,42 @@ public class ModModelProvider extends FabricModelProvider {
         Identifier modelId = Identifier.of(itemId.getNamespace(), "item/" + name);
 
         JsonObject json = new JsonObject();
-        json.addProperty("parent", "item/generated");
+        if(name.contains("long_bow") ){
+            json.addProperty("parent", "archers:item/base/bow_20");
+        }
+        if(name.contains("_bow")&& !name.contains("long_bow")){
+            json.addProperty("parent", "archers:item/base/bow_16");
+        }
+
 
         JsonObject textures = new JsonObject();
         textures.addProperty("layer0", MOD_ID + ":item/" + name);
         json.add("textures", textures);
 
-        // Add display settings for bow
+
+        // Add display settings for  long bows
         JsonObject display = new JsonObject();
+        if(name.contains("long_bow") ){
+            JsonObject gui = new JsonObject();
+            JsonArray rotation = new JsonArray();
+            JsonArray translation = new JsonArray();
+            JsonArray scale = new JsonArray();
+            rotation.add(0);
+            rotation.add(0);
+            rotation.add(0);
+            gui.add("rotation", rotation);
+            translation.add(0);
+            translation.add(0);
+            translation.add(0);
+            gui.add("translation", translation);
+            scale.add(1.2);
+            scale.add(1.2);
+            scale.add(1);
+            gui.add("scale", scale);
 
-        JsonObject thirdperson_righthand = new JsonObject();
-        JsonArray rotation = new JsonArray();
-        rotation.add(-80);
-        rotation.add(260);
-        rotation.add(-40);
-        thirdperson_righthand.add("rotation", rotation);
-
-        JsonArray translation = new JsonArray();
-        translation.add(-1);
-        translation.add(-2);
-        translation.add(2.5);
-        thirdperson_righthand.add("translation", translation);
-
-        JsonArray scale = new JsonArray();
-        scale.add(0.9);
-        scale.add(0.9);
-        scale.add(0.9);
-        thirdperson_righthand.add("scale", scale);
-
-        display.add("thirdperson_righthand", thirdperson_righthand);
-
-        JsonObject firstperson_righthand = new JsonObject();
-        JsonArray fpRotation = new JsonArray();
-        fpRotation.add(0);
-        fpRotation.add(-90);
-        fpRotation.add(25);
-        firstperson_righthand.add("rotation", fpRotation);
-
-        JsonArray fpTranslation = new JsonArray();
-        fpTranslation.add(1.13);
-        fpTranslation.add(3.2);
-        fpTranslation.add(1.13);
-        firstperson_righthand.add("translation", fpTranslation);
-
-        JsonArray fpScale = new JsonArray();
-        fpScale.add(0.68);
-        fpScale.add(0.68);
-        fpScale.add(0.68);
-        firstperson_righthand.add("scale", fpScale);
-
-        display.add("firstperson_righthand", firstperson_righthand);
-        json.add("display", display);
+            display.add("gui", gui);
+            json.add("display", display);
+        }
 
         // Add pulling animation overrides
         JsonArray overrides = new JsonArray();
@@ -152,9 +135,9 @@ public class ModModelProvider extends FabricModelProvider {
         for (int i = 0; i <= 2; i++) {
             Identifier pullingModelId = Identifier.of(itemId.getNamespace(), "item/" + name + "_pulling_" + i);
             JsonObject pullingJson = new JsonObject();
-            pullingJson.addProperty("parent", "item/generated");
+            pullingJson.addProperty("parent", MOD_ID + ":item/" + name);
             JsonObject pullingTextures = new JsonObject();
-            pullingTextures.addProperty("layer0", MOD_ID + ":item/" + name + "_pulling_" + i);
+            pullingTextures.addProperty("layer0", MOD_ID + ":item/bow_pulling/" + name + "_pulling_" + i);
             pullingJson.add("textures", pullingTextures);
             itemModelGenerator.writer.accept(pullingModelId, () -> pullingJson);
         }
@@ -167,7 +150,40 @@ public class ModModelProvider extends FabricModelProvider {
         Identifier modelId = Identifier.of(itemId.getNamespace(), "item/" + name);
 
         JsonObject json = new JsonObject();
-        json.addProperty("parent", "item/generated");
+        if(name.contains("rapid_crossbow")){
+            json.addProperty("parent", "archers:item/base/crossbow_16");
+        }
+        if(name.contains("heavy_crossbow")){
+            json.addProperty("parent", "archers:item/base/crossbow_18");
+        }
+
+        // Add display settings for  heavy crossbows
+        JsonObject display = new JsonObject();
+        double scaling = 1.6;
+        if(name.contains("elder_guardian_heavy_crossbow") ) {
+            scaling = 1.4;
+        }
+        if(name.contains("heavy_crossbow") ){
+            JsonObject gui = new JsonObject();
+            JsonArray rotation = new JsonArray();
+            JsonArray translation = new JsonArray();
+            JsonArray scale = new JsonArray();
+            rotation.add(0);
+            rotation.add(0);
+            rotation.add(0);
+            gui.add("rotation", rotation);
+            translation.add(0);
+            translation.add(0);
+            translation.add(0);
+            gui.add("translation", translation);
+            scale.add(scaling);
+            scale.add(scaling);
+            scale.add(1);
+            gui.add("scale", scale);
+
+            display.add("gui", gui);
+            json.add("display", display);
+        }
 
         JsonObject textures = new JsonObject();
         textures.addProperty("layer0", MOD_ID + ":item/" + name);
@@ -219,9 +235,9 @@ public class ModModelProvider extends FabricModelProvider {
         for (int i = 0; i <= 2; i++) {
             Identifier pullingModelId = Identifier.of(itemId.getNamespace(), "item/" + name + "_pulling_" + i);
             JsonObject pullingJson = new JsonObject();
-            pullingJson.addProperty("parent", "item/generated");
+            pullingJson.addProperty("parent", MOD_ID + ":item/" + name);
             JsonObject pullingTextures = new JsonObject();
-            pullingTextures.addProperty("layer0", MOD_ID + ":item/" + name + "_pulling_" + i);
+            pullingTextures.addProperty("layer0", MOD_ID + ":item/bow_pulling/" + name + "_pulling_" + i);
             pullingJson.add("textures", pullingTextures);
             itemModelGenerator.writer.accept(pullingModelId, () -> pullingJson);
         }
@@ -229,7 +245,7 @@ public class ModModelProvider extends FabricModelProvider {
         // Generate charged (arrow) model
         Identifier arrowModelId = Identifier.of(itemId.getNamespace(), "item/" + name + "_arrow");
         JsonObject arrowJson = new JsonObject();
-        arrowJson.addProperty("parent", "item/generated");
+        arrowJson.addProperty("parent", MOD_ID + ":item/" + name);
         JsonObject arrowTextures = new JsonObject();
         arrowTextures.addProperty("layer0", MOD_ID + ":item/" + name + "_arrow");
         arrowJson.add("textures", arrowTextures);
@@ -238,7 +254,7 @@ public class ModModelProvider extends FabricModelProvider {
         // Generate firework model
         Identifier fireworkModelId = Identifier.of(itemId.getNamespace(), "item/" + name + "_firework");
         JsonObject fireworkJson = new JsonObject();
-        fireworkJson.addProperty("parent", "item/generated");
+        fireworkJson.addProperty("parent", MOD_ID + ":item/" + name);
         JsonObject fireworkTextures = new JsonObject();
         fireworkTextures.addProperty("layer0", MOD_ID + ":item/" + name + "_firework");
         fireworkJson.add("textures", fireworkTextures);

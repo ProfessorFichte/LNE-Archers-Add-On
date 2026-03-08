@@ -1,41 +1,5 @@
 {
-  "parent": "item/generated",
-  "display": {
-    "firstperson_righthand": {
-      "rotation": [
-        0,
-        -90,
-        25
-      ],
-      "scale": [
-        0.68,
-        0.68,
-        0.68
-      ],
-      "translation": [
-        1.13,
-        3.2,
-        1.13
-      ]
-    },
-    "thirdperson_righthand": {
-      "rotation": [
-        -80,
-        260,
-        -40
-      ],
-      "scale": [
-        0.9,
-        0.9,
-        0.9
-      ],
-      "translation": [
-        -1,
-        -2,
-        2.5
-      ]
-    }
-  },
+  "parent": "archers:item/base/bow_16",
   "overrides": [
     {
       "model": "lne_archers:item/elder_guardian_bow_pulling_0",
