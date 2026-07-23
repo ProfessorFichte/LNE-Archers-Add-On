@@ -22,11 +22,7 @@ public class Lne_archersDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(WeaponAttributesGenerator::new);
-
-		// Register spell datagen only when spell_engine is loaded
-		if (FabricLoader.getInstance().isModLoaded("spell_engine")) {
-			pack.addProvider(ArchersAbilityDatagen::new);
-		}
+		pack.addProvider(ArchersAbilityDatagen::new);
 	}
 
 	public static class ItemTagGenerator extends RPGSeriesDataGen.ItemTagGenerator {

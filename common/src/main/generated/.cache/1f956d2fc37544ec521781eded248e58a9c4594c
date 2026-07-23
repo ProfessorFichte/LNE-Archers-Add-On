@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-08T23:37:54.1017447	L&E Archers-Add On/Weapon Attributes - lne_archers
+// 1.21.1	2026-07-24T01:24:48.2618897	L&E Archers-Add On/Weapon Attributes - lne_archers
 e958f9cedd5f1976077790becf524791ef9a7828 data\lne_archers\weapon_attributes\ender_dragon_bow.json
 38fb51a35cf4764a500b46596a83be265173bd02 data\lne_archers\weapon_attributes\elder_guardian_long_bow.json
 e958f9cedd5f1976077790becf524791ef9a7828 data\lne_archers\weapon_attributes\elder_guardian_bow.json
@@ -9,9 +9,9 @@ c436ed7321163a6da0943bf9b21cfe00c966e777 data\lne_archers\weapon_attributes\elde
 c436ed7321163a6da0943bf9b21cfe00c966e777 data\lne_archers\weapon_attributes\wither_heavy_crossbow.json
 47fd7f8a30bb313304d6e14e7194785946c0c082 data\lne_archers\weapon_attributes\glacial_rapid_crossbow.json
 c436ed7321163a6da0943bf9b21cfe00c966e777 data\lne_archers\weapon_attributes\glacial_heavy_crossbow.json
-38fb51a35cf4764a500b46596a83be265173bd02 data\lne_archers\weapon_attributes\ender_dragon_long_bow.json
 47fd7f8a30bb313304d6e14e7194785946c0c082 data\lne_archers\weapon_attributes\wither_rapid_crossbow.json
+38fb51a35cf4764a500b46596a83be265173bd02 data\lne_archers\weapon_attributes\ender_dragon_long_bow.json
 38fb51a35cf4764a500b46596a83be265173bd02 data\lne_archers\weapon_attributes\glacial_long_bow.json
 38fb51a35cf4764a500b46596a83be265173bd02 data\lne_archers\weapon_attributes\wither_long_bow.json
-e958f9cedd5f1976077790becf524791ef9a7828 data\lne_archers\weapon_attributes\glacial_bow.json
 e958f9cedd5f1976077790becf524791ef9a7828 data\lne_archers\weapon_attributes\wither_bow.json
+e958f9cedd5f1976077790becf524791ef9a7828 data\lne_archers\weapon_attributes\glacial_bow.json

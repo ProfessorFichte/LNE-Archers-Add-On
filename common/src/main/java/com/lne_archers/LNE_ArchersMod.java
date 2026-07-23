@@ -3,8 +3,10 @@ package com.lne_archers;
 import com.lne_archers.config.Default;
 import com.lne_archers.config.ItemConfig;
 import com.lne_archers.effects.Effects;
+import com.lne_archers.entity.ModEntities;
 import com.lne_archers.item.WeaponsRegister;
 import com.lne_archers.config.TweaksConfig;
+import com.lne_archers.spell.CustomSpellDeliveries;
 import net.fabricmc.loader.api.FabricLoader;
 import net.spell_engine.api.config.ConfigFile;
 import net.tiny_config.ConfigManager;
@@ -35,6 +37,9 @@ public class LNE_ArchersMod{
 
 	public static void init() {
 		tweaksConfig.refresh();
+		ModEntities.register();
+		ModEntities.registerAttributes();
+		CustomSpellDeliveries.register();
 	}
 	public static void registerItems(){
 		if(FabricLoader.getInstance().isModLoaded("loot_n_explore")) {

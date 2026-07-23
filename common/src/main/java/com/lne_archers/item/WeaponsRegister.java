@@ -1,13 +1,11 @@
 package com.lne_archers.item;
 
-import more_rpg_loot.RPGLoot;
 import more_rpg_loot.item.Group;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -87,15 +85,6 @@ public class WeaponsRegister {
 
         public RangedEntry weaponType(Equipment.WeaponType weaponType) {
             this.weaponType = weaponType;
-            return this;
-        }
-
-        public RangedEntry loot(Equipment.LootProperties lootProperties) {
-            this.lootProperties = lootProperties;
-            return this;
-        }
-        public RangedEntry castSpell() {
-            spells = List.of();
             return this;
         }
 

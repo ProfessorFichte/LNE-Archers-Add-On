@@ -2,7 +2,6 @@ package com.lne_archers.effects;
 
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.config.AttributeModifier;
@@ -26,28 +25,23 @@ public class Effects {
     public static net.spell_engine.api.effect.Effects.Entry RANGERS_FOCUS = add(new net.spell_engine.api.effect.Effects.Entry(
             Identifier.of(MOD_ID, "rangers_focus"),
             "Ranger´s Focus",
-            "Increases Ranged Damage & Velocity, reduces movement speed and pull time.",
+            "Increases Ranged Damage & Velocity, reduces pull time.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x993333),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
-                                    0.5F,
+                                    0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.PULL_TIME.id.toString(),
-                                    -0.15F,
+                                    -0.05F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.VELOCITY.id.toString(),
-                                    0.5F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    -0.5F,
+                                    0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

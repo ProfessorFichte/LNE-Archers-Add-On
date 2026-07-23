@@ -4,6 +4,7 @@ import com.lne_archers.effects.Effects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
@@ -13,6 +14,7 @@ import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
@@ -137,12 +139,10 @@ public class ArchersSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var bleedingEffect = SpellBuilder.Impacts.effectSet("more_rpg_classes:bleeding", 5.0F, 0);
+        var bleedingEffect = SpellBuilder.Impacts.effectSet(SpellEngineEffects.BLEED.id.toString(), 5.0F, 0);
         bleedingEffect.attribute = "ranged_weapon:damage";
-        bleedingEffect.target_modifiers = List.of(
-            createDenyModifier("#minecraft:undead")
-        );
         bleedingEffect.action.status_effect.amplifier_power_multiplier = 0.2F;
+        bleedingEffect.action.status_effect.amplifier_cap = 2;
         bleedingEffect.action.status_effect.show_particles = false;
         bleedingEffect.particles = new ParticleBatch[]{
             new ParticleBatch(
@@ -234,10 +234,9 @@ public class ArchersSpells {
         spell.deliver.projectile.projectile.homing_angle = 0.0F;
 
         spell.deliver.projectile.projectile.client_data = new Spell.ProjectileData.Client();
-        spell.deliver.projectile.projectile.client_data.model = new Spell.ProjectileModel();
-        spell.deliver.projectile.projectile.client_data.model.model_id = "lne_archers:spell_projectile/glacial_arrow";
-        spell.deliver.projectile.projectile.client_data.model.scale = 2.0F;
-        spell.deliver.projectile.projectile.client_data.model.rotate_degrees_per_tick = 0.0F;
+        var glacialArrowModel = SpellBuilder.ProjectileModels.model("lne_archers:spell_projectile/glacial_arrow", 2.0F);
+        glacialArrowModel.rotate_degrees_per_tick = 0.0F;
+        spell.deliver.projectile.projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(glacialArrowModel);
 
         spell.release.particles = new ParticleBatch[]{
             new ParticleBatch(
@@ -341,24 +340,33 @@ public class ArchersSpells {
     private static Entry rangers_focus() {
         var id = Identifier.of(MOD_ID, "rangers_focus");
         var title = "Ranger´s Focus";
-        var description = "Slows you drastically for {stash_duration} seconds, increases your ranged damage & velocity & decreases pull time, but creates a magic area impact on arrow impact.";
+        var description = "Charge up while standing still, then release to gain increased ranged damage & velocity and decreased pull time for {stash_duration} seconds, with a stronger effect the longer you charged. Creates a magic area impact on arrow impact.";
 
         var spell = SpellBuilder.createSpellActive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0.0F;
         spell.tier = 5;
 
+        var charge = SpellBuilder.Casting.charge(spell, 2F);
+        charge.min_release_ratio = 0.34F;
+        charge.bonus.stash_amplifier_add = 3;
+
+        spell.active.cast.animation = PlayerAnimation.of("spell_engine:one_handed_area_charge");
+        spell.active.cast.sound = Sound.withVolume(SpellEngineSounds.GENERIC_WIND_CASTING.id(), 0.2F);
+        spell.active.cast.movement_speed = 0F;
+        spell.active.cast.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.LAUNCH_POINT,
+                        25.0F, 0.05F, 0.1F
+                ).preSpawnTravel(8).color(Color.NATURE.toRGBA())
+        };
+
+
         spell.release.animation = PlayerAnimation.of("spell_engine:one_handed_area_release");
         spell.release.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
-        spell.release.particles = new ParticleBatch[]{
-            new ParticleBatch(
-                    SpellEngineParticles.MagicParticles.get(
-                            SpellEngineParticles.MagicParticles.Shape.SPARK,
-                            SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.LAUNCH_POINT,
-                20.0F, 0.01F, 0.05F
-            ).preSpawnTravel(8).color(Color.NATURE.toRGBA())
-        };
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
         spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
@@ -400,8 +408,9 @@ public class ArchersSpells {
         };
 
         spell.arrow_perks = new Spell.ArrowPerks();
-        spell.arrow_perks.override_render = new Spell.ProjectileModel();
-        spell.arrow_perks.override_render.light_emission = LightEmission.RADIATE;
+        var arrowGlowModel = SpellBuilder.ProjectileModels.model(null);
+        arrowGlowModel.fx.light_emission = LightEmission.RADIATE;
+        spell.arrow_perks.composite_model = SpellBuilder.ProjectileModels.composite(arrowGlowModel);
         spell.arrow_perks.bypass_iframes = true;
         spell.arrow_perks.travel_particles = new ParticleBatch[]{
                 new ParticleBatch(
@@ -412,7 +421,7 @@ public class ArchersSpells {
                         ParticleBatch.Rotation.LOOK, 20, 0.2F, 0.22F, 0).roll(5).color(Color.NATURE.toRGBA())
         };
 
-        SpellBuilder.Cost.cooldown(spell, 30.0F);
+        SpellBuilder.Cost.cooldown(spell, 33.0F);
         spell.cost.exhaust = 0.5F;
 
         return new Entry(id, spell, title, description, null);
