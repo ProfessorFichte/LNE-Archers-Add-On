@@ -1,3 +1,8 @@
+# 1.1.2 - 1.21.1
+- Fix Crash on Neoforge
+- Add a proper Spell Tooltip for Rangers Focus
+- Project Clean Up
+
 # 1.1.1 - 1.21.1
 - Adapt to Spell Engine 1.9.10+ API Changes
 **Balancing & Internal Changes:**

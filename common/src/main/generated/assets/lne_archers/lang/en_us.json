@@ -27,14 +27,6 @@
   "item.lne_archers.wither_long_bow": "Soulstorm Bow",
   "item.lne_archers.wither_rapid_crossbow": "Witherbolt Arbalest",
   "item.lne_archers.wither_spear": "Witherspine",
-  "spell.lne_archers.cursed_wither_bolt.description": "On arrow hit: {trigger_chance} chance to inflict wither's curse for {effect_duration} seconds and dealing additional {damage} damage.",
-  "spell.lne_archers.cursed_wither_bolt.name": "Cursed Wither Bolts",
-  "spell.lne_archers.dragon_breath.description": "On arrow hit: {trigger_chance} chance to create a dragon breath cloud, dealing {damage} damage per second.",
-  "spell.lne_archers.dragon_breath.name": "Ender Dragon's Breath",
-  "spell.lne_archers.glacial_splitter.description": "Defeating Enemies spawns glacial projectiles that deal {damage} damage and freeze enemies for {effect_duration} seconds.",
-  "spell.lne_archers.glacial_splitter.name": "Glacial Splitter",
-  "spell.lne_archers.rangers_focus.description": "Charge up while standing still, then release to gain increased ranged damage & velocity and decreased pull time for {stash_duration} seconds, with a stronger effect the longer you charged. Creates a magic area impact on arrow impact.",
-  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus",
-  "spell.lne_archers.reef_arrows.description": "On arrow hit: {trigger_chance} chance to inflict bleeding for {effect_duration} seconds and dealing additional {damage} damage.",
-  "spell.lne_archers.reef_arrows.name": "Coral Reef Arrows"
+  "spell.lne_archers.rangers_focus.description": "Charge up while standing still, then release to gain {attribute_bonuses} for {stash_duration} seconds, scaling with charge time. Also creates a magic area impact on arrow hit.",
+  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus"
 }

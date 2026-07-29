@@ -112,16 +112,7 @@
         "max_speed": 0.22,
         "color_rgba": 1728014079
       }
-    ],
-    "composite_model": {
-      "models": [
-        {
-          "fx": {
-            "light_emission": "RADIATE"
-          }
-        }
-      ]
-    }
+    ]
   },
   "cost": {
     "exhaust": 0.5,

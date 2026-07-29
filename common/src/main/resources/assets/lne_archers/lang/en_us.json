@@ -31,11 +31,6 @@
   "spell.lne_archers.glacial_splitter.name": "Glacial Splitter",
   "spell.lne_archers.glacial_splitter.description": "Defeating Enemies spawns glacial projectiles that deal {damage} damage and freeze enemies for {effect_duration} seconds.",
 
-  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus",
-  "spell.lne_archers.rangers_focus.description": "Charge up while standing still, then release to gain increased ranged damage & velocity and decreased pull time for {stash_duration} seconds, with a stronger effect the longer you charged. Creates a magic area impact on arrow impact.",
-  "effect.lne_archers.rangers_focus": "Ranger´s Focus",
-  "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage & Velocity, reduces pull time.",
-
   "item.archers.archer.treasure_spell_scroll": "Treasure Archery Scroll",
   "item.archers_expansion.deadeye.treasure_spell_scroll": "Treasure Deadeye Scroll",
   "item.archers_expansion.tundra_hunter.treasure_spell_scroll": "Treasure Tundra Hunter Scroll",

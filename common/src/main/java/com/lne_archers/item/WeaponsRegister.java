@@ -15,6 +15,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.more_rpg_classes.custom.MrpgLibSpells;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.item.weapon.SpellWeaponItem;
 import net.more_rpg_classes.custom.MoreSpellSchools;
@@ -162,15 +163,15 @@ public class WeaponsRegister {
     private static final float spearAttackDamage = 8.0F;
     private static final float weaponSpellPower = 4.0F;
     ///MELEE PASSIVES
-    public static String dragonclaw = "loot_n_explore:dragonclaw";
-    public static String avalanche = "loot_n_explore:avalanche";
-    public static String waterbomb = "loot_n_explore:waterbomb";
-    public static String wither_pulse = "loot_n_explore:wither_pulse";
+    public static String dragonclaw = MrpgLibSpells.dragonclaw_melee.id().toString();
+    public static String avalanche = MrpgLibSpells.avalanche_melee.id().toString();
+    public static String waterbomb = MrpgLibSpells.waterbomb_melee.id().toString();
+    public static String wither_pulse = MrpgLibSpells.wither_pulse_melee.id().toString();
     ///RANGED PASSIVES
-    public static Identifier dragon_breath = Identifier.of(MOD_ID, "dragon_breath");
-    public static Identifier reef_arrows = Identifier.of(MOD_ID, "reef_arrows");
-    public static Identifier glacial_splitter = Identifier.of(MOD_ID, "glacial_splitter");
-    public static Identifier cursed_wither_bolt = Identifier.of(MOD_ID, "cursed_wither_bolt");
+    public static Identifier dragon_breath = MrpgLibSpells.dragon_breath_ranged.id();
+    public static Identifier reef_arrows = MrpgLibSpells.reef_arrows.id();
+    public static Identifier glacial_splitter = MrpgLibSpells.glacial_splitter.id();
+    public static Identifier cursed_wither_bolt = MrpgLibSpells.cursed_wither_bolt.id();
 
     //Registration
     public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
