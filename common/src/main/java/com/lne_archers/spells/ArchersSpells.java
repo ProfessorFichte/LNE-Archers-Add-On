@@ -7,6 +7,8 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.fx.ModelEffect;
+import net.spell_engine.api.spell.fx.ModelEffectBuilder;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.PlayerAnimation;
 import net.spell_engine.api.spell.fx.Sound;
@@ -28,9 +30,25 @@ public class ArchersSpells {
 
     public static final List<Entry> entries = new ArrayList<>();
 
+
     private static Entry add(Entry entry) {
+        if (entry == null) return null;
         entries.add(entry);
         return entry;
+    }
+
+    private static Spell.Impact.TargetModifier createImpactModifier(String entityType) {
+        var condition = new Spell.TargetCondition();
+        condition.entity_type = entityType;
+        var modifier = new Spell.Impact.TargetModifier();
+        modifier.conditions = List.of(condition);
+        return modifier;
+    }
+
+    private static void bossImmuneDeny(Spell.Impact impact) {
+        var modifier = createImpactModifier("#c:bosses");
+        modifier.execute = net.spell_engine.api.util.TriState.DENY;
+        impact.target_modifiers = List.of(modifier);
     }
 
     public static Entry rangers_focus = add(rangers_focus());
@@ -131,5 +149,191 @@ public class ArchersSpells {
         };
 
         return new Entry(id, spell, title, description, mutator);
+    }
+    public static final Entry fan_of_fire = add(fan_of_fire());
+    private static Entry fan_of_fire() {
+        var id = Identifier.of(MOD_ID, "fan_of_fire");
+        var spell = SpellBuilder.createSpellActive();
+        var title = "Fan of Fire";
+        var description = "Calls explosive arrows, in an area dealing {damage} and setting enemies on fire.";
+        spell.school = MoreSpellSchools.FIRE_RANGED;
+        spell.range = 32;
+        spell.tier = 5;
+
+        spell.active.cast.duration = 1.0F;
+        spell.active.cast.animation = PlayerAnimation.of("spell_engine:archery_upwards_pull");
+        spell.active.cast.sound = new Sound("archers:bow_pull");
+
+        spell.target.type = Spell.Target.Type.AIM;
+        spell.target.aim = new Spell.Target.Aim();
+
+        spell.release.animation = PlayerAnimation.of("spell_engine:archery_upwards_release");
+        spell.release.sound = new Sound("minecraft:item.crossbow.shoot");
+
+        spell.deliver.type = Spell.Delivery.Type.METEOR;
+        var meteor = new Spell.Delivery.Meteor();
+        meteor.launch_height = 15;
+        meteor.launch_radius = 5.0F;
+        meteor.launch_properties = new Spell.LaunchProperties();
+        meteor.launch_properties.velocity = 2.0F;
+        meteor.launch_properties.extra_launch_count = 25;
+        meteor.launch_properties.extra_launch_delay = 4;
+        meteor.projectile = new Spell.ProjectileData();
+        meteor.projectile.divergence = 0F;
+        meteor.projectile.client_data = new Spell.ProjectileData.Client();
+        meteor.projectile.client_data.travel_particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "minecraft:large_smoke",
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
+                        ParticleBatch.Rotation.LOOK, 3, 0F, 0F, 0)
+        };
+        meteor.projectile.client_data.composite_model = SpellBuilder.ProjectileModels.single("lne_archers:spell_projectile/smoldering_arrow", 1.3F);
+        spell.deliver.meteor = meteor;
+
+        var damage = SpellBuilder.Impacts.damage(0.3F, 0F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.fire_explosion.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        1, 0.2F, 0.5F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.1F, 0.3F).preSpawnTravel(2),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.2F, 0.5F).preSpawnTravel(4)
+        };
+        damage.sound = Sound.withRandomness(Identifier.of("entity.generic.explode"),1.2F);
+
+        var fire = SpellBuilder.Impacts.fire(5);
+
+        spell.impacts = List.of(damage, fire);
+
+        spell.area_impact = new Spell.AreaImpact();
+        spell.area_impact.radius = 3.0F;
+        spell.area_impact.area = new Spell.Target.Area();
+        spell.area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.NONE;
+        spell.area_impact.sound = new Sound("minecraft:entity.arrow.hit");
+
+        SpellBuilder.Cost.cooldown(spell, 28);
+        SpellBuilder.Cost.exhaust(spell, 0.3F);
+        SpellBuilder.Cost.item(spell, "minecraft:arrow", 1);
+
+        return new Entry(id, spell, title, description, null);
+    }
+    public static final Entry winters_grip = add(winters_grip());
+    private static Entry winters_grip() {
+        var id = Identifier.of(MOD_ID, "winters_grip");
+        var spell = SpellBuilder.createSpellActive();
+        var title = "Winters Grip";
+        var description = "Spawns a winter totem, slowing enemies, freezing other enemies around on death.";
+        spell.school = MoreSpellSchools.FROST_RANGED;
+        spell.range = 0;
+        spell.tier = 5;
+        spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
+
+        spell.release.animation = PlayerAnimation.of("spell_engine:one_handed_area_release");
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        var cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 10.0F;
+        cloud.volume.area = new Spell.Target.Area();
+        cloud.volume.area.vertical_range_multiplier = 1.5F;
+        cloud.volume.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.1F);
+        cloud.impact_tick_interval = 10;
+        cloud.time_to_live_seconds = 10;
+        cloud.spawn_ticks = 8;
+        cloud.despawn_ticks = 6;
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 14;
+        int wintersGripTotalTicks = (int) (cloud.time_to_live_seconds * 20);
+        float wintersGripScale = 1.5F;
+        cloud.client_data.model_fx = List.of(
+                ModelEffectBuilder.create("lne_archers:spell_effect/winters_grip")
+                        .light(LightEmission.RADIATE)
+                        .positioning(0F)
+                        .scale(wintersGripScale)
+                        .initialTranslateY(0.5F * (wintersGripScale - 1F) + 0.2F)
+                        .duration(wintersGripTotalTicks)
+                        .scaleIn(0, cloud.spawn_ticks, ModelEffect.Easing.EASE_OUT_BOUNCE)
+                        .scaleOut(wintersGripTotalTicks - cloud.despawn_ticks, wintersGripTotalTicks, ModelEffect.Easing.EASE_IN_CUBIC)
+                        .build()
+        );
+        cloud.client_data.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                        20, 0.05F, 0.1F),
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                        20, 0.25F, 0.4F)
+        };
+        cloud.placement = new Spell.EntityPlacement();
+        cloud.placement.force_onto_ground = true;
+        cloud.placement.location_offset_y = 0F;
+        spell.deliver.clouds = List.of(cloud);
+
+        var slow = SpellBuilder.Impacts.effectSet(Effects.WINTERS_GRASP.id.toString(), 1, 0);
+        slow.action.status_effect.show_particles = false;
+        bossImmuneDeny(slow);
+        slow.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.FROST,
+                                SpellEngineParticles.MagicParticles.Motion.BURST
+                        ).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.4F)
+        };
+
+        spell.impacts = List.of(slow);
+
+        SpellBuilder.Cost.cooldown(spell, 25);
+        spell.cost.cooldown.haste_affected = true;
+        SpellBuilder.Cost.exhaust(spell, 0.4F);
+
+        return new Entry(id, spell, title, description, null);
+    }
+    public static final Entry infiltrators_arrow = add(infiltrators_arrow());
+    private static Entry infiltrators_arrow() {
+        var id = Identifier.of(MOD_ID, "infiltrators_arrow");
+        var spell = SpellBuilder.createSpellActive();
+        var title = "Infiltrators Arrow";
+        var description = "Shoots a short-range invisible arrow dealing {damage}. On impact, teleports you to the arrow and grants you invisibility.";
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 8;
+        spell.tier = 5;
+
+        var charge = SpellBuilder.Casting.charge(spell, 3.0F);
+        charge.min_release_ratio = 0.3F;
+        var bonus = charge.bonus;
+        bonus.range_add = 22;
+
+        spell.active.cast.animation = PlayerAnimation.of("spell_engine:archery_pull");
+        spell.active.cast.sound = new Sound("archers:bow_pull");
+
+        spell.target.type = Spell.Target.Type.AIM;
+        spell.target.aim = new Spell.Target.Aim();
+
+        spell.release.animation = PlayerAnimation.of("spell_engine:archery_release");
+        spell.release.sound = new Sound("entity.arrow.shoot");
+
+        spell.deliver.type = Spell.Delivery.Type.CUSTOM;
+        spell.deliver.custom = new Spell.Delivery.Custom();
+        spell.deliver.custom.handler = "lne_archers:infiltrators_arrow";
+
+        var damage = SpellBuilder.Impacts.damage(0.8F, 1.0F);
+
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, 42);
+        spell.cost.cooldown.haste_affected = false;
+        SpellBuilder.Cost.exhaust(spell, 0.3F);
+        SpellBuilder.Cost.item(spell, "minecraft:arrow", 1);
+
+        return new Entry(id, spell, title, description, null);
     }
 }

@@ -21,6 +21,9 @@ public final class NeoForgeMod {
         event.register(RegistryKeys.STATUS_EFFECT, reg -> {
             LNE_ArchersMod.registerEffects();
         });
+        event.register(RegistryKeys.ENTITY_TYPE, reg -> {
+            LNE_ArchersMod.registerEntities();
+        });
     }
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         LNE_ArchersMod.registerEntityAttributes();

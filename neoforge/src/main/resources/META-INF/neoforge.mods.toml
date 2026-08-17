@@ -35,6 +35,13 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.lne_archers]]
+modId = "archers_expansion"
+type = "optional"
+versionRange = "[${archers_expansion_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
 modId = "more_rpg_classes"
 type = "required"
 versionRange = "[${more_rpg_library_version},)"

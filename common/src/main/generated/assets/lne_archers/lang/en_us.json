@@ -1,6 +1,10 @@
 {
+  "effect.lne_archers.frozen_slave": "Frozen Slave",
+  "effect.lne_archers.frozen_slave.description": "Revived by the frost, bound to fight for its icy master until it fades.",
   "effect.lne_archers.rangers_focus": "Ranger´s Focus",
   "effect.lne_archers.rangers_focus.description": "Increases Ranged Damage & Velocity, reduces pull time.",
+  "effect.lne_archers.winters_grip": "Winters Grip",
+  "effect.lne_archers.winters_grip.description": "Freezes nearby targets solid on death.",
   "filled_map.loot_n_explore.archers_camps": "Hidden Ranger Camp Map",
   "filled_map.loot_n_explore.archers_outposts": "Hidden Ranger Outpost Map",
   "item.archers.archer.treasure_spell_scroll": "Treasure Archery Scroll",
@@ -27,6 +31,12 @@
   "item.lne_archers.wither_long_bow": "Soulstorm Bow",
   "item.lne_archers.wither_rapid_crossbow": "Witherbolt Arbalest",
   "item.lne_archers.wither_spear": "Witherspine",
+  "spell.lne_archers.fan_of_fire.description": "Calls explosive arrows, in an area dealing {damage} and setting enemies on fire.",
+  "spell.lne_archers.fan_of_fire.name": "Fan of Fire",
+  "spell.lne_archers.infiltrators_arrow.description": "Shoots a short-range invisible arrow dealing {damage}. On impact, teleports you to the arrow and grants you invisibility.",
+  "spell.lne_archers.infiltrators_arrow.name": "Infiltrators Arrow",
   "spell.lne_archers.rangers_focus.description": "Charge up while standing still, then release to gain {attribute_bonuses} for {stash_duration} seconds, scaling with charge time. Also creates a magic area impact on arrow hit.",
-  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus"
+  "spell.lne_archers.rangers_focus.name": "Ranger´s Focus",
+  "spell.lne_archers.winters_grip.description": "Spawns a winter totem, slowing enemies, freezing other enemies around on death.",
+  "spell.lne_archers.winters_grip.name": "Winters Grip"
 }

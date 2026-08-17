@@ -7,6 +7,7 @@ public final class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
         LNE_ArchersMod.init();
+        LNE_ArchersMod.registerEntities();
         LNE_ArchersMod.registerEntityAttributes();
         LNE_ArchersMod.registerItems();
         LNE_ArchersMod.registerEffects();

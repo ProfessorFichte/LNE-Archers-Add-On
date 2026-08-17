@@ -1,3 +1,5 @@
+# 1.1.3 - 1.21.1
+
 # 1.1.2 - 1.21.1
 - Fix Crash on Neoforge
 - Add a proper Spell Tooltip for Rangers Focus
