@@ -1,4 +1,9 @@
 # 1.1.3 - 1.21.1
+- Infiltrators Arrow, Winters Grip & Fan of Fire are now available in the LNE Archers Mod!
+- Changed Infiltrator's Arrow & Winter's Grip
+- Infiltrators Arrow: A charged spell, that shoots an arrow that flies further the longer you charge. You'll get teleported to the location where the arrow hits.
+- Winters Grip: Still a cloud that slows enemy's. Targets that are killed in the Cloud, become your Frozen Slaves fighting for you.
+- Fan of Fire: unchanged
 
 # 1.1.2 - 1.21.1
 - Fix Crash on Neoforge

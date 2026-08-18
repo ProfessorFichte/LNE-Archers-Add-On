@@ -5,6 +5,7 @@ import com.lne_archers.config.ItemConfig;
 import com.lne_archers.effects.Effects;
 import com.lne_archers.entity.ModEntitiesRegistry;
 import com.lne_archers.item.WeaponsRegister;
+import com.lne_archers.sounds.LneArchersSounds;
 import com.lne_archers.spells.CustomSpellImpacts;
 import com.lne_archers.config.TweaksConfig;
 import net.fabricmc.loader.api.FabricLoader;
@@ -35,6 +36,9 @@ public class LNE_ArchersMod{
 			.sanitize(true)
 			.build();
 
+	public static final String ARCHERS_EXPANSION_MOD_ID = "archers_expansion";
+	public static final String ARCHERS_EXPANSION_COMPAT_PACK_PATH = "resourcepacks/archers_expansion_compat";
+
 	public static void init() {
 		CustomSpellImpacts.registerCustomDeliveries();
 		tweaksConfig.refresh();
@@ -50,6 +54,9 @@ public class LNE_ArchersMod{
 			WeaponsRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
 			itemConfig.save();
 		}
+	}
+	public static void registerSounds() {
+		LneArchersSounds.register();
 	}
 	public static void registerEffects(){
 		effectConfig.refresh();

@@ -69,7 +69,7 @@ public class Effects {
             new EffectConfig(List.of(
                     new AttributeModifier(
                             EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                            -0.2F,
+                            -0.15F,
                             EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                     )
             ))
