@@ -98,7 +98,7 @@ dependencies {
     modImplementation("maven.modrinth:archers:${project.archers_version}-${platform}")
 
     ///OPTIONAL
-    modImplementation("maven.modrinth:archers-expansion:${project.archers_expansion_version}-${platform}")
+    modImplementation("maven.modrinth:archers-expansion:${project.archers_expansion_version}-${platform}") { transitive = false }
 }
 
 processResources {

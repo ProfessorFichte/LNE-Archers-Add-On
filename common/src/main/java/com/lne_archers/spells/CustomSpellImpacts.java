@@ -4,7 +4,8 @@ import com.lne_archers.entity.InfiltratorsArrowProjectile;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.spell_engine.api.spell.event.SpellHandlers;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.internals.SpellParameters;
+import net.spell_engine.internals.delivery.LaunchGeometry;
 import net.spell_power.api.SpellPower;
 
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
@@ -84,8 +85,8 @@ public class CustomSpellImpacts {
                         impactContext = impactContext.power(SpellPower.getSpellPower(spell.school, caster));
                     }
 
-                    var effectiveRange = SpellHelper.getRange(caster, spellEntry, impactContext.chargeModifier());
-                    var launchPoint = SpellHelper.launchPoint(caster);
+                    var effectiveRange = SpellParameters.getRangeCurved(caster, spellEntry, impactContext.charge());
+                    var launchPoint = LaunchGeometry.launchPoint(caster);
 
                     // Pitch is fully computed from the target range (a lobbed, mortar-like arc) rather than the caster's look pitch, so the shot reliably lands at `range` regardless of aim.
                     var angleDegrees = infiltratorsArrowAngleDegrees(effectiveRange);

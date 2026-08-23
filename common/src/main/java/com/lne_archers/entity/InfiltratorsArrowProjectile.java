@@ -23,7 +23,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.registry.SpellRegistry;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.internals.SpellExecution;
+import net.spell_engine.internals.impact.SpellImpacts;
 import org.jetbrains.annotations.Nullable;
 
 public class InfiltratorsArrowProjectile extends ArrowEntity {
@@ -33,7 +34,7 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
 
     private float maxRange = DEFAULT_MAX_RANGE;
     private RegistryEntry<Spell> spellEntry;
-    private SpellHelper.ImpactContext context;
+    private SpellExecution.ImpactContext context;
     private Vec3d spawnPos;
     private final Gson gson = new Gson();
 
@@ -44,7 +45,7 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         super(type, world);
     }
 
-    public InfiltratorsArrowProjectile(World world, LivingEntity owner, RegistryEntry<Spell> spellEntry, SpellHelper.ImpactContext context, float maxRange) {
+    public InfiltratorsArrowProjectile(World world, LivingEntity owner, RegistryEntry<Spell> spellEntry, SpellExecution.ImpactContext context, float maxRange) {
         super(ENTITY_TYPE, world);
         this.setOwner(owner);
         this.spellEntry = spellEntry;
@@ -90,8 +91,8 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         var target = hitResult.getEntity();
         if (getOwner() instanceof LivingEntity caster && spellEntry != null) {
             var hitPosition = hitResult.getPos();
-            var impactContext = context != null ? context : new SpellHelper.ImpactContext();
-            SpellHelper.projectileImpact(caster, this, target, spellEntry, impactContext.position(hitPosition));
+            var impactContext = context != null ? context : new SpellExecution.ImpactContext();
+            SpellImpacts.projectileImpact(caster, this, target, spellEntry, impactContext.position(hitPosition));
             teleportOwner(caster, hitPosition);
         }
         discard();
@@ -103,8 +104,8 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
 
         if (getOwner() instanceof LivingEntity caster && spellEntry != null) {
             var hitPosition = hitResult.getPos();
-            var impactContext = context != null ? context : new SpellHelper.ImpactContext();
-            SpellHelper.projectileImpact(caster, this, null, spellEntry, impactContext.position(hitPosition));
+            var impactContext = context != null ? context : new SpellExecution.ImpactContext();
+            SpellImpacts.projectileImpact(caster, this, null, spellEntry, impactContext.position(hitPosition));
             teleportOwner(caster, hitPosition);
         }
         discard();
@@ -158,7 +159,7 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         }
         if (nbt.contains(NBT_IMPACT_CONTEXT, NbtElement.STRING_TYPE)) {
             try {
-                this.context = gson.fromJson(nbt.getString(NBT_IMPACT_CONTEXT), SpellHelper.ImpactContext.class);
+                this.context = gson.fromJson(nbt.getString(NBT_IMPACT_CONTEXT), SpellExecution.ImpactContext.class);
             } catch (Exception e) {
                 System.err.println("InfiltratorsArrowProjectile - Failed to read impact context from NBT: " + e.getMessage());
             }

@@ -1,22 +1,24 @@
 package com.lne_archers.spells;
 
 import com.lne_archers.effects.Effects;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ModelEffect;
+import net.spell_engine.api.spell.fx.Easing;
+import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ModelEffectBuilder;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.PlayerAnimation;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,7 @@ import java.util.List;
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
 
 public class ArchersSpells {
-    public record Entry(Identifier id, Spell spell, String title, String description,
-                        @Nullable SpellTooltip.DescriptionMutator mutator) {
+    public record Entry(Identifier id, Spell spell, String title, String description) {
     }
 
     public static final List<Entry> entries = new ArrayList<>();
@@ -55,8 +56,12 @@ public class ArchersSpells {
     private static Entry rangers_focus() {
         var id = Identifier.of(MOD_ID, "rangers_focus");
         var title = "Ranger´s Focus";
-        var description = "Charge up while standing still, then release to gain {attribute_bonuses} for {stash_duration} seconds, " +
-                "scaling with charge time. Also creates a magic area impact on arrow hit.";
+        var effect = Effects.RANGERS_FOCUS;
+        var description = "Charge up while standing still, then release to gain "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.DAMAGE.id) + " Ranged Damage, "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.PULL_TIME.id) + " Pull Time, "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.VELOCITY.id) + " Velocity"
+                + " for {stash_duration} seconds, scaling with charge time. Also creates a magic area impact on arrow hit.";
 
         var spell = SpellBuilder.createSpellActive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -70,15 +75,12 @@ public class ArchersSpells {
         spell.active.cast.animation = PlayerAnimation.of("spell_engine:one_handed_area_charge");
         spell.active.cast.sound = Sound.withVolume(SpellEngineSounds.GENERIC_WIND_CASTING.id(), 0.2F);
         spell.active.cast.movement_speed = 0F;
-        spell.active.cast.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.LAUNCH_POINT,
-                        25.0F, 0.05F, 0.1F
-                ).preSpawnTravel(8).color(Color.NATURE.toRGBA())
-        };
+        spell.active.cast.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST, Color.NATURE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .anchor(ParticleGroup.Anchor.LAUNCH_POINT)
+                                .count(25F).speed(0.05F, 0.1F)
+                                .preTravel(8F)));
 
 
         spell.release.animation = PlayerAnimation.of("spell_engine:one_handed_area_release");
@@ -100,55 +102,33 @@ public class ArchersSpells {
         var damage = SpellBuilder.Impacts.damage(0.3F);
         damage.school = MoreSpellSchools.NATURE;
         damage.attribute = "ranged_weapon:damage";
-        var particle1 = new ParticleBatch(
-                SpellEngineParticles.MagicParticles.get(
-                        SpellEngineParticles.MagicParticles.Shape.SPARK,
-                        SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-            ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-            10.0F, 0.02F, 0.1F
-        ).color(Color.NATURE.toRGBA());
-        damage.particles = new ParticleBatch[]{ particle1};
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.NATURE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10F).speed(0.02F, 0.1F)));
         damage.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
 
         spell.impacts = List.of(damage);
 
         spell.area_impact = new Spell.AreaImpact();
         spell.area_impact.radius = 3.0F;
-        spell.area_impact.particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.5F).color(Color.NATURE.toRGBA()).extent(3.0F)
-        };
+        spell.area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.NATURE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.2F, 0.5F).extent(3.0F)));
 
         spell.arrow_perks = new Spell.ArrowPerks();
         spell.arrow_perks.bypass_iframes = true;
-        spell.arrow_perks.travel_particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
-                        ParticleBatch.Rotation.LOOK, 20, 0.2F, 0.22F, 0).roll(5).color(Color.NATURE.toRGBA())
-        };
+        spell.arrow_perks.travel_particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.NATURE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE)
+                                .alignment(ParticleGroup.Alignment.LOOK)
+                                .count(20).speed(0.2F, 0.22F).roll(5F)));
 
         SpellBuilder.Cost.cooldown(spell, 33.0F);
         spell.cost.exhaust = 0.5F;
 
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var attributes = Effects.RANGERS_FOCUS.config().attributes();
-            var damageBonus = attributes.get(0);
-            var pullTimeBonus = attributes.get(1);
-            var velocityBonus = attributes.get(2);
-            var bonuses = SpellTooltip.bonus(damageBonus.value, damageBonus.operation) + " Ranged Damage, "
-                    + SpellTooltip.bonus(pullTimeBonus.value, pullTimeBonus.operation) + " Pull Time, "
-                    + SpellTooltip.bonus(velocityBonus.value, velocityBonus.operation) + " Velocity";
-            return args.description().replace("{attribute_bonuses}", bonuses);
-        };
-
-        return new Entry(id, spell, title, description, mutator);
+        return new Entry(id, spell, title, description);
     }
     public static final Entry fan_of_fire = add(fan_of_fire());
     private static Entry fan_of_fire() {
@@ -181,30 +161,25 @@ public class ArchersSpells {
         meteor.projectile = new Spell.ProjectileData();
         meteor.projectile.divergence = 0F;
         meteor.projectile.client_data = new Spell.ProjectileData.Client();
-        meteor.projectile.client_data.travel_particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "minecraft:large_smoke",
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
-                        ParticleBatch.Rotation.LOOK, 3, 0F, 0F, 0)
-        };
+        meteor.projectile.client_data.travel_particles = List.of(
+                ParticleGroupBuilder.of("minecraft:large_smoke")
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .alignment(ParticleGroup.Alignment.LOOK)
+                                .count(3).speed(0F, 0F)));
         meteor.projectile.client_data.composite_model = SpellBuilder.ProjectileModels.single("lne_archers:spell_projectile/smoldering_arrow", 1.3F);
         spell.deliver.meteor = meteor;
 
         var damage = SpellBuilder.Impacts.damage(0.3F, 0F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.fire_explosion.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0.2F, 0.5F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.1F, 0.3F).preSpawnTravel(2),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.2F, 0.5F).preSpawnTravel(4)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.fire_explosion)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1).speed(0.2F, 0.5F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(25).speed(0.1F, 0.3F).preTravel(2F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(25).speed(0.2F, 0.5F).preTravel(4F)));
         damage.sound = Sound.withRandomness(Identifier.of("entity.generic.explode"),1.2F);
 
         var fire = SpellBuilder.Impacts.fire(5);
@@ -221,7 +196,7 @@ public class ArchersSpells {
         SpellBuilder.Cost.exhaust(spell, 0.3F);
         SpellBuilder.Cost.item(spell, "minecraft:arrow", 1);
 
-        return new Entry(id, spell, title, description, null);
+        return new Entry(id, spell, title, description);
     }
     public static final Entry winters_grip = add(winters_grip());
     private static Entry winters_grip() {
@@ -257,20 +232,19 @@ public class ArchersSpells {
                         .scale(wintersGripScale)
                         .initialTranslateY(0.5F * (wintersGripScale - 1F) + 0.2F)
                         .duration(wintersGripTotalTicks)
-                        .scaleIn(0, cloud.spawn_ticks, ModelEffect.Easing.EASE_OUT_BOUNCE)
-                        .scaleOut(wintersGripTotalTicks - cloud.despawn_ticks, wintersGripTotalTicks, ModelEffect.Easing.EASE_IN_CUBIC)
+                        .scaleIn(0, cloud.spawn_ticks, Easing.EASE_OUT_BOUNCE)
+                        .scaleOut(wintersGripTotalTicks - cloud.despawn_ticks, wintersGripTotalTicks, Easing.EASE_IN_CUBIC)
                         .build()
         );
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F),
-                new ParticleBatch(
-                        SpellEngineParticles.snowflake.id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        20, 0.25F, 0.4F)
-        };
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .count(20).speed(0.05F, 0.1F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .count(20).speed(0.25F, 0.4F)));
         cloud.placement = new Spell.EntityPlacement();
         cloud.placement.force_onto_ground = true;
         cloud.placement.location_offset_y = 0F;
@@ -279,15 +253,10 @@ public class ArchersSpells {
         var slow = SpellBuilder.Impacts.effectSet(Effects.WINTERS_GRASP.id.toString(), 1, 0);
         slow.action.status_effect.show_particles = false;
         bossImmuneDeny(slow);
-        slow.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.FROST,
-                                SpellEngineParticles.MagicParticles.Motion.BURST
-                        ).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.4F)
-        };
+        slow.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_frost, ParticleGroup.Motion.BURST)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(15).speed(0.2F, 0.4F)));
 
         spell.impacts = List.of(slow);
 
@@ -295,7 +264,7 @@ public class ArchersSpells {
         spell.cost.cooldown.haste_affected = true;
         SpellBuilder.Cost.exhaust(spell, 0.4F);
 
-        return new Entry(id, spell, title, description, null);
+        return new Entry(id, spell, title, description);
     }
     public static final Entry infiltrators_arrow = add(infiltrators_arrow());
     private static Entry infiltrators_arrow() {
@@ -334,6 +303,6 @@ public class ArchersSpells {
         SpellBuilder.Cost.exhaust(spell, 0.3F);
         SpellBuilder.Cost.item(spell, "minecraft:arrow", 1);
 
-        return new Entry(id, spell, title, description, null);
+        return new Entry(id, spell, title, description);
     }
 }

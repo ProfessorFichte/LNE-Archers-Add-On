@@ -2,6 +2,7 @@ package com.lne_archers.mixin;
 
 import com.lne_archers.effects.Effects;
 import com.lne_archers.effects.FrozenSlaveVisualAccess;
+import com.lne_archers.effects.WintersGraspInflicterAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -26,8 +27,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.util.math.Box;
 
+import java.util.UUID;
+
 @Mixin(LivingEntity.class)
-public class LivingEntityMixin implements FrozenSlaveVisualAccess {
+public class LivingEntityMixin implements FrozenSlaveVisualAccess, WintersGraspInflicterAccess {
 
     @Unique
     private static final int FROZEN_SLAVE_DURATION_TICKS = 300;
@@ -48,6 +51,29 @@ public class LivingEntityMixin implements FrozenSlaveVisualAccess {
     public boolean lneArchers$isFrozenSlaveVisual() {
         LivingEntity entity = (LivingEntity)(Object)this;
         return entity.getDataTracker().get(FROZEN_SLAVE_VISUAL);
+    }
+
+    @Unique
+    private UUID lneArchers$wintersGraspInflicter;
+
+    @Override
+    public UUID lneArchers$getWintersGraspInflicter() {
+        return lneArchers$wintersGraspInflicter;
+    }
+
+    @Override
+    public void lneArchers$setWintersGraspInflicter(UUID inflicter) {
+        this.lneArchers$wintersGraspInflicter = inflicter;
+    }
+
+    @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
+    private void lneArchers$captureWintersGraspInflicter(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity)(Object)this;
+        if (self.getWorld().isClient()) return;
+        if (!effect.getEffectType().equals(Effects.getEntry(Effects.WINTERS_GRASP))) return;
+        if (source instanceof LivingEntity inflicter) {
+            this.lneArchers$wintersGraspInflicter = inflicter.getUuid();
+        }
     }
 
     private static boolean lneArchers$isProtected(Entity target, LivingEntity attacker) {
@@ -98,9 +124,18 @@ public class LivingEntityMixin implements FrozenSlaveVisualAccess {
         if (entity.getHealth() - amount > 0F) return;
         if (!(source.getAttacker() instanceof LivingEntity attacker) || attacker == entity) return;
 
+        UUID inflicter = this.lneArchers$getWintersGraspInflicter();
+        if (inflicter == null) return;
+
+        UUID killer = attacker.getUuid();
+        if (attacker instanceof ControlledOwnerAccess attackerAccess && attackerAccess.mrpg$getControlOwner() != null) {
+            killer = attackerAccess.mrpg$getControlOwner();
+        }
+        if (!killer.equals(inflicter)) return;
+
         entity.removeStatusEffect(wintersGrip);
         entity.setHealth(entity.getMaxHealth());
-        access.mrpg$setControlOwner(attacker.getUuid());
+        access.mrpg$setControlOwner(killer);
         entity.addStatusEffect(new StatusEffectInstance(
                 Effects.getEntry(Effects.FROZEN_SLAVE),
                 FROZEN_SLAVE_DURATION_TICKS, 0, false, false, true));

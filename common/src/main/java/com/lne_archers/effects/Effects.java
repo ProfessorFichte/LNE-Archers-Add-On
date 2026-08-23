@@ -12,9 +12,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.entity.ControlledOwnerAccess;
-import net.spell_engine.api.config.AttributeModifier;
-import net.spell_engine.api.config.ConfigFile;
-import net.spell_engine.api.config.EffectConfig;
+import net.spell_engine.rpg_series.config.AttributeModifier;
+import net.spell_engine.rpg_series.config.ConfigFile;
+import net.spell_engine.rpg_series.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 
 import java.util.ArrayList;

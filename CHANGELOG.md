@@ -1,3 +1,7 @@
+# 1.2.0 - 1.21.1
+- Adopt Spell Engine 1.10
+- Improve FrozenSlave checking if the entity was killed by the Caster that inflicted "WintersGrip"
+
 # 1.1.3 - 1.21.1
 - Infiltrators Arrow, Winters Grip & Fan of Fire are now available in the LNE Archers Mod!
 - Changed Infiltrator's Arrow & Winter's Grip
