@@ -26,6 +26,9 @@ public final class NeoForgeMod {
         modBus.addListener(BuildCreativeModeTabContentsEvent.class, NeoForgeMod::buildTabContents);
     }
     private static void buildTabContents(BuildCreativeModeTabContentsEvent event) {
+        if (!ModList.get().isLoaded("loot_n_explore")) {
+            return;
+        }
         if (!event.getTabKey().equals(WeaponsRegister.tabKey)) {
             return;
         }

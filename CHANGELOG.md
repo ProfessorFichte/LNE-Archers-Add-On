@@ -1,5 +1,9 @@
+# 1.2.2 - 1.21.1
+- fixed a crash when opening creative inventory
+
 # 1.2.1 - 1.21.1
 - Drop Forgified Fabric API (FFAPI) as a required dependency
+- Fixed a crash when opening the creative inventory without Loot & Explore installed
 - Updated some Spell Textures for LNE Spells (created by Slepykat)
 
 # 1.2.0 - 1.21.1

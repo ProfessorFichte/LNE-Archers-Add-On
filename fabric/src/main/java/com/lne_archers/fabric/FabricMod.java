@@ -20,11 +20,13 @@ public final class FabricMod implements ModInitializer {
         LNE_ArchersMod.registerSounds();
         registerArchersExpansionCompatPack();
 
-        ItemGroupEvents.modifyEntriesEvent(WeaponsRegister.tabKey).register((content) -> {
-            for (var entry : WeaponsRegister.rangedEntries) {
-                content.add(entry.item());
-            }
-        });
+        if (FabricLoader.getInstance().isModLoaded("loot_n_explore")) {
+            ItemGroupEvents.modifyEntriesEvent(WeaponsRegister.tabKey).register((content) -> {
+                for (var entry : WeaponsRegister.rangedEntries) {
+                    content.add(entry.item());
+                }
+            });
+        }
     }
 
     private static void registerArchersExpansionCompatPack() {
