@@ -1,7 +1,9 @@
 package com.lne_archers.fabric;
 
 import com.lne_archers.LNE_ArchersMod;
+import com.lne_archers.item.WeaponsRegister;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -17,6 +19,12 @@ public final class FabricMod implements ModInitializer {
         LNE_ArchersMod.registerEffects();
         LNE_ArchersMod.registerSounds();
         registerArchersExpansionCompatPack();
+
+        ItemGroupEvents.modifyEntriesEvent(WeaponsRegister.tabKey).register((content) -> {
+            for (var entry : WeaponsRegister.rangedEntries) {
+                content.add(entry.item());
+            }
+        });
     }
 
     private static void registerArchersExpansionCompatPack() {

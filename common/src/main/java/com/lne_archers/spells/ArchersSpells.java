@@ -59,7 +59,7 @@ public class ArchersSpells {
         var effect = Effects.RANGERS_FOCUS;
         var description = "Charge up while standing still, then release to gain "
                 + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.DAMAGE.id) + " Ranged Damage, "
-                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.PULL_TIME.id) + " Pull Time, "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.HASTE.id) + " Haste, "
                 + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.VELOCITY.id) + " Velocity"
                 + " for {stash_duration} seconds, scaling with charge time. Also creates a magic area impact on arrow hit.";
 

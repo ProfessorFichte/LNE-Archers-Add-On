@@ -28,13 +28,6 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.lne_archers]]
-modId = "forgified_fabric_api"
-type = "required"
-versionRange = "[${forgified_fabric_api_version},)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.lne_archers]]
 modId = "archers"
 type = "required"
 versionRange = "[${archers_version},)"

@@ -1,6 +1,7 @@
 package com.lne_archers.neoforge;
 
 import com.lne_archers.LNE_ArchersMod;
+import com.lne_archers.item.WeaponsRegister;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.resource.ResourcePackSource;
@@ -11,6 +12,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
@@ -21,6 +23,15 @@ public final class NeoForgeMod {
         modBus.addListener(RegisterEvent.class, NeoForgeMod::register);
         modBus.addListener(EntityAttributeCreationEvent.class, NeoForgeMod::registerAttributes);
         modBus.addListener(AddPackFindersEvent.class, NeoForgeMod::addPackFinders);
+        modBus.addListener(BuildCreativeModeTabContentsEvent.class, NeoForgeMod::buildTabContents);
+    }
+    private static void buildTabContents(BuildCreativeModeTabContentsEvent event) {
+        if (!event.getTabKey().equals(WeaponsRegister.tabKey)) {
+            return;
+        }
+        for (var entry : WeaponsRegister.rangedEntries) {
+            event.add(entry.item());
+        }
     }
     public static void addPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() != ResourceType.SERVER_DATA) {

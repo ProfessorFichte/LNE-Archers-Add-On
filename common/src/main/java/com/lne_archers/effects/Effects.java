@@ -48,8 +48,8 @@ public class Effects {
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.PULL_TIME.id.toString(),
-                                    -0.05F,
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    0.05F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(

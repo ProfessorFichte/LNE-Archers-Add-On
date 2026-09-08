@@ -3,7 +3,7 @@ package com.lne_archers.datagen;
 import com.lne_archers.item.WeaponsRegister;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.loader.api.FabricLoader;
+import net.spell_engine.Platform;
 import net.minecraft.registry.RegistryWrapper;
 import net.spell_engine.rpg_series.tags.RPGSeriesItemTags;
 
@@ -16,7 +16,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        if (!FabricLoader.getInstance().isModLoaded("spell_engine")) {
+        if (!Platform.util().isModLoaded("spell_engine")) {
             return;
         }
         for (var entry : WeaponsRegister.meleeEntries) {

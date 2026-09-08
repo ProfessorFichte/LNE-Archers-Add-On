@@ -1,3 +1,7 @@
+# 1.2.1 - 1.21.1
+- Drop Forgified Fabric API (FFAPI) as a required dependency
+- Updated some Spell Textures for LNE Spells (created by Slepykat)
+
 # 1.2.0 - 1.21.1
 - Adopt Spell Engine 1.10
 - Improve FrozenSlave checking if the entity was killed by the Caster that inflicted "WintersGrip"
