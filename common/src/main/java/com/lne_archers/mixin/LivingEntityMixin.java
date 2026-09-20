@@ -36,15 +36,15 @@ public class LivingEntityMixin implements FrozenSlaveVisualAccess, WintersGraspI
     private static final int FROZEN_SLAVE_DURATION_TICKS = 300;
 
     @Unique
-    private static final TagKey<EntityType<?>> BOSSES = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of("c", "bosses"));
+    private static final TagKey<EntityType<?>> BOSSES = TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier("c", "bosses"));
 
-    // Mob status effects aren't synced to clients, so the ice overlay renderer can't just check hasStatusEffect(FROZEN_SLAVE) client-side - this tracked flag is the synced substitute.
+    // Mob effects aren't synced to clients, so this tracked flag tells the ice overlay renderer when to draw.
     @Unique
     private static final TrackedData<Boolean> FROZEN_SLAVE_VISUAL = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     @Inject(method = "initDataTracker", at = @At("TAIL"))
-    private void lneArchers$initFrozenSlaveVisual(DataTracker.Builder builder, CallbackInfo ci) {
-        builder.add(FROZEN_SLAVE_VISUAL, false);
+    private void lneArchers$initFrozenSlaveVisual(CallbackInfo ci) {
+        ((LivingEntity)(Object)this).getDataTracker().startTracking(FROZEN_SLAVE_VISUAL, false);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class LivingEntityMixin implements FrozenSlaveVisualAccess, WintersGraspI
             for(Entity entities : entity.getEntityWorld().getOtherEntities(entity, radius, EntityPredicates.VALID_LIVING_ENTITY)) {
                 if (entities != null) {
                     if (entities instanceof LivingEntity targets && !lneArchers$isProtected(targets, entity)) {
-                        targets.addStatusEffect(new StatusEffectInstance(MRPGCEffects.FROZEN_SOLID.entry, 60, 0, false, false, true));
+                        targets.addStatusEffect(new StatusEffectInstance(MRPGCEffects.FROZEN_SOLID.effect, 60, 0, false, false, true));
                     }
                 }
             }

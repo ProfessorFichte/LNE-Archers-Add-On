@@ -1,5 +1,6 @@
 package com.lne_archers;
 
+import com.lne_archers.compat.LootNExplore;
 import com.lne_archers.config.Default;
 import com.lne_archers.config.ItemConfig;
 import com.lne_archers.effects.Effects;
@@ -49,7 +50,7 @@ public class LNE_ArchersMod{
 		ModEntitiesRegistry.registerEntities();
 	}
 	public static void registerItems(){
-		if(Platform.util().isModLoaded("loot_n_explore")) {
+		if(Platform.util().isModLoaded(LootNExplore.MOD_ID)) {
 			itemConfig.refresh();
 			WeaponsRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
 			itemConfig.save();

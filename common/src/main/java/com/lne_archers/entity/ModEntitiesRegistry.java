@@ -6,30 +6,37 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
 
 public class ModEntitiesRegistry {
 
-    public static void registerEntities() {
-        WintersGripEntity.ENTITY_TYPE = Registry.register(
-                Registries.ENTITY_TYPE,
-                Identifier.of(MOD_ID, "winters_grip"),
+    public static Map<Identifier, EntityType<?>> entityTypesToRegister() {
+        var types = new LinkedHashMap<Identifier, EntityType<?>>();
+
+        WintersGripEntity.ENTITY_TYPE =
                 EntityType.Builder.<WintersGripEntity>create(WintersGripEntity::new, SpawnGroup.MISC)
-                        .dimensions(6F, 0.5F)
+                        .setDimensions(6F, 0.5F)
                         .makeFireImmune()
                         .maxTrackingRange(128)
                         .trackingTickInterval(20)
-                        .build("winters_grip")
-        );
+                        .build("winters_grip");
+        types.put(new Identifier(MOD_ID, "winters_grip"), WintersGripEntity.ENTITY_TYPE);
 
-        InfiltratorsArrowProjectile.ENTITY_TYPE = Registry.register(
-                Registries.ENTITY_TYPE,
-                Identifier.of(MOD_ID, "infiltrators_arrow"),
+        InfiltratorsArrowProjectile.ENTITY_TYPE =
                 EntityType.Builder.<InfiltratorsArrowProjectile>create(InfiltratorsArrowProjectile::new, SpawnGroup.MISC)
-                        .dimensions(0.5F, 0.5F)
+                        .setDimensions(0.5F, 0.5F)
                         .maxTrackingRange(64)
                         .trackingTickInterval(20)
-                        .build("infiltrators_arrow")
-        );
+                        .build("infiltrators_arrow");
+        types.put(new Identifier(MOD_ID, "infiltrators_arrow"), InfiltratorsArrowProjectile.ENTITY_TYPE);
+
+        return types;
+    }
+
+    public static void registerEntities() {
+        entityTypesToRegister().forEach((id, entityType) -> Registry.register(Registries.ENTITY_TYPE, id, entityType));
     }
 }

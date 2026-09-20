@@ -18,7 +18,7 @@
 			"com.lne_archers.fabric.client.FabricClient"
 		],
 		"main": [
-          "com.lne_archers.fabric.FabricMod"
+			"com.lne_archers.fabric.FabricMod"
 		],
 		"fabric-datagen": [
 			"com.lne_archers.Lne_archersDataGenerator"
@@ -28,15 +28,17 @@
 		"lne_archers.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21",
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.20.1",
 		"java": ">=17",
-		"fabric-api": "*",
-		"archers": "*",
-		"more_rpg_classes": "*"
+		"fabric-api": ">=0.92.0",
+		"spell_engine": ">=1.10.5",
+		"archers": ">=3.1.1",
+		"ranged_weapon_api": ">=2.3.4",
+		"more_rpg_classes": ">=2.7.2"
 	},
 	"suggests": {
-		"loot_n_explore": ">=1.0.2-1.21.1",
+		"loot_n_explore": ">=1.0.22",
 		"archers_expansion": "*"
 	}
 }

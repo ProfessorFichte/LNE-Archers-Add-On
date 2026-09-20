@@ -1,10 +1,9 @@
 package com.lne_archers.item;
 
-import more_rpg_loot.item.Group;
+import com.lne_archers.compat.LootNExplore;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
-import net.fabric_extras.ranged_weapon.api.RangedWeaponConfig;
 import net.spell_engine.Platform;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
@@ -27,10 +26,11 @@ import net.spell_engine.api.spell.container.SpellContainers;
 import net.spell_engine.rpg_series.datagen.WeaponSkills;
 import net.spell_engine.rpg_series.item.Equipment;
 import net.spell_engine.rpg_series.item.Weapon;
-import net.spell_engine.api.spell.SpellDataComponents;
+import net.spell_engine.api.item.SpellItemData;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -41,17 +41,17 @@ import static com.lne_archers.LNE_ArchersMod.tweaksConfig;
 public class WeaponsRegister {
     public static final ArrayList<RangedEntry> rangedEntries = new ArrayList<>();
     public static final ArrayList<Weapon.Entry> meleeEntries = new ArrayList<>();
-    public static final RegistryKey<ItemGroup> tabKey = Group.RPG_LOOT_KEY;
+    public static final RegistryKey<ItemGroup> tabKey = LootNExplore.GROUP_KEY;
 
     public interface RangedFactory {
-        Item create(Item.Settings settings, RangedWeaponConfig config, Supplier<Ingredient> repairIngredientSupplier);
+        Item create(Item.Settings settings, RangedConfig config, Supplier<Ingredient> repairIngredientSupplier);
     }
 
 
     public static final class RangedEntry {
         private final Identifier id;
         private final RangedFactory factory;
-        private final RangedWeaponConfig defaults;
+        private final RangedConfig defaults;
         private final Supplier<Ingredient> repairIngredientSupplier;
         private final int durability;
         public List<Identifier> spells = null;
@@ -62,7 +62,7 @@ public class WeaponsRegister {
         public Equipment.LootProperties lootProperties = Equipment.LootProperties.EMPTY;
         public Equipment.WeaponType weaponType = Equipment.WeaponType.SHORT_BOW;
 
-        public RangedEntry(Identifier id, RangedFactory factory, RangedWeaponConfig defaults, Supplier<Ingredient> repairIngredientSupplier, int durability) {
+        public RangedEntry(Identifier id, RangedFactory factory, RangedConfig defaults, Supplier<Ingredient> repairIngredientSupplier, int durability) {
             this.id = id;
             this.factory = factory;
             this.defaults = defaults;
@@ -74,7 +74,7 @@ public class WeaponsRegister {
             return id;
         }
 
-        public Item create(Item.Settings settings, RangedWeaponConfig config) {
+        public Item create(Item.Settings settings, RangedConfig config) {
             this.item = factory.create(
                     settings.maxDamage(durability),
                     config,
@@ -108,7 +108,7 @@ public class WeaponsRegister {
     }
 
     private static Supplier<Ingredient> ingredient(String idString, boolean requirement, Item fallback) {
-        var id = Identifier.of(idString);
+        var id = new Identifier(idString);
         if (requirement) {
             return () -> {
                 return Ingredient.ofItems(fallback);
@@ -122,15 +122,14 @@ public class WeaponsRegister {
         }
     }
 
-    //RANGED
-    private static RangedEntry bow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedWeaponConfig defaults) {
-        var entry = new RangedEntry(Identifier.of(MOD_ID, name), CustomBow::new, defaults, repairIngredientSupplier, durability);
+    private static RangedEntry bow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var entry = new RangedEntry(new Identifier(MOD_ID, name), CustomBow::new, defaults, repairIngredientSupplier, durability);
         rangedEntries.add(entry);
         return entry;
     }
 
-    private static RangedEntry crossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedWeaponConfig defaults) {
-        var entry = new RangedEntry(Identifier.of(MOD_ID, name), CustomCrossbow::new, defaults, repairIngredientSupplier, durability);
+    private static RangedEntry crossbow(String name, int durability, Supplier<Ingredient> repairIngredientSupplier, RangedConfig defaults) {
+        var entry = new RangedEntry(new Identifier(MOD_ID, name), CustomCrossbow::new, defaults, repairIngredientSupplier, durability);
         rangedEntries.add(entry);
         return entry;
     }
@@ -151,7 +150,6 @@ public class WeaponsRegister {
     public static float heavy_crossbow_damage = 17.0F;
     private static final int durabilityBows = ToolMaterials.NETHERITE.getDurability();
 
-    //SPEARS
     private static Weapon.Entry addMelee(String name, Weapon.CustomMaterial material, Weapon.Factory factory, WeaponConfig defaults, Equipment.WeaponType type) {
         var entry = new Weapon.Entry(MOD_ID, name, material, factory, defaults, type);
         meleeEntries.add(entry);
@@ -165,29 +163,31 @@ public class WeaponsRegister {
     private static final float archers_spearAttackSpeed = -2.6F;
     private static final float spearAttackDamage = 8.0F;
     private static final float weaponSpellPower = 4.0F;
-    ///MELEE PASSIVES
     public static String dragonclaw = MrpgLibSpells.dragonclaw_melee.id().toString();
     public static String avalanche = MrpgLibSpells.avalanche_melee.id().toString();
     public static String waterbomb = MrpgLibSpells.waterbomb_melee.id().toString();
     public static String wither_pulse = MrpgLibSpells.wither_pulse_melee.id().toString();
-    ///RANGED PASSIVES
     public static Identifier dragon_breath = MrpgLibSpells.dragon_breath_ranged.id();
     public static Identifier reef_arrows = MrpgLibSpells.reef_arrows.id();
     public static Identifier glacial_splitter = MrpgLibSpells.glacial_splitter.id();
     public static Identifier cursed_wither_bolt = MrpgLibSpells.cursed_wither_bolt.id();
 
-    //Registration
-    public static void register(Map<String, RangedWeaponConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+    private static boolean conditionalEntriesCreated = false;
+
+    public static void createConditionalEntries() {
+        if (conditionalEntriesCreated) {
+            return;
+        }
+        conditionalEntriesCreated = true;
         if (!tweaksConfig.value.disable_special_lne_weapons) {
             var dragonRepair = ingredient("minecraft:amethyst_shard",
-                    Platform.util().isModLoaded("loot_n_explore"), Items.NETHERITE_INGOT);
+                    Platform.util().isModLoaded(LootNExplore.MOD_ID), Items.NETHERITE_INGOT);
             var elderGuardianRepair = ingredient("minecraft:prismarine_shard",
-                    Platform.util().isModLoaded("loot_n_explore"), Items.NETHERITE_INGOT);
+                    Platform.util().isModLoaded(LootNExplore.MOD_ID), Items.NETHERITE_INGOT);
             var frostMonarchRepair = ingredient("minecraft:ice",
-                    Platform.util().isModLoaded("loot_n_explore"), Items.NETHERITE_INGOT);
+                    Platform.util().isModLoaded(LootNExplore.MOD_ID), Items.NETHERITE_INGOT);
             var witherRepair = ingredient("minecraft:bone",
-                    Platform.util().isModLoaded("loot_n_explore"), Items.NETHERITE_INGOT);
-            //SPEARS
+                    Platform.util().isModLoaded(LootNExplore.MOD_ID), Items.NETHERITE_INGOT);
             spear("ender_dragon_spear",
                     Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, dragonRepair),spearAttackDamage)
                     .translatedName("Dragonspike")
@@ -208,109 +208,108 @@ public class WeaponsRegister {
                     .translatedName("Glacial Peak")
                     .attribute(AttributeModifier.bonus(SpellSchools.FROST.id, weaponSpellPower))
                     .withAdditionalSpell(avalanche);
-            //SHORT BOWS
             bow("ender_dragon_bow", durabilityBows, dragonRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow).toAbsolute()
-                    .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                    .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .translatedName("End-Crystal Bow")
                     .spell(dragon_breath);
             bow("elder_guardian_bow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow).toAbsolute()
-                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .translatedName("Nemo´s Fury")
                     .spell(reef_arrows);
             bow("wither_bow", durabilityBows, witherRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow).toAbsolute()
-                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .translatedName("Withered Bow")
                     .spell(cursed_wither_bolt);
             bow("glacial_bow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow).toAbsolute()
-                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(short_bow_damage, pullTime_shortBow,velocity_shortBow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.SHORT_BOW)
                     .translatedName("Frostbite Bow")
                     .spell(glacial_splitter);
-            //LONG BOWS
             bow("ender_dragon_long_bow", durabilityBows, dragonRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow).toAbsolute()
-                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .translatedName("Dragon´s Breath")
                     .spell(dragon_breath);
             bow("elder_guardian_long_bow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow).toAbsolute()
-                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .translatedName("Kraken's Wrath")
                     .spell(reef_arrows);
             bow("wither_long_bow", durabilityBows, witherRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow).toAbsolute()
-                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .translatedName("Soulstorm Bow")
                     .spell(cursed_wither_bolt);
             bow("glacial_long_bow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow).toAbsolute()
-                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(long_bow_damage, pullTime_longBow, velocity_longBow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.LONG_BOW)
                     .translatedName("Glacial Shardbow")
                     .spell(glacial_splitter);
-            //RAPID CROSSBOWS
             crossbow("ender_dragon_rapid_crossbow", durabilityBows, dragonRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .translatedName("Enderbolt Charger")
                     .spell(dragon_breath);
             crossbow("elder_guardian_rapid_crossbow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig( rapid_crossbow_damage, pullTime_rapidCrossbow,velocity_rapidCrossbow).toAbsolute()
-                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig( rapid_crossbow_damage, pullTime_rapidCrossbow,velocity_rapidCrossbow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .translatedName("Reefstriker")
                     .spell(reef_arrows);
             crossbow("wither_rapid_crossbow", durabilityBows, witherRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .translatedName("Witherbolt Arbalest")
                     .spell(cursed_wither_bolt);
             crossbow("glacial_rapid_crossbow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig(rapid_crossbow_damage, pullTime_rapidCrossbow, velocity_rapidCrossbow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.RAPID_CROSSBOW)
                     .translatedName("Icicle Tosser")
                     .spell(glacial_splitter);
-            //HEAVY CROSSBOWS
             crossbow("ender_dragon_heavy_crossbow", durabilityBows, dragonRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .translatedName("Dragon's Jaw")
                     .spell(dragon_breath);
             crossbow("elder_guardian_heavy_crossbow", durabilityBows, elderGuardianRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow).toAbsolute()
-                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(MoreSpellSchools.WATER.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .translatedName("Maelstrom Ballista")
                     .spell(reef_arrows);
             crossbow("wither_heavy_crossbow", durabilityBows, witherRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.SOUL.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .translatedName("Soulcrush Crossbow")
                     .spell(cursed_wither_bolt);
             crossbow("glacial_heavy_crossbow", durabilityBows, frostMonarchRepair,
-                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow).toAbsolute()
-                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADD_VALUE, weaponSpellPower))
+                    new RangedConfig( heavy_crossbow_damage, pullTime_heavyCrossbow,velocity_heavyCrossbow)
+                            .withAttribute(SpellSchools.FROST.id, EntityAttributeModifier.Operation.ADDITION, weaponSpellPower))
                     .weaponType(Equipment.WeaponType.HEAVY_CROSSBOW)
                     .translatedName("Glacier Bolt Crossbow")
                     .spell(glacial_splitter);
         }
+    }
 
-        Weapon.register(meleeConfig, meleeEntries, Group.RPG_LOOT_KEY);
+    public static Map<Identifier, Item> itemsToRegister(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        createConditionalEntries();
+        var items = new LinkedHashMap<Identifier, Item>(Weapon.itemsToRegister(meleeConfig, meleeEntries, LootNExplore.GROUP_KEY));
         for (var entry: rangedEntries) {
             var config = rangedConfig.get(entry.id.toString());
             if (config == null) {
@@ -318,18 +317,21 @@ public class WeaponsRegister {
                 rangedConfig.put(entry.id.toString(), config);
             }
             var settings = new Item.Settings();
-            var tier = entry.lootProperties.tier();
             settings.rarity(Rarity.RARE);
             settings.fireproof();
-            if (entry.spells != null) {
-                if (entry.spells.isEmpty()) {
-                    settings.component(SpellDataComponents.SPELL_CONTAINER, SpellContainers.forRangedWeapon());
-                } else {
-                    settings.component(SpellDataComponents.SPELL_CONTAINER, SpellContainers.forWeapon(SpellContainer.ContentType.ARCHERY, entry.spells));
-                }
-            }
             var item = entry.create(settings, config);
-            Registry.register(Registries.ITEM, entry.id, item);
+            if (entry.spells != null) {
+                var container = entry.spells.isEmpty()
+                        ? SpellContainers.forRangedWeapon()
+                        : SpellContainers.forWeapon(SpellContainer.ContentType.ARCHERY, entry.spells);
+                SpellItemData.defaults(item).spellContainer(container);
+            }
+            items.put(entry.id, item);
         }
+        return items;
+    }
+
+    public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        itemsToRegister(rangedConfig, meleeConfig).forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
 }

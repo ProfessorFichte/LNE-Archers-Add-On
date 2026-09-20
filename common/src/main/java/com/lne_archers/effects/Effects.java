@@ -8,7 +8,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.Registry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.entity.ControlledOwnerAccess;
@@ -19,6 +19,7 @@ import net.spell_engine.api.effect.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
 
@@ -31,12 +32,12 @@ public class Effects {
         return entry;
     }
 
-    public static RegistryEntry<StatusEffect> getEntry(net.spell_engine.api.effect.Effects.Entry entry) {
-        return Registries.STATUS_EFFECT.getEntry(entry.id).orElseThrow();
+    public static StatusEffect getEntry(net.spell_engine.api.effect.Effects.Entry entry) {
+        return entry.effect;
     }
 
     public static net.spell_engine.api.effect.Effects.Entry RANGERS_FOCUS = add(new net.spell_engine.api.effect.Effects.Entry(
-            Identifier.of(MOD_ID, "rangers_focus"),
+            new Identifier(MOD_ID, "rangers_focus"),
             "Ranger´s Focus",
             "Increases Ranged Damage & Velocity, reduces pull time.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x993333),
@@ -45,62 +46,70 @@ public class Effects {
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
                                     0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.HASTE.id.toString(),
                                     0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.VELOCITY.id.toString(),
                                     0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
     ));
 
     public static final net.spell_engine.api.effect.Effects.Entry WINTERS_GRASP = add(new net.spell_engine.api.effect.Effects.Entry(
-            Identifier.of(MOD_ID, "winters_grip"),
+            new Identifier(MOD_ID, "winters_grip"),
             "Winters Grip",
             "Freezes nearby targets solid on death.",
             new WintersGraspEffect(StatusEffectCategory.HARMFUL, 0x805e4d),
             new EffectConfig(List.of(
                     new AttributeModifier(
-                            EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                            Registries.ATTRIBUTE.getId(EntityAttributes.GENERIC_MOVEMENT_SPEED).toString(),
                             -0.15F,
-                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            EntityAttributeModifier.Operation.MULTIPLY_BASE
                     )
             ))
     ));
 
     public static final net.spell_engine.api.effect.Effects.Entry FROZEN_SLAVE = add(new net.spell_engine.api.effect.Effects.Entry(
-            Identifier.of(MOD_ID, "frozen_slave"),
+            new Identifier(MOD_ID, "frozen_slave"),
             "Frozen Slave",
             "Revived by the frost, bound to fight for its icy master until it fades.",
             new FrozenSlaveEffect(StatusEffectCategory.NEUTRAL, 0x99ccff),
             new EffectConfig(List.of(
                     new AttributeModifier(
-                            EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                            Registries.ATTRIBUTE.getId(EntityAttributes.GENERIC_ATTACK_DAMAGE).toString(),
                             0.2F,
-                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            EntityAttributeModifier.Operation.MULTIPLY_BASE
                     ),
                     new AttributeModifier(
-                            EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                            Registries.ATTRIBUTE.getId(EntityAttributes.GENERIC_MOVEMENT_SPEED).toString(),
                             0.2F,
-                            EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            EntityAttributeModifier.Operation.MULTIPLY_BASE
                     )
             ))
     ));
 
     public static void register(ConfigFile.Effects config) {
+        effectsToRegister(config).forEach((id, effect) -> Registry.register(Registries.STATUS_EFFECT, id, effect));
+        net.spell_engine.api.effect.Effects.linkEntries(entries);
+        installBehaviours();
+    }
+
+    public static Map<Identifier, StatusEffect> effectsToRegister(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
 
-        net.spell_engine.api.effect.Effects.register(entries, config.effects);
+        return net.spell_engine.api.effect.Effects.effectsToRegister(entries, config.effects);
+    }
 
+    public static void installBehaviours() {
         OnRemoval.configure(FROZEN_SLAVE.effect, (context) -> {
             var entity = context.entity();
             if (!entity.isAlive()) return;

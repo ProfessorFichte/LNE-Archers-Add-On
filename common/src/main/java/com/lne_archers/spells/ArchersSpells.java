@@ -54,7 +54,7 @@ public class ArchersSpells {
 
     public static Entry rangers_focus = add(rangers_focus());
     private static Entry rangers_focus() {
-        var id = Identifier.of(MOD_ID, "rangers_focus");
+        var id = new Identifier(MOD_ID, "rangers_focus");
         var title = "Ranger´s Focus";
         var effect = Effects.RANGERS_FOCUS;
         var description = "Charge up while standing still, then release to gain "
@@ -84,7 +84,7 @@ public class ArchersSpells {
 
 
         spell.release.animation = PlayerAnimation.of("spell_engine:one_handed_area_release");
-        spell.release.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
+        spell.release.sound = new Sound(new Identifier("archers:magic_arrow_impact"));
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
         spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
@@ -106,7 +106,7 @@ public class ArchersSpells {
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.NATURE)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(10F).speed(0.02F, 0.1F)));
-        damage.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
+        damage.sound = new Sound(new Identifier("archers:magic_arrow_impact"));
 
         spell.impacts = List.of(damage);
 
@@ -132,7 +132,7 @@ public class ArchersSpells {
     }
     public static final Entry fan_of_fire = add(fan_of_fire());
     private static Entry fan_of_fire() {
-        var id = Identifier.of(MOD_ID, "fan_of_fire");
+        var id = new Identifier(MOD_ID, "fan_of_fire");
         var spell = SpellBuilder.createSpellActive();
         var title = "Fan of Fire";
         var description = "Calls explosive arrows, in an area dealing {damage} and setting enemies on fire.";
@@ -180,7 +180,7 @@ public class ArchersSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(25).speed(0.2F, 0.5F).preTravel(4F)));
-        damage.sound = Sound.withRandomness(Identifier.of("entity.generic.explode"),1.2F);
+        damage.sound = Sound.withRandomness(new Identifier("entity.generic.explode"),1.2F);
 
         var fire = SpellBuilder.Impacts.fire(5);
 
@@ -200,7 +200,7 @@ public class ArchersSpells {
     }
     public static final Entry winters_grip = add(winters_grip());
     private static Entry winters_grip() {
-        var id = Identifier.of(MOD_ID, "winters_grip");
+        var id = new Identifier(MOD_ID, "winters_grip");
         var spell = SpellBuilder.createSpellActive();
         var title = "Winters Grip";
         var description = "Spawns a winter totem, slowing enemies, freezing other enemies around on death.";
@@ -216,7 +216,7 @@ public class ArchersSpells {
         cloud.volume.radius = 10.0F;
         cloud.volume.area = new Spell.Target.Area();
         cloud.volume.area.vertical_range_multiplier = 1.5F;
-        cloud.volume.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.1F);
+        cloud.volume.sound = Sound.withVolume(new Identifier("spell_engine:generic_wind_charging"),0.1F);
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 10;
         cloud.spawn_ticks = 8;
@@ -268,7 +268,7 @@ public class ArchersSpells {
     }
     public static final Entry infiltrators_arrow = add(infiltrators_arrow());
     private static Entry infiltrators_arrow() {
-        var id = Identifier.of(MOD_ID, "infiltrators_arrow");
+        var id = new Identifier(MOD_ID, "infiltrators_arrow");
         var spell = SpellBuilder.createSpellActive();
         var title = "Infiltrators Arrow";
         var description = "Shoots a short-range invisible arrow dealing {damage}. On impact, teleports you to the arrow and grants you invisibility.";

@@ -1,0 +1,62 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "ARR"
+
+[[mods]]
+modId = "lne_archers"
+version = "${version}"
+displayName = "LNE Archers"
+authors = "Fichte"
+description = '''
+Loot & Explore Add-On with Archers RPG-Series Content.
+'''
+logoFile = "icon.png"
+
+[[dependencies.lne_archers]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "spell_engine"
+mandatory = true
+versionRange = "[1.10.5,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "archers"
+mandatory = true
+versionRange = "[3.1.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "ranged_weapon_api"
+mandatory = true
+versionRange = "[2.3.4,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "more_rpg_classes"
+mandatory = true
+versionRange = "[2.7.2,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.lne_archers]]
+modId = "archers_expansion"
+mandatory = false
+versionRange = "[1.0.0,)"
+ordering = "AFTER"
+side = "BOTH"

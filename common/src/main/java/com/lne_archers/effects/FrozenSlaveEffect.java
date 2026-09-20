@@ -3,6 +3,7 @@ package com.lne_archers.effects;
 import com.lne_archers.sounds.LneArchersSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.server.world.ServerWorld;
 import net.more_rpg_classes.client.particle.MoreParticles;
@@ -24,8 +25,9 @@ public class FrozenSlaveEffect extends ControlEnemyStatusEffect {
         return owner != null && !isProtected(owner, livingTarget);
     }
 
-    public void onApplied(LivingEntity livingEntity, int amplifier) {
-        super.onApplied(livingEntity, amplifier);
+    @Override
+    public void onApplied(LivingEntity livingEntity, AttributeContainer attributes, int amplifier) {
+        super.onApplied(livingEntity, attributes, amplifier);
         if (livingEntity.getWorld() instanceof ServerWorld serverWorld) {
             serverWorld.spawnParticles(
                     new PopupParticleEffect(MoreParticles.POPUP, Effects.FROZEN_SLAVE.id, false, livingEntity.getId()),

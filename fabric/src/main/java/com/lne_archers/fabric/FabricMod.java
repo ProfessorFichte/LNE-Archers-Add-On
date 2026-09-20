@@ -35,7 +35,7 @@ public final class FabricMod implements ModInitializer {
         }
         FabricLoader.getInstance().getModContainer(LNE_ArchersMod.MOD_ID).ifPresent(container ->
                 ResourceManagerHelper.registerBuiltinResourcePack(
-                        Identifier.of(LNE_ArchersMod.MOD_ID, "archers_expansion_compat"),
+                        new Identifier(LNE_ArchersMod.MOD_ID, "archers_expansion_compat"),
                         container,
                         ResourcePackActivationType.ALWAYS_ENABLED));
     }

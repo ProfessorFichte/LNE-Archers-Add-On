@@ -10,11 +10,10 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
 
 public class FrozenSlaveOverlayFeatureRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
-    private static final Identifier ICE_TEXTURE = Identifier.ofVanilla("textures/block/ice.png");
-    private static final int OVERLAY_COLOR = (ColorHelper.channelFromFloat(0.8F) << 24) | 0xFFFFFF;
+    private static final Identifier ICE_TEXTURE = new Identifier("textures/block/ice.png");
+    private static final float OVERLAY_ALPHA = 0.8F;
 
     public FrozenSlaveOverlayFeatureRenderer(FeatureRendererContext<T, M> context) {
         super(context);
@@ -27,6 +26,6 @@ public class FrozenSlaveOverlayFeatureRenderer<T extends LivingEntity, M extends
         if (!(entity instanceof FrozenSlaveVisualAccess access) || !access.lneArchers$isFrozenSlaveVisual()) return;
 
         var vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(ICE_TEXTURE));
-        this.getContextModel().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, OVERLAY_COLOR);
+        this.getContextModel().render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1F, 1F, 1F, OVERLAY_ALPHA);
     }
 }

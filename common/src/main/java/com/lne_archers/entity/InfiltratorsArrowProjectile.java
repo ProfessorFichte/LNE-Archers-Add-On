@@ -12,6 +12,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -57,9 +58,9 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
     }
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(TRACKER_SPELL_ID, "");
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.getDataTracker().startTracking(TRACKER_SPELL_ID, "");
     }
 
     @Override
@@ -68,7 +69,8 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         if (this.getWorld().isClient && data.equals(TRACKER_SPELL_ID)) {
             var spellId = this.getDataTracker().get(TRACKER_SPELL_ID);
             if (spellId != null && !spellId.isEmpty()) {
-                this.spellEntry = SpellRegistry.from(this.getWorld()).getEntry(Identifier.of(spellId)).orElse(null);
+                this.spellEntry = SpellRegistry.from(this.getWorld())
+                        .getEntry(RegistryKey.of(SpellRegistry.KEY, new Identifier(spellId))).orElse(null);
             }
         }
     }
@@ -120,8 +122,8 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         owner.setVelocity(Vec3d.ZERO);
         owner.fallDistance = 0.0F;
         getWorld().emitGameEvent(GameEvent.TELEPORT, pos, GameEvent.Emitter.of(owner));
-        Registries.STATUS_EFFECT.getEntry(Identifier.of("archers_expansion", "infiltrators_vanish"))
-                .ifPresent(entry -> owner.addStatusEffect(new StatusEffectInstance(entry, 100, 0, false, false, true)));
+        Registries.STATUS_EFFECT.getOrEmpty(new Identifier("archers_expansion", "infiltrators_vanish"))
+                .ifPresent(effect -> owner.addStatusEffect(new StatusEffectInstance(effect, 100, 0, false, false, true)));
     }
 
     private static final String NBT_SPELL_ID = "SpellId";
@@ -148,8 +150,9 @@ public class InfiltratorsArrowProjectile extends ArrowEntity {
         }
         if (nbt.contains(NBT_SPELL_ID, NbtElement.STRING_TYPE)) {
             try {
-                var spellId = Identifier.of(nbt.getString(NBT_SPELL_ID));
-                this.spellEntry = SpellRegistry.from(this.getWorld()).getEntry(spellId).orElse(null);
+                var spellId = new Identifier(nbt.getString(NBT_SPELL_ID));
+                this.spellEntry = SpellRegistry.from(this.getWorld())
+                        .getEntry(RegistryKey.of(SpellRegistry.KEY, spellId)).orElse(null);
                 if (this.spellEntry != null) {
                     this.getDataTracker().set(TRACKER_SPELL_ID, spellId.toString());
                 }

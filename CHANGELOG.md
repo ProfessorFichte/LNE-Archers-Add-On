@@ -1,85 +1,15 @@
-# 1.2.2 - 1.21.1
-- fixed a crash when opening creative inventory
+# 1.2.2+1.20.1
 
-# 1.2.1 - 1.21.1
-- Drop Forgified Fabric API (FFAPI) as a required dependency
-- Fixed a crash when opening the creative inventory without Loot & Explore installed
-- Updated some Spell Textures for LNE Spells (created by Slepykat)
+> ### ⚠️ Read this before updating
+>
+> This release is a **major technical overhaul and is not backwards compatible.**
+>
+> - **Requires the matching Spell Engine and More RPG Library releases.**
+> - **Update the whole set together.** Mixing in an older add-on will break at startup or misbehave in play.
+>
+> **Back up your world before updating.**
 
-# 1.2.0 - 1.21.1
-- Adopt Spell Engine 1.10
-- Improve FrozenSlave checking if the entity was killed by the Caster that inflicted "WintersGrip"
-
-# 1.1.3 - 1.21.1
-- Infiltrators Arrow, Winters Grip & Fan of Fire are now available in the LNE Archers Mod!
-- Changed Infiltrator's Arrow & Winter's Grip
-- Infiltrators Arrow: A charged spell, that shoots an arrow that flies further the longer you charge. You'll get teleported to the location where the arrow hits.
-- Winters Grip: Still a cloud that slows enemy's. Targets that are killed in the Cloud, become your Frozen Slaves fighting for you.
-- Fan of Fire: unchanged
-
-# 1.1.2 - 1.21.1
-- Fix Crash on Neoforge
-- Add a proper Spell Tooltip for Rangers Focus
-- Project Clean Up
-
-# 1.1.1 - 1.21.1
-- Adapt to Spell Engine 1.9.10+ API Changes
-**Balancing & Internal Changes:**
-- Rangers focus is now a charging spell, the longer you charge, the higher the buff effect amplifier gets
-
-# 1.1.0 - 1.21.1
-**Update to use Spell Engine 1.9.0**
-- DISCLAIMER: All spell books and spell scrolls will be reset, due to major API changes.
-- All Additional Spells are now Tier 5 Spell's
-- The Spells can now also be learned in the Spell Binding Table
-- Small tweaks in the Loot Tables
-- Moved all the structures from loot_n_explore to lne_archers, so it's clearer that these structures come from this add-on
-- Arrows show with Rangers Focus now creates a Nature Spell-Damage Area Impact, that scales with Ranged Damage
-- Rangers Focus is now instantly casted
-
-# 1.0.9 - 1.21.1
-- fix the log spam from wrong particle spawner for Ranger's focus
-
-# 1.0.8 - 1.21.1
-- Move to Architectury Enviroment for Multiloader
-- NeoForge Beta!
-- Bows and Crossbows now also come with Spell Power for their Weapon Theme!
-- Buff Spell Power for Weapons
-
-# 1.0.7- 1.21.1
-- add missing filled map lang translation
-- fix crash with Glacial Splitter Passive without Archers Expansion installed
-- use new loot function for loot chests: "more_rpg_classes:specific_spell_scroll_pool"
-
-# 1.0.6- 1.21.1
-- Rangers Focus is now a T4 spell
-- it can now also be looted outside the class structure
-- Also Buffed Rangers Focus, it now also creates a small damage area impact on arrow impact
-
-# 1.0.5- 1.21.1
-- Spell Engine 1.7 Update
-
-# 1.0.4 - 1.21.1
-- fix ranged weapon config
-- fix issue with fabric-mod.json
-
-# 1.0.3 - 1.21.1
-- renamed the Ender Dragon Heavy Crossbow
-- Update Mod Icon
-- Update License
-
-# 1.0.2 - 1.21.1
-- add Loot & Explore Weapon Theme Tags
-
-# 1.0.1 - 1.21.1
-- fix some target modifiers in Passive Spell Impact
-
-# 1.0.0 - 1.21.1
-# Official 1.21.1 Release!
-# CHANGES
-- Passive Spells For the Weapons are now handled with the new Spell Engine Passive API
-- Rangers focus will now decrease your pull time, and increase your arrow velocity
-- the movement speed when Rangers Focus is active was reduced more
-- The special Spells can now be found as a spell scroll
-- The Class related structures will now contain spell scrolls in their loot chests
-- Made some small loot table tweaks
+- Ported to Minecraft 1.20.1 (Fabric + Forge 47). NeoForge is replaced by Forge on this line, the same Forge jar also loads on NeoForge 1.20.1.
+- Requires the matching 1.20.1 releases of Spell Engine (1.10.5), Spell Power (1.6.0), More RPG Library (2.7.2), Archers (3.1.1) and Ranged Weapon API (2.3.4). Loot & Explore (1.0.22) stays optional.
+- Loot & Explore has no Forge build, so on Forge the bows, crossbows and spears need it and are skipped without it, the spells, effects and entities work either way.
+- The Archers Expansion compat pack is still included and only loads when Archers Expansion is installed.

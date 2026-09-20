@@ -15,7 +15,7 @@ public class CustomSpellImpacts {
 
     private static final float INFILTRATORS_ARROW_GRAVITY = 0.05F;
     private static final float INFILTRATORS_ARROW_DRAG = 0.99F;
-    // Loft angle flattens out the longer the shot's range is: a short hop arcs high like a lob, a long charged shot flies flatter, like a real projectile trading arc for distance.
+    // The longer the range, the flatter the arc: short shots lob high, long charged shots fly almost straight.
     private static final float INFILTRATORS_ARROW_STEEP_ANGLE_DEGREES = 48F;
     private static final float INFILTRATORS_ARROW_FLAT_ANGLE_DEGREES = 18F;
     private static final float INFILTRATORS_ARROW_ANGLE_REF_MIN_RANGE = 8F;
@@ -27,7 +27,6 @@ public class CustomSpellImpacts {
 
     private static final float INFILTRATORS_ARROW_RANGE_BUFFER = 4F;
 
-    // Loft angle
     private static float infiltratorsArrowAngleDegrees(float range) {
         var t = MathHelper.clamp(
                 (range - INFILTRATORS_ARROW_ANGLE_REF_MIN_RANGE)
@@ -53,7 +52,7 @@ public class CustomSpellImpacts {
         return x;
     }
 
-    // Binary-searches the launch speed (at the given fixed angle) that lands a real arrow at approximately `range` blocks away.
+    // Binary search for the launch speed that lands the arrow about `range` blocks away at this angle.
     private static float infiltratorsArrowSpeedForRange(float range, float angleDegrees) {
         var radians = angleDegrees * DEGREES_TO_RADIANS;
         var cos = MathHelper.cos(radians);
@@ -75,7 +74,7 @@ public class CustomSpellImpacts {
 
     public static void registerCustomDeliveries() {
         SpellHandlers.registerCustomDelivery(
-                Identifier.of(MOD_ID, "infiltrators_arrow"),
+                new Identifier(MOD_ID, "infiltrators_arrow"),
                 (world, spellEntry, caster, targets, context, targetLocation) -> {
                     if (world.isClient) return false;
 
@@ -88,7 +87,7 @@ public class CustomSpellImpacts {
                     var effectiveRange = SpellParameters.getRangeCurved(caster, spellEntry, impactContext.charge());
                     var launchPoint = LaunchGeometry.launchPoint(caster);
 
-                    // Pitch is fully computed from the target range (a lobbed, mortar-like arc) rather than the caster's look pitch, so the shot reliably lands at `range` regardless of aim.
+                    // Pitch comes from the range, not from where the caster looks, so the shot always lands at `range`.
                     var angleDegrees = infiltratorsArrowAngleDegrees(effectiveRange);
                     var speed = infiltratorsArrowSpeedForRange(effectiveRange, angleDegrees);
                     var angleRadians = angleDegrees * DEGREES_TO_RADIANS;

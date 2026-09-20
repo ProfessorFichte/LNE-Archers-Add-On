@@ -16,7 +16,7 @@ import net.spell_engine.api.render.CustomModels;
 public class InfiltratorsArrowRenderer<T extends InfiltratorsArrowProjectile> extends EntityRenderer<T> {
     private final ItemRenderer itemRenderer;
 
-    public static final Identifier modelId = Identifier.of("lne_archers", "spell_projectile/infiltrators_arrow");
+    public static final Identifier modelId = new Identifier("lne_archers", "spell_projectile/infiltrators_arrow");
 
     private static final RenderLayer RENDER_LAYER = NonGlowingProjectileLayer.nonGlowingProjectile();
 

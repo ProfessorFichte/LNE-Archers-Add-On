@@ -26,7 +26,7 @@ public class WintersGripRenderer <T extends WintersGripEntity> extends EntityRen
         return null;
     }
 
-    public static final Identifier baseId = Identifier.of("lne_archers", "effect/winters_grip");
+    public static final Identifier baseId = new Identifier("lne_archers", "effect/winters_grip");
 
     private static final RenderLayer GLOWING_RENDER_LAYER =
             CustomLayers.spellEffect(LightEmission.RADIATE, false);
