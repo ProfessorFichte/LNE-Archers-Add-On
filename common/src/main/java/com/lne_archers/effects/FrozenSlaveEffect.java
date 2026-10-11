@@ -5,10 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.server.world.ServerWorld;
-import net.more_rpg_classes.client.particle.MoreParticles;
-import net.more_rpg_classes.client.particle.PopupParticleEffect;
-import net.more_rpg_classes.effect.ControlEnemyStatusEffect;
-import net.more_rpg_classes.entity.ControlledOwnerAccess;
+import com.mrpg_lib.client.particle.MoreParticles;
+import com.mrpg_lib.client.particle.PopupParticleEffect;
+import com.mrpg_lib.effect.ControlEnemyStatusEffect;
+import com.mrpg_lib.entity.ControlledOwnerAccess;
 import net.spell_engine.internals.target.EntityRelations;
 import net.spell_engine.utils.SoundHelper;
 

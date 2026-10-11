@@ -68,7 +68,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "more_rpg_classes:polar_bear_fur",
+          "name": "mrpg_lib:polar_bear_fur",
           "weight": 3,
           "functions": [
             {
@@ -116,7 +116,7 @@
           "weight": 2,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "berserker_rpg:iron_berserker_rpg"
             }
           ]
@@ -180,7 +180,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#archers_expansion:spell_scroll/tundra_hunter"],
               "spell_tier_min": 2,
               "spell_tier_max": 2,
@@ -202,27 +202,27 @@
           "weight": 10
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:diamond_ring"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:diamond_necklace"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:jade_ring"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:jade_necklace"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "relics_rpgs:jewel_figurine_jade"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "loot_n_explore:apple_juice"
         }
       ]
@@ -244,7 +244,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#berserker_rpg:spell_scroll/berserker"],
               "spell_tier_min": 2,
               "spell_tier_max": 2,

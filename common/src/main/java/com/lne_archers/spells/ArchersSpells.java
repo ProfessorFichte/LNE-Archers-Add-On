@@ -3,7 +3,7 @@ package com.lne_archers.spells;
 import com.lne_archers.effects.Effects;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.custom.MoreSpellSchools;
+import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;

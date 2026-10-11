@@ -49,7 +49,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "berserker_rpg:diamond_berserker_axe"
             },
             {
@@ -116,7 +116,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:tundra_hunter_head"
             },
             {
@@ -141,7 +141,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:tundra_hunter_chest"
             },
             {
@@ -166,7 +166,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:tundra_hunter_legs"
             },
             {
@@ -191,7 +191,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:tundra_hunter_feet"
             },
             {
@@ -229,7 +229,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#archers_expansion:spell_scroll/tundra_hunter"],
               "spell_tier_min": 4,
               "spell_tier_max": 5,
@@ -247,23 +247,23 @@
       },
       "entries": [
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:netherite_jade_ring"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:netherite_jade_necklace"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "relics_rpgs:greater_perk_roll_damage"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "relics_rpgs:greater_perk_ranged_levitate"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "loot_n_explore:forrest_spirit"
         }
       ]
@@ -284,7 +284,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#berserker_rpg:spell_scroll/berserker"],
               "spell_tier_min": 4,
               "spell_tier_max": 5,
@@ -293,7 +293,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "berserker_axe:diamond_berserker_axe",
           "weight": 2,
           "functions": [
@@ -314,7 +314,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "berserker_rpg:northling_head",
           "weight": 1,
           "functions": [
@@ -335,7 +335,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "berserker_rpg:northling_chest",
           "weight": 1,
           "functions": [
@@ -356,7 +356,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "berserker_rpg:northling_legs",
           "weight": 1,
           "functions": [
@@ -377,7 +377,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "berserker_rpg:northling_feet",
           "weight": 1,
           "functions": [

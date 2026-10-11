@@ -49,7 +49,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "rogues:diamond_double_axe"
             },
             {
@@ -116,7 +116,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:war_archer_head"
             },
             {
@@ -141,7 +141,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:war_archer_chest"
             },
             {
@@ -166,7 +166,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:war_archer_legs"
             },
             {
@@ -191,7 +191,7 @@
           "weight": 1,
           "functions": [
             {
-              "function": "more_rpg_classes:conditional_item",
+              "function": "mrpg_lib:conditional_item",
               "conditional_item": "archers_expansion:war_archer_feet"
             },
             {
@@ -229,7 +229,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#archers_expansion:spell_scroll/war_archer"],
               "spell_tier_min": 4,
               "spell_tier_max": 5,
@@ -247,23 +247,23 @@
       },
       "entries": [
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:netherite_jade_ring"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "jewelry:netherite_jade_necklace"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "relics_rpgs:greater_perk_roll_damage"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "relics_rpgs:greater_perk_ranged_levitate"
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "loot_n_explore:forrest_spirit"
         }
       ]
@@ -285,7 +285,7 @@
           "name": "spell_engine:spell_scroll",
           "functions": [
             {
-              "function": "more_rpg_classes:specific_spell_scroll_pool",
+              "function": "mrpg_lib:specific_spell_scroll_pool",
               "spell_pools": ["#rogues:spell_scroll/warrior"],
               "spell_tier_min": 4,
               "spell_tier_max": 5,
@@ -294,7 +294,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "rogues:diamond_glaive",
           "weight": 2,
           "functions": [
@@ -315,7 +315,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "rogues:berserker_armor_head",
           "weight": 1,
           "functions": [
@@ -336,7 +336,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "rogues:berserker_armor_chest",
           "weight": 1,
           "functions": [
@@ -357,7 +357,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "rogues:berserker_armor_legs",
           "weight": 1,
           "functions": [
@@ -378,7 +378,7 @@
           ]
         },
         {
-          "type": "more_rpg_classes:conditional_item",
+          "type": "mrpg_lib:conditional_item",
           "item": "rogues:berserker_armor_feet",
           "weight": 1,
           "functions": [
