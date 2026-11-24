@@ -6,10 +6,14 @@ import com.lne_archers.sounds.LneArchersSounds;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SimpleSoundGeneratorV2;
 import net.spell_engine.rpg_series.datagen.RPGSeriesDataGen;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static com.lne_archers.LNE_ArchersMod.MOD_ID;
@@ -41,6 +45,10 @@ public class Lne_archersDataGenerator implements DataGeneratorEntrypoint {
 					new RPGSeriesDataGen.BowEntry(entry.id(), entry.weaponType, entry.lootProperties)
 			).toList();
 			generateBowTags(bowEntries);
+			var underwater = getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("mrpg_lib", "underwater_ranged_weapons")));
+			for (String name : List.of("elder_guardian_bow", "elder_guardian_long_bow", "elder_guardian_rapid_crossbow", "elder_guardian_heavy_crossbow")) {
+				underwater.addOptional(Identifier.of("lne_archers", name));
+			}
 		}
 	}
 
