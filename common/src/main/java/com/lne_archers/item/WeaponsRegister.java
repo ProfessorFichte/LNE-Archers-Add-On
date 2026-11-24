@@ -1,6 +1,6 @@
 package com.lne_archers.item;
 
-import more_rpg_loot.item.Group;
+import net.minecraft.registry.RegistryKeys;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.CustomCrossbow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
@@ -41,7 +41,7 @@ import static com.lne_archers.LNE_ArchersMod.tweaksConfig;
 public class WeaponsRegister {
     public static final ArrayList<RangedEntry> rangedEntries = new ArrayList<>();
     public static final ArrayList<Weapon.Entry> meleeEntries = new ArrayList<>();
-    public static final RegistryKey<ItemGroup> tabKey = Group.RPG_LOOT_KEY;
+    public static final RegistryKey<ItemGroup> tabKey = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of("loot_n_explore", "loot.general"));
 
     public interface RangedFactory {
         Item create(Item.Settings settings, RangedWeaponConfig config, Supplier<Ingredient> repairIngredientSupplier);
@@ -310,7 +310,7 @@ public class WeaponsRegister {
                     .spell(glacial_splitter);
         }
 
-        Weapon.register(meleeConfig, meleeEntries, Group.RPG_LOOT_KEY);
+        Weapon.register(meleeConfig, meleeEntries, tabKey);
         for (var entry: rangedEntries) {
             var config = rangedConfig.get(entry.id.toString());
             if (config == null) {
