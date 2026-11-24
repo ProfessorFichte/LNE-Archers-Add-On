@@ -33,9 +33,9 @@
   "item.lne_archers.wither_spear": "凋灵脊梁骨枪",
   "spell.lne_archers.fan_of_fire.description": "召唤爆炸箭矢，在区域内造成{damage}伤害并点燃敌人。",
   "spell.lne_archers.fan_of_fire.name": "火焰之扇",
-  "spell.lne_archers.infiltrators_arrow.description": "射出一支短距离的隐形箭，造成{damage}。命中后，你会传送到箭的位置并获得隐身效果。",
+  "spell.lne_archers.infiltrators_arrow.description": "射出一支短距离的隐形箭，造成{damage}伤害。命中后，你会传送到箭的位置并获得隐身效果。",
   "spell.lne_archers.infiltrators_arrow.name": "渗透者之箭",
-  "spell.lne_archers.rangers_focus.description": "静止并充能，然后释放技能，增加{effect|lne_archers:rangers_focus|0|ranged_weapon:damage}远程伤害，{effect|lne_archers:rangers_focus|0|ranged_weapon:pull_time}上弦时间，{effect|lne_archers:rangers_focus|0|ranged_weapon:velocity}箭矢速度，持续{stash_duration}秒，效果随充能时间增强。同时，箭矢命中时会产生魔法伤害区域。",
+  "spell.lne_archers.rangers_focus.description": "静止并充能，然后释放技能，增加{effect|lne_archers:rangers_focus|0|ranged_weapon:damage}远程伤害，{effect|lne_archers:rangers_focus|0|ranged_weapon:haste}上弦速度，{effect|lne_archers:rangers_focus|0|ranged_weapon:velocity}箭矢速度，持续{stash_duration}秒，效果随充能时间增强。同时，箭矢命中时会产生魔法伤害区域。",
   "spell.lne_archers.rangers_focus.name": "游侠的专注",
   "spell.lne_archers.winters_grip.description": "召唤一个寒冬图腾，减速敌人，死亡时冻结附近其他敌人。",
   "spell.lne_archers.winters_grip.name": "寒冬之握"
