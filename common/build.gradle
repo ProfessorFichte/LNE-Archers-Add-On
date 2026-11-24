@@ -30,9 +30,6 @@ repositories {
     maven { url 'https://maven.su5ed.dev/releases' }
     maven { url 'https://maven.fabricmc.net' }
 
-    mavenLocal {
-        content { excludeModule('maven.modrinth', 'more-rpg-library') }
-    }
 }
 
 dependencies {
@@ -56,7 +53,6 @@ dependencies {
     modImplementation("maven.modrinth:archers:${project.archers_version}-${platform}")
 
     ///OPTIONAL
-    modImplementation("maven.modrinth:loot-n-explore:${project.loot_n_explore_version}") { transitive = false }
     modImplementation("maven.modrinth:archers-expansion:${project.archers_expansion_version}-${platform}") { transitive = false }
 
     // Compatibility

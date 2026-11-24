@@ -1,12 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/ProfessorFichte/LNE-Archers-Add-On/issues"
 license = "ARR"
 
 [[mods]]
 modId = "lne_archers"
 version = "${version}"
-displayName = "LNE Archers"
+displayName = "LNE Archers Add-On"
+displayURL = "https://modrinth.com/mod/lne-archers"
 authors = "Fichte"
 description = '''
 Loot & Explore Add-On with Archers RPG-Series Content.
@@ -50,3 +51,10 @@ side = "BOTH"
 
 [[mixins]]
 config = "lne_archers.mixins.json"
+
+[[dependencies.lne_archers]]
+modId = "loot_n_explore"
+type = "optional"
+versionRange = "[${loot_n_explore_version},)"
+ordering = "NONE"
+side = "BOTH"

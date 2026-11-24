@@ -2,13 +2,15 @@
 	"schemaVersion": 1,
 	"id": "lne_archers",
 	"version": "${version}",
-	"name": "L&E Archers-Add On",
+	"name": "LNE Archers Add-On",
 	"description": "Loot & Explore Add-On with Archers RPG-Series Content.",
 	"authors": [
 		"Fichte"
 	],
 	"contact": {
-		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On"
+		"homepage": "https://modrinth.com/mod/lne-archers",
+		"sources": "https://github.com/ProfessorFichte/LNE-Archers-Add-On",
+		"issues": "https://github.com/ProfessorFichte/LNE-Archers-Add-On/issues"
 	},
 	"license": "ARR",
 	"icon": "icon.png",
@@ -30,13 +32,22 @@
 	"depends": {
 		"fabricloader": ">=0.16.5",
 		"minecraft": "~1.21",
-		"java": ">=17",
+		"java": ">=21",
 		"fabric-api": "*",
 		"archers": "*",
 		"mrpg_lib": "*"
 	},
 	"suggests": {
-		"loot_n_explore": ">=1.0.24-1.21.1",
+		"loot_n_explore": ">=${loot_n_explore_version}",
 		"archers_expansion": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/AShKd5XrTu",
+				"modmenu.kofi": "https://ko-fi.com/fichteee",
+				"modmenu.modrinth": "https://modrinth.com/mod/lne-archers"
+			}
+		}
 	}
 }
