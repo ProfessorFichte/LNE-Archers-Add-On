@@ -31,35 +31,25 @@ public class WeaponAttributesGenerator implements DataProvider {
     public CompletableFuture<?> run(DataWriter writer) {
         List<CompletableFuture<?>> futures = new ArrayList<>();
 
-        // Generate weapon attributes for ranged weapons
         for (var entry : WeaponsRegister.rangedEntries) {
-            Identifier id = entry.id();
             String parent = getParentForWeaponType(entry.weaponType);
             if (parent != null) {
-                futures.add(generateWeaponAttribute(writer, id, parent));
+                futures.add(generateWeaponAttribute(writer, entry.id(), parent));
             }
         }
-
-        /*
-        // Generate weapon attributes for melee weapons (spears)
         for (var entry : WeaponsRegister.meleeEntries) {
-            Identifier id = entry.id();
-            String parent = getParentForWeaponType(entry.type());
+            String parent = getParentForWeaponType(entry.category());
             if (parent != null) {
-                futures.add(generateWeaponAttribute(writer, id, parent));
+                futures.add(generateWeaponAttribute(writer, entry.id(), parent));
             }
         }
-
-         */
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
     }
 
     private String getParentForWeaponType(Equipment.WeaponType weaponType) {
         return switch (weaponType) {
-            case SHORT_BOW -> "bettercombat:bow";
             case LONG_BOW -> "bettercombat:bow_two_handed_heavy";
-            case RAPID_CROSSBOW -> "bettercombat:crossbow";
             case HEAVY_CROSSBOW -> "bettercombat:crossbow_two_handed_heavy";
             case SPEAR -> "bettercombat:spear";
             default -> null;
