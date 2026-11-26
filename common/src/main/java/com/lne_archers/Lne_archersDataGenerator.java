@@ -31,6 +31,7 @@ public class Lne_archersDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(WeaponAttributesGenerator::new);
 		pack.addProvider(ArchersAbilityDatagen::new);
 		pack.addProvider(SoundGen::new);
+		pack.addProvider(ModLootTableProvider.Chests::new);
 	}
 
 	public static class ItemTagGenerator extends RPGSeriesDataGen.ItemTagGenerator {

@@ -1,0 +1,606 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.25,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:string",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 16.0,
+                "min": 6.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:arrow",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "mrpg_lib:hardened_leather",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:rabbit_hide",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "archers:medium_quiver",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:rapid_crossbow",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:mechanic_shortbow",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "rogues:iron_dagger",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:iron_spear",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:archer_armor_head",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:archer_armor_chest",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:archer_armor_legs",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:archer_armor_feet",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "rogues:diamond_dagger",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:diamond_spear"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:royal_longbow"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:heavy_crossbow"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "archers_expansion:deadeye_head",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:ranger_armor_head"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "archers_expansion:deadeye_chest",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:ranger_armor_chest"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "archers_expansion:deadeye_legs",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:ranger_armor_legs"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditional_item": "archers_expansion:deadeye_feet",
+              "function": "mrpg_lib:conditional_item"
+            },
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "name": "archers:ranger_armor_feet"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 2.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "blacklist_spells": [],
+              "count": 1.0,
+              "function": "mrpg_lib:specific_spell_scroll_pool",
+              "spell_pools": [
+                "#archers_expansion:spell_scroll/deadeye"
+              ],
+              "spell_tier_max": 3.0,
+              "spell_tier_min": 2.0
+            }
+          ],
+          "name": "spell_engine:spell_scroll"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 1.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 8
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "jewelry:diamond_ring"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "jewelry:diamond_necklace"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "jewelry:jade_ring"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "jewelry:jade_necklace"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "relics_rpgs:lesser_melee_crit_chance"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "relics_rpgs:lesser_roll"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "relics_rpgs:lesser_use_dex"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "relics_rpgs:lesser_use_ranged"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "item": "loot_n_explore:waldmeister"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 1.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "blacklist_spells": [],
+              "count": 1.0,
+              "function": "mrpg_lib:specific_spell_scroll_pool",
+              "spell_pools": [
+                "#rogues:spell_scroll/rogue"
+              ],
+              "spell_tier_max": 3.0,
+              "spell_tier_min": 2.0
+            }
+          ],
+          "name": "spell_engine:spell_scroll"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "item": "rogues:diamond_sickle",
+          "weight": 2
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "item": "rogues:assassin_armor_head"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "item": "rogues:assassin_armor_chest"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "item": "rogues:assassin_armor_legs"
+        },
+        {
+          "type": "mrpg_lib:conditional_item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "chance": 0.35,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 13.0,
+                "min": 1.0
+              }
+            }
+          ],
+          "item": "rogues:assassin_armor_feet"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ]
+}
