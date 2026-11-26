@@ -548,7 +548,7 @@ public abstract class ModLootTableProvider extends SimpleFabricLootTableProvider
                         item("mrpg_lib:polar_bear_fur", 3, count(uniform(1, 3))),
                         item("minecraft:lapis_lazuli", 3, count(uniform(4, 6))),
                         item("minecraft:arrow", 3, count(uniform(1, 10))),
-                        item("archers:iron_spear", 2, conditionalItem("berserker_rpg:iron_berserker_rpg")),
+                        item("archers:iron_spear", 2, conditionalItem("berserker_rpg:iron_berserker_axe")),
                         item("archers:composite_longbow", 2),
                         item("archers:mechanic_shortbow", 2),
                         item("archers:rapid_crossbow", 2),

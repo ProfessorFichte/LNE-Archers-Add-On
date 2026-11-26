@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The LNE spears swing like spears again with Better Combat
 - With Better Combat, the LNE Bows and Rapid Crossbows no longer point to Better Combat presets that don't exist and behave like the Archers bows they upgrade from
 - Ranger treasure sites can spawn in all forest biomes again, modded ones included (the forest biome tag id was out of date)
+- Tundra Hunter tier 2 chests can drop the Iron Spear again when Berserker is installed, the condition item id was wrong
 
 ## [1.3.0+1.21.1]
 

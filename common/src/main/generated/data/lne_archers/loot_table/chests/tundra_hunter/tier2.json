@@ -120,7 +120,7 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "conditional_item": "berserker_rpg:iron_berserker_rpg",
+              "conditional_item": "berserker_rpg:iron_berserker_axe",
               "function": "mrpg_lib:conditional_item"
             }
           ],
