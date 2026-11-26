@@ -2,7 +2,7 @@
   "values": [
     "minecraft:forest",
     {
-      "id": "#c:forest",
+      "id": "#c:is_forest",
       "required": false
     }
   ]
