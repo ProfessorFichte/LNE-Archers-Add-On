@@ -13,10 +13,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Works with Loot & Explore 1.1.0 (the 1.21.1 rewrite) on Fabric and NeoForge
 - Needs More RPG Library 2.8.4 or newer
-
+- Loot tables are now made by datagen instead of hand-written files, the loot stays the same
 ### Fixed
 
 - The Frozen Slave sound is now 48 kHz like the other sounds
+- Deadeye tier 1 chests can drop Rogue spell scrolls again, the spell pool id was wrong
+- Tundra Hunter tier 5 chests can drop the Diamond Berserker Axe (Berserker installed), the item id was wrong
+- Polar Bear Fur in the item frames of the Tundra Hunter hut and outpost shows up again, and the armor stand in the Archers camp keeps its Damage Reflect bonus (old More RPG Library ids)
+- The LNE spears swing like spears again with Better Combat
+- With Better Combat, the LNE Bows and Rapid Crossbows no longer point to Better Combat presets that don't exist and behave like the Archers bows they upgrade from
+- Ranger treasure sites can spawn in all forest biomes again, modded ones included (the forest biome tag id was out of date)
 
 ## [1.3.0+1.21.1]
 

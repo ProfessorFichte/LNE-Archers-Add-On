@@ -49,7 +49,7 @@ public class LNE_ArchersMod{
 		ModEntitiesRegistry.registerEntities();
 	}
 	public static void registerItems(){
-		if(Platform.util().isModLoaded("loot_n_explore")) {
+		if(Platform.util().isModLoaded("loot_n_explore") || System.getProperty("fabric-api.datagen") != null) {
 			itemConfig.refresh();
 			WeaponsRegister.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
 			itemConfig.save();
