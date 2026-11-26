@@ -1,7 +1,9 @@
 package com.lne_archers.spells;
 
 import com.lne_archers.effects.Effects;
+import net.archers.content.ArcherSounds;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
@@ -84,7 +86,7 @@ public class ArchersSpells {
 
 
         spell.release.animation = PlayerAnimation.of("spell_engine:one_handed_area_release");
-        spell.release.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
+        spell.release.sound = new Sound(ArcherSounds.MAGIC_ARROW_IMPACT.id());
 
         spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
         spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
@@ -106,7 +108,7 @@ public class ArchersSpells {
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.NATURE)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(10F).speed(0.02F, 0.1F)));
-        damage.sound = new Sound(Identifier.of("archers:magic_arrow_impact"));
+        damage.sound = new Sound(ArcherSounds.MAGIC_ARROW_IMPACT.id());
 
         spell.impacts = List.of(damage);
 
@@ -142,13 +144,13 @@ public class ArchersSpells {
 
         spell.active.cast.duration = 1.0F;
         spell.active.cast.animation = PlayerAnimation.of("spell_engine:archery_upwards_pull");
-        spell.active.cast.sound = new Sound("archers:bow_pull");
+        spell.active.cast.sound = new Sound(ArcherSounds.BOW_PULL.id());
 
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
 
         spell.release.animation = PlayerAnimation.of("spell_engine:archery_upwards_release");
-        spell.release.sound = new Sound("minecraft:item.crossbow.shoot");
+        spell.release.sound = new Sound(SoundEvents.ITEM_CROSSBOW_SHOOT.getId());
 
         spell.deliver.type = Spell.Delivery.Type.METEOR;
         var meteor = new Spell.Delivery.Meteor();
@@ -180,7 +182,7 @@ public class ArchersSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(25).speed(0.2F, 0.5F).preTravel(4F)));
-        damage.sound = Sound.withRandomness(Identifier.of("entity.generic.explode"),1.2F);
+        damage.sound = Sound.withRandomness(SoundEvents.ENTITY_GENERIC_EXPLODE.registryKey().getValue(), 1.2F);
 
         var fire = SpellBuilder.Impacts.fire(5);
 
@@ -190,7 +192,7 @@ public class ArchersSpells {
         spell.area_impact.radius = 3.0F;
         spell.area_impact.area = new Spell.Target.Area();
         spell.area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.NONE;
-        spell.area_impact.sound = new Sound("minecraft:entity.arrow.hit");
+        spell.area_impact.sound = new Sound(SoundEvents.ENTITY_ARROW_HIT.getId());
 
         SpellBuilder.Cost.cooldown(spell, 28);
         SpellBuilder.Cost.exhaust(spell, 0.3F);
@@ -216,7 +218,7 @@ public class ArchersSpells {
         cloud.volume.radius = 10.0F;
         cloud.volume.area = new Spell.Target.Area();
         cloud.volume.area.vertical_range_multiplier = 1.5F;
-        cloud.volume.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.1F);
+        cloud.volume.sound = Sound.withVolume(SpellEngineSounds.GENERIC_WIND_CHARGING.id(), 0.1F);
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 10;
         cloud.spawn_ticks = 8;
@@ -282,13 +284,13 @@ public class ArchersSpells {
         bonus.range_add = 22;
 
         spell.active.cast.animation = PlayerAnimation.of("spell_engine:archery_pull");
-        spell.active.cast.sound = new Sound("archers:bow_pull");
+        spell.active.cast.sound = new Sound(ArcherSounds.BOW_PULL.id());
 
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
 
         spell.release.animation = PlayerAnimation.of("spell_engine:archery_release");
-        spell.release.sound = new Sound("entity.arrow.shoot");
+        spell.release.sound = new Sound(SoundEvents.ENTITY_ARROW_SHOOT.getId());
 
         spell.deliver.type = Spell.Delivery.Type.CUSTOM;
         spell.deliver.custom = new Spell.Delivery.Custom();

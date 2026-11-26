@@ -26,7 +26,7 @@
       "id": "spell_engine:archery_release"
     },
     "sound": {
-      "id": "entity.arrow.shoot"
+      "id": "minecraft:entity.arrow.shoot"
     }
   },
   "target": {
